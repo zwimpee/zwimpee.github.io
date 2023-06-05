@@ -1,0 +1,73 @@
+---
+layout: default
+---
+
+<div class="home">
+  
+  <ul class="posts" id="posts">
+    {% for post in site.posts %}
+      <li>
+        <div id="thumbnail" style="display:inline-block; margin-left: auto; margin-right: auto; vertical-align:top; padding-top:15px; text-align:center;width:15%;">
+
+            {% if post.thumbnail %}
+              <img src="{{ post.thumbnail }}" style="width:80%; height:80%;" align="center"/>
+            {% else %}
+              <img src="/assets/shell.png" style="width:80%; height:80%" align="center"/> <!-- border: 0px solid #ccc; -->
+            {% endif %}
+        </div>
+        <div id="summary" style="display:inline-block;width:80%;">
+            <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+            <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
+        <br>
+        <div style="font-weight: 300;">
+          {{ post.excerpt }}
+        </div>
+        </div>
+
+
+      </li>
+    {% endfor %}
+  </ul>
+
+</div>
+
+<script>
+    function getBrowserSize(){
+       var w, h;
+
+         if(typeof window.innerWidth != 'undefined')
+         {
+          w = window.innerWidth; //other browsers
+          h = window.innerHeight;
+         } 
+         else if(typeof document.documentElement != 'undefined' && typeof      document.documentElement.clientWidth != 'undefined' && document.documentElement.clientWidth != 0) 
+         {
+          w =  document.documentElement.clientWidth; //IE
+          h = document.documentElement.clientHeight;
+         }
+         else{
+          w = document.body.clientWidth; //IE
+          h = document.body.clientHeight;
+         }
+       return {'width':w, 'height': h};
+}
+
+if(parseInt(getBrowserSize().width) < 700){
+  // document.getElementById("longEqnWithLargeScript_A").style.display = "none";
+  var x = document.getElementById("posts").querySelectorAll("#thumbnail");
+  console.log(x);
+  var i;
+  for (i = 0; i < x.length; i++) {
+    x[i].style.width = "25%";
+    x[i].style.paddingTop = "33px";
+  }
+
+  var x = document.getElementById("posts").querySelectorAll("#summary");
+  console.log(x);
+  var i;
+  for (i = 0; i < x.length; i++) {
+    x[i].style.width = "72%";
+  }
+}
+</script>
+

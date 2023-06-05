@@ -1,0 +1,14 @@
+# My blog | 2023
+# Zach Wimpee
+
+*.DS_Store*
+*.egg-info
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+*/.jekyll-cache/*
+.pytest_cache
+*.tar
+*.zip
+*.jekyll-cache*
+# *.pkl # allow pickle files
+__pycache__

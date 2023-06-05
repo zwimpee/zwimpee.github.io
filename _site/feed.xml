@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.0">Jekyll</generator><link href="http://zwimpee.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="http://zwimpee.github.io/" rel="alternate" type="text/html" /><updated>2023-06-03T14:03:25-07:00</updated><id>http://zwimpee.github.io/feed.xml</id><title type="html">Knights of KERN</title><subtitle>A blog by Kanye West</subtitle><entry><title type="html">Three Perspectives on Deep Learning</title><link href="http://zwimpee.github.io/2023/06/02/intro/" rel="alternate" type="text/html" title="Three Perspectives on Deep Learning" /><published>2023-06-02T04:00:00-07:00</published><updated>2023-06-02T04:00:00-07:00</updated><id>http://zwimpee.github.io/2023/06/02/intro</id><content type="html" xml:base="http://zwimpee.github.io/2023/06/02/intro/">&lt;blockquote&gt;
+  &lt;p&gt;“Deep learning has solved vision…” - Demis Hassabis (Google DeepMind)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;When &lt;a href=&quot;https://en.wikipedia.org/wiki/Demis_Hassabis&quot;&gt;Demis Hassabis&lt;/a&gt; opened his lecture at the 2015 CERN Data Science conference with this claim, I blinked in disbelief. Hundreds of brilliant scientists have spent their lives pondering the mysteries of the human eye. How could he make that claim so casually? Determined to prove him wrong, I looked at the latest computer vision research and… indeed, certain areas are &lt;a href=&quot;https://arxiv.org/abs/1502.01852v1&quot;&gt;at human performance&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;imgcap&quot;&gt;
+	&lt;img src=&quot;/assets/intro/neural_style.png&quot; width=&quot;65%&quot; /&gt;
+	&lt;div class=&quot;thecap&quot; style=&quot;text-align:center&quot;&gt;Deep learning magic: a ConvNet-based architecture can capture artistic style and apply it to a new image (from &lt;a href=&quot;https://github.com/jcjohnson/neural-style&quot;&gt;jcjohnson&lt;/a&gt;)&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;biological-picture&quot;&gt;Biological picture&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;“A lot of the motivation for deep nets did come from looking at the brain…” - Geoffrey Hinton&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The field of deep learning got started when scientists tried to approximate certain circuits in the brain. For example, the Convolutional Neural Network (ConvNet) – a cornerstone of modern computer vision – was inspired by &lt;a href=&quot;https://www.ncbi.nlm.nih.gov/pubmed/4966457&quot;&gt;a paper&lt;/a&gt; about neurons in the monkey striate cortex. Another example is the field of Reinforcement Learning – the hottest area of AI right now - which was built on our understanding of how the brain processes rewards.&lt;/p&gt;
+
+&lt;div class=&quot;imgcap&quot;&gt;
+	&lt;img src=&quot;/assets/intro/bio_vs_dl.png&quot; width=&quot;90%&quot; /&gt;
+	&lt;div class=&quot;thecap&quot; style=&quot;text-align:center&quot;&gt;The architecture of neural networks is inspired by connections between neurons&lt;/div&gt;
+&lt;/div&gt;</content><author><name>Zach Wimpee</name></author><summary type="html">After being excited about this field for more than a year, I should have a concise and satisfying answer to the question, &apos;What is deep learning?&apos; But I have three.</summary></entry></feed>

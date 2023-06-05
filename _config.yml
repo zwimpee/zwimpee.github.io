@@ -1,0 +1,19 @@
+# Site settings
+title: Knights of KERN
+email: zwimpee(at)gmail.com
+description: "A blog by Kanye West"
+baseurl: ""
+url: "http://zwimpee.github.io"
+github_username: zwimpee
+plugins:
+  - jekyll-feed
+
+# Build settings
+markdown: kramdown
+permalink: pretty
+
+highlighter: rouge
+kramdown:
+  input: GFM
+  auto_ids: true
+  syntax_highlighter: rouge
