@@ -1,3 +1,13 @@
+---
+layout: post
+comments: true
+title:  "There and Back Again: A Review of Deep Learning"
+excerpt: "The amount of information that people in this position have to sift through in order to get up to speed is staggering, and I hope that by writing about my own journey, I can help to make that process a little bit easier for them."
+date:   2023-06-02 11:00:00
+mathjax: true
+author: Zach Wimpee
+thumbnail: /assets/intro/thumbnail.png
+---
 # There and Back Again: A Review of Deep Learning
 
 ## Introduction
@@ -22,7 +32,7 @@ to living for 3 months in Europe as a student intern at the Large Hadron Collide
 
 More recently, for the past 4 years, I have focused on building my career in the field of artifical intelligence. My experience in this field now ranges from training my own custom neural network from scratch (my self-taught introduction to the field), all the way to designing, building, deploying, and monitoring LLM-based pipelines in a production setting.
 
-If you want to hear me speak on this latest experience in particular, you can check out this talk I gave for  [Jon Snow Labs last year](www.nlpsummit.org/creating-and-maintaining-pipelines-for-machine-learning-operations/).
+If you want to hear me speak on this latest experience in particular, you can check out this talk I gave for  [Jon Snow Labs last year](https://www.nlpsummit.org/creating-and-maintaining-pipelines-for-machine-learning-operations/).
 
 I will spare you the details from each of my experiences, but I want to share enough information for you to be able to decide for yourself if I am someone who is even worth listening to, so as to not waste your time, which I think is the worst sin one can commit against themselves. 
 
