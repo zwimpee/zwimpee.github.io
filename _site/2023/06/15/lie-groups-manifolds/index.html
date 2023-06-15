@@ -115,11 +115,53 @@
 <p><em>c)</em> If $x \in U_{\alpha}$ and $\tilde x \in U_{\beta}$ are distinct points of <strong>$M$</strong>, then there exist open subsets $W\subset V_{\alpha}$, $\tilde W \subset V_{\beta}$ with $\chi_{\alpha}(x)\in W$, $\chi_{\beta}(\tilde x)\in \tilde W$, satisfying
 \(\chi_{\alpha}^{-1}(W)\cap\chi_{\beta}^{-1}(\tilde W) = \emptyset\)</p>
 
-<blockquote>
-  <h4 id="notes"><strong><em>Notes</em></strong></h4>
+<p>Manifolds and the Circle $S^{1}$
+In a quest to understand Lie Groups - a powerful mathematical concept that combines the properties of groups and manifolds - we begin by exploring the fundamental building block: the manifold.</p>
 
-  <p><em>The local coordinate charts $\chi_{\alpha}\colon U_{\alpha} \mapsto V_{\alpha}$ endow the manifold $M$ with the structure of a topological space. Namely, we require that for each open subset $W\subset V_{\alpha}\subset\mathbb{R}^{m}$, $\chi_{\alpha}^{-1}(W)$ be an open subset of $M$. These sets form a *basis</em> for the topology on $M$, so that $U \subset M$ is open if and only if for each $x \in U$ there is a neighborhood of $x$ of the above form contained in $U$; i.e., $x \in \chi_{\alpha}^{-1}(W) \subset U$, where $\chi_{\alpha}\colon U_{\alpha} \mapsto V_{\alpha}$ is a coordinate chart containing $x$, and $W$ is an open subset of $V_{\alpha}$. In terms of this topology, the third requirement in the definition of a manifold is just a statement of the Hausdorff separation axiom. The degree of differentiability of the overlap functions $\chi_{\beta} \circ \chi_{\alpha}^{-1}$ determines the degree of smoothness of the manifold.*</p>
-</blockquote>
+<p>We learned in the previous section that an $m$-dimensional manifold is a set $M$, with certain properties that allows it to behave locally like a Euclidean space of dimension $m$. While this definition may seem abstract, let’s demystify it by diving into a concrete example: the circle $S^{1}$.</p>
+
+<p>The Circle as a Manifold
+An easy example to start with is the circle $S^{1}$. We can think of a circle as a 1-dimensional manifold because we can parameterize it using a single parameter, say $\theta$, as follows: $x = \cos(\theta)$, $y = \sin(\theta)$.</p>
+
+<p>In Python, we can create a representation of this circle using a 1-dimensional tensor for $\theta$ with 1000 points between 0 and $2\pi$, and then compute the corresponding $x$ and $y$ values to represent points on the circle:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="c1"># Define theta as a 1-dimensional tensor with 1000 points between 0 and 2*pi
+</span><span class="n">theta</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">torch</span><span class="p">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># Compute x and y values
+</span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>With this representation, we can also create a visualization to better understand the relationship between $\theta$, $x$, and $y$:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Create a figure with two subplots: x and y as functions of theta, and x plotted against y
+</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Plot x and y as functions of theta
+</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'x'</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'y'</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">set_title</span><span class="p">(</span><span class="s">'</span><span class="se">\u03B8</span><span class="s"> vs. x and y'</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'</span><span class="se">\u03B8</span><span class="s">'</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'x and y'</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Plot x vs y to display the circle
+</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Manifold: $S^1$'</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'x'</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'y'</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="c1"># Display the plot
+</span><span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<p>As $\theta$ varies between 0 and $2\pi$, the $x$ and $y$ values trace out a complete circle. Thus, any point on the circle can be uniquely identified by a single parameter $\theta$. This demonstrates one of the key properties of a manifold: locally, it behaves just like a simple Euclidean space.</p>
+
+<p>This code and the associated visualization serve as a practical implementation of the manifold concept, offering an intuitive understanding that you can extend to higher-dimensional manifolds. As we proceed, you’ll see that this intuition is crucial to understanding the more complex structures in the realm of Lie Groups. So, keep this circle example in mind as we continue our journey!</p>
 
   </article>
 

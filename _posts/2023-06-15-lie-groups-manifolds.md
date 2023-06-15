@@ -42,6 +42,54 @@ $$
 \chi_{\alpha}^{-1}(W)\cap\chi_{\beta}^{-1}(\tilde W) = \emptyset
 $$
 
-> #### ***Notes***
->
-> *The local coordinate charts $\chi_{\alpha}\colon U_{\alpha} \mapsto V_{\alpha}$ endow the manifold $M$ with the structure of a topological space. Namely, we require that for each open subset $W\subset V_{\alpha}\subset\mathbb{R}^{m}$, $\chi_{\alpha}^{-1}(W)$ be an open subset of $M$. These sets form a *basis* for the topology on $M$, so that $U \subset M$ is open if and only if for each $x \in U$ there is a neighborhood of $x$ of the above form contained in $U$; i.e., $x \in \chi_{\alpha}^{-1}(W) \subset U$, where $\chi_{\alpha}\colon U_{\alpha} \mapsto V_{\alpha}$ is a coordinate chart containing $x$, and $W$ is an open subset of $V_{\alpha}$. In terms of this topology, the third requirement in the definition of a manifold is just a statement of the Hausdorff separation axiom. The degree of differentiability of the overlap functions $\chi_{\beta} \circ \chi_{\alpha}^{-1}$ determines the degree of smoothness of the manifold.*
+
+
+Manifolds and the Circle $S^{1}$
+In a quest to understand Lie Groups - a powerful mathematical concept that combines the properties of groups and manifolds - we begin by exploring the fundamental building block: the manifold.
+
+We learned in the previous section that an $m$-dimensional manifold is a set $M$, with certain properties that allows it to behave locally like a Euclidean space of dimension $m$. While this definition may seem abstract, let's demystify it by diving into a concrete example: the circle $S^{1}$.
+
+The Circle as a Manifold
+An easy example to start with is the circle $S^{1}$. We can think of a circle as a 1-dimensional manifold because we can parameterize it using a single parameter, say $\theta$, as follows: $x = \cos(\theta)$, $y = \sin(\theta)$.
+
+In Python, we can create a representation of this circle using a 1-dimensional tensor for $\theta$ with 1000 points between 0 and $2\pi$, and then compute the corresponding $x$ and $y$ values to represent points on the circle:
+
+```python
+import torch
+import matplotlib.pyplot as plt
+
+# Define theta as a 1-dimensional tensor with 1000 points between 0 and 2*pi
+theta = torch.linspace(0, 2 * torch.pi, 1000)
+
+# Compute x and y values
+x = torch.cos(theta)
+y = torch.sin(theta)
+```
+
+With this representation, we can also create a visualization to better understand the relationship between $\theta$, $x$, and $y$:
+```python
+# Create a figure with two subplots: x and y as functions of theta, and x plotted against y
+fig, axs = plt.subplots(2, 1, figsize=(8, 8))
+
+# Plot x and y as functions of theta
+axs[0].plot(theta, x, label='x')
+axs[0].plot(theta, y, label='y')
+axs[0].set_title('\u03B8 vs. x and y')
+axs[0].set_xlabel('\u03B8')
+axs[0].set_ylabel('x and y')
+axs[0].legend()
+
+# Plot x vs y to display the circle
+axs[1].plot(x, y)
+axs[1].set_title('Manifold: $S^1$')
+axs[1].set_xlabel('x')
+axs[1].set_ylabel('y')
+fig.tight_layout()
+
+# Display the plot
+plt.show()
+```
+
+As $\theta$ varies between 0 and $2\pi$, the $x$ and $y$ values trace out a complete circle. Thus, any point on the circle can be uniquely identified by a single parameter $\theta$. This demonstrates one of the key properties of a manifold: locally, it behaves just like a simple Euclidean space.
+
+This code and the associated visualization serve as a practical implementation of the manifold concept, offering an intuitive understanding that you can extend to higher-dimensional manifolds. As we proceed, you'll see that this intuition is crucial to understanding the more complex structures in the realm of Lie Groups. So, keep this circle example in mind as we continue our journey!
