@@ -4,10 +4,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Mathematics for Machine Learning Deep Dive</title>
+    <title>Applications of Lie Groups to Neural Networks - Part 1</title>
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="">
-    <link rel="canonical" href="http://localhost:4000/about_me/">
+    <link rel="canonical" href="http://localhost:4000/2023/06/15/lie-groups-manifolds/">
     <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Mathematics for Machine Learning Deep Dive posts" />
 
     <!-- Custom CSS -->
@@ -79,46 +79,84 @@
       <div class="post">
 
   <header class="post-header">
-    <h1></h1>
+    <h1>Applications of Lie Groups to Neural Networks - Part 1</h1>
+    <p class="meta">Jun 15, 2023 • Zach Wimpee</p>
   </header>
 
   <article class="post-content">
-  <p><img src="/static/me.png" alt="Profile Picture" width="50%" /></p>
+  <h1 id="graudate-texts-in-mathematics---applications-of-lie-groups-to-differential-equations">Graudate Texts in Mathematics - Applications of Lie Groups to Differential Equations</h1>
 
-<h2 id="links">Links</h2>
-<ul>
-  <li><a href="https://www.linkedin.com/in/zwimpee/">LinkedIn</a></li>
-  <li><a href="https://github.com/zwimpee">GitHub</a></li>
-  <li><a href="https://arxiv.org/abs/1906.02971">Publication</a></li>
-</ul>
+<h2 id="chapter-1---introduction-to-lie-groups">Chapter 1 - Introduction to Lie Groups</h2>
+<blockquote>
+  <p>“<em>…Once we have freed outselves of this dependence on coordinates, it is a small step to the general definition of a smooth manifold.</em>” - Olver, pg. 3</p>
+</blockquote>
 
-<h2 id="about-me">About Me</h2>
+<p>We want to understand what a Lie Group is, given the simple definition that it is a Group that is also a Manifold.</p>
 
-<p>Highly skilled and motivated data engineer with a strong background in physics and mathematics. Experienced in designing, developing, and deploying MLOps pipelines using the TFX framework, Airflow, Kubernetes, and AWS. Adept at building scalable and reliable solutions that enable efficient machine learning model development, deployment, and monitoring. Committed to the ethical implications and safety considerations of AI, with a passion for contributing to the development of powerful, efficient, and safe AI systems. Seeking a software engineering position from which to leverage expertise in MLOps and collaborate with like-minded professionals to advance AI while ensuring its safety and ethical use.</p>
+<p>To begin, we are working towards understanding smooth manifolds as a means to move away from defining transformations applied on objects in terms of local coordinates.</p>
 
-<p>This industry experience has proceeded a formal educational background in theoretical physics and advanced mathematics. This has resulted in the following publication in the field of high energy theoretical particle physics: https://arxiv.org/abs/1906.02971</p>
+<p>To do this, let’s start with a definition.</p>
 
-<h2 id="skills">Skills</h2>
+<h3 id="definition-11---m-dimensional-manifold"><strong>Definition 1.1</strong> - <strong>$M$-Dimensional Manifold</strong></h3>
+<p>An <strong>$m$-dimensional manifold</strong> is a set <strong>$M$</strong>, together with a countable collection of subsets <strong>$U_{\alpha} \subset M$</strong>, called <strong><em>coordinate charts</em></strong>, and one-to-one functions <strong>$\chi_\alpha \colon U_\alpha \mapsto V_\alpha$</strong> onto connected open subsets <strong>$V_{\alpha}\subset \mathbb{R}^m$</strong>, called <strong><em>local coordinate maps</em></strong>, which satisfy the following properties:</p>
 
-<h2 id="education-and-experience">Education and Experience</h2>
+<p><em>a)</em> The <strong><em>coordinate charts</em></strong> <em>cover</em> <strong>$M$</strong>:
+\(\bigcup_{\alpha} U_{\alpha} = M\)</p>
 
-<ul>
-  <li>2013 – Physics and Mathematics (Double Major), Angelo State University, San Angelo</li>
-  <li>2015 – Research Assistant, CERN, Geneva, Switzerland</li>
-  <li>2023 – Data Engineer, Pieces, Dallas</li>
-</ul>
+<p><em>b)</em> On the overlap of any pair of coordinate charts, $U_{\alpha}\cap U_{\beta}$, the composite map
+\(\chi_{\beta}\circ \chi_{\alpha}^{-1}\colon \chi_{\alpha}(
+    U_{\alpha}\cap U_{\beta}
+) \mapsto \chi_{\beta}(
+    U_{\alpha}\cap U_{\beta}
+)\)</p>
 
+<p>is a smooth (<strong><em>infinitely differentiable</em></strong>) function.</p>
+
+<p><em>c)</em> If $x \in U_{\alpha}$ and $\tilde x \in U_{\beta}$ are distinct points of <strong>$M$</strong>, then there exist open subsets $W\subset V_{\alpha}$, $\tilde W \subset V_{\beta}$ with $\chi_{\alpha}(x)\in W$, $\chi_{\beta}(\tilde x)\in \tilde W$, satisfying
+\(\chi_{\alpha}^{-1}(W)\cap\chi_{\beta}^{-1}(\tilde W) = \emptyset\)</p>
+
+<blockquote>
+  <h4 id="notes"><strong><em>Notes</em></strong></h4>
+
+  <p><em>The local coordinate charts $\chi_{\alpha}\colon U_{\alpha} \mapsto V_{\alpha}$ endow the manifold $M$ with the structure of a topological space. Namely, we require that for each open subset $W\subset V_{\alpha}\subset\mathbb{R}^{m}$, $\chi_{\alpha}^{-1}(W)$ be an open subset of $M$. These sets form a *basis</em> for the topology on $M$, so that $U \subset M$ is open if and only if for each $x \in U$ there is a neighborhood of $x$ of the above form contained in $U$; i.e., $x \in \chi_{\alpha}^{-1}(W) \subset U$, where $\chi_{\alpha}\colon U_{\alpha} \mapsto V_{\alpha}$ is a coordinate chart containing $x$, and $W$ is an open subset of $V_{\alpha}$. In terms of this topology, the third requirement in the definition of a manifold is just a statement of the Hausdorff separation axiom. The degree of differentiability of the overlap functions $\chi_{\beta} \circ \chi_{\alpha}^{-1}$ determines the degree of smoothness of the manifold.*</p>
+</blockquote>
 
   </article>
 
-<!-- disqus comments -->
+  <!-- mathjax -->
+  
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+  <!-- disqus comments -->
  
+  <div id="disqus_thread"></div>
+  <script>
+      /**
+       *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+       *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+       */
+      /*
+      var disqus_config = function () {
+          this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() {  // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          
+          s.src = '//zwimpee-blog.disqus.com/embed.js';
+          
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  
+
+
   
 </div>
-
-<!-- mathjax -->
-
-
       </div>
     </div>
 

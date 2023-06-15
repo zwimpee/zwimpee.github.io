@@ -1,22 +1,161 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://zwimpee.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="http://zwimpee.github.io/" rel="alternate" type="text/html" /><updated>2023-06-14T17:37:36-05:00</updated><id>http://zwimpee.github.io/feed.xml</id><title type="html">Knights of KERN</title><subtitle>A blog by Kanye West</subtitle><entry><title type="html">Three Perspectives on Deep Learning</title><link href="http://zwimpee.github.io/2023/06/02/intro/" rel="alternate" type="text/html" title="Three Perspectives on Deep Learning" /><published>2023-06-02T06:00:00-05:00</published><updated>2023-06-02T06:00:00-05:00</updated><id>http://zwimpee.github.io/2023/06/02/intro</id><content type="html" xml:base="http://zwimpee.github.io/2023/06/02/intro/"><![CDATA[<blockquote>
-  <p>“Deep learning has solved vision…” - Demis Hassabis (Google DeepMind)</p>
-</blockquote>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-15T11:36:49-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mathematics for Machine Learning Deep Dive</title><subtitle></subtitle><entry><title type="html">Applications of Lie Groups to Neural Networks - Part 1</title><link href="http://localhost:4000/2023/06/15/lie-groups-manifolds/" rel="alternate" type="text/html" title="Applications of Lie Groups to Neural Networks - Part 1" /><published>2023-06-15T03:00:00-05:00</published><updated>2023-06-15T03:00:00-05:00</updated><id>http://localhost:4000/2023/06/15/lie-groups-manifolds</id><content type="html" xml:base="http://localhost:4000/2023/06/15/lie-groups-manifolds/">&lt;h1 id=&quot;graudate-texts-in-mathematics---applications-of-lie-groups-to-differential-equations&quot;&gt;Graudate Texts in Mathematics - Applications of Lie Groups to Differential Equations&lt;/h1&gt;
 
-<p>When <a href="https://en.wikipedia.org/wiki/Demis_Hassabis">Demis Hassabis</a> opened his lecture at the 2015 CERN Data Science conference with this claim, I blinked in disbelief. Hundreds of brilliant scientists have spent their lives pondering the mysteries of the human eye. How could he make that claim so casually? Determined to prove him wrong, I looked at the latest computer vision research and… indeed, certain areas are <a href="https://arxiv.org/abs/1502.01852v1">at human performance</a>.</p>
+&lt;h2 id=&quot;chapter-1---introduction-to-lie-groups&quot;&gt;Chapter 1 - Introduction to Lie Groups&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;“&lt;em&gt;…Once we have freed outselves of this dependence on coordinates, it is a small step to the general definition of a smooth manifold.&lt;/em&gt;” - Olver, pg. 3&lt;/p&gt;
+&lt;/blockquote&gt;
 
-<div class="imgcap">
-	<img src="/assets/intro/neural_style.png" width="65%" />
-	<div class="thecap" style="text-align:center">Deep learning magic: a ConvNet-based architecture can capture artistic style and apply it to a new image (from <a href="https://github.com/jcjohnson/neural-style">jcjohnson</a>)</div>
-</div>
+&lt;p&gt;We want to understand what a Lie Group is, given the simple definition that it is a Group that is also a Manifold.&lt;/p&gt;
 
-<h2 id="biological-picture">Biological picture</h2>
-<blockquote>
-  <p>“A lot of the motivation for deep nets did come from looking at the brain…” - Geoffrey Hinton</p>
-</blockquote>
+&lt;p&gt;To begin, we are working towards understanding smooth manifolds as a means to move away from defining transformations applied on objects in terms of local coordinates.&lt;/p&gt;
 
-<p>The field of deep learning got started when scientists tried to approximate certain circuits in the brain. For example, the Convolutional Neural Network (ConvNet) – a cornerstone of modern computer vision – was inspired by <a href="https://www.ncbi.nlm.nih.gov/pubmed/4966457">a paper</a> about neurons in the monkey striate cortex. Another example is the field of Reinforcement Learning – the hottest area of AI right now - which was built on our understanding of how the brain processes rewards.</p>
+&lt;p&gt;To do this, let’s start with a definition.&lt;/p&gt;
 
-<div class="imgcap">
-	<img src="/assets/intro/bio_vs_dl.png" width="90%" />
-	<div class="thecap" style="text-align:center">The architecture of neural networks is inspired by connections between neurons</div>
-</div>]]></content><author><name>Zach Wimpee</name></author><summary type="html"><![CDATA[After being excited about this field for more than a year, I should have a concise and satisfying answer to the question, 'What is deep learning?' But I have three.]]></summary></entry></feed>
+&lt;h3 id=&quot;definition-11---m-dimensional-manifold&quot;&gt;&lt;strong&gt;Definition 1.1&lt;/strong&gt; - &lt;strong&gt;$M$-Dimensional Manifold&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;An &lt;strong&gt;$m$-dimensional manifold&lt;/strong&gt; is a set &lt;strong&gt;$M$&lt;/strong&gt;, together with a countable collection of subsets &lt;strong&gt;$U_{\alpha} \subset M$&lt;/strong&gt;, called &lt;strong&gt;&lt;em&gt;coordinate charts&lt;/em&gt;&lt;/strong&gt;, and one-to-one functions &lt;strong&gt;$\chi_\alpha \colon U_\alpha \mapsto V_\alpha$&lt;/strong&gt; onto connected open subsets &lt;strong&gt;$V_{\alpha}\subset \mathbb{R}^m$&lt;/strong&gt;, called &lt;strong&gt;&lt;em&gt;local coordinate maps&lt;/em&gt;&lt;/strong&gt;, which satisfy the following properties:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;a)&lt;/em&gt; The &lt;strong&gt;&lt;em&gt;coordinate charts&lt;/em&gt;&lt;/strong&gt; &lt;em&gt;cover&lt;/em&gt; &lt;strong&gt;$M$&lt;/strong&gt;:
+\(\bigcup_{\alpha} U_{\alpha} = M\)&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;b)&lt;/em&gt; On the overlap of any pair of coordinate charts, $U_{\alpha}\cap U_{\beta}$, the composite map
+\(\chi_{\beta}\circ \chi_{\alpha}^{-1}\colon \chi_{\alpha}(
+    U_{\alpha}\cap U_{\beta}
+) \mapsto \chi_{\beta}(
+    U_{\alpha}\cap U_{\beta}
+)\)&lt;/p&gt;
+
+&lt;p&gt;is a smooth (&lt;strong&gt;&lt;em&gt;infinitely differentiable&lt;/em&gt;&lt;/strong&gt;) function.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;c)&lt;/em&gt; If $x \in U_{\alpha}$ and $\tilde x \in U_{\beta}$ are distinct points of &lt;strong&gt;$M$&lt;/strong&gt;, then there exist open subsets $W\subset V_{\alpha}$, $\tilde W \subset V_{\beta}$ with $\chi_{\alpha}(x)\in W$, $\chi_{\beta}(\tilde x)\in \tilde W$, satisfying
+\(\chi_{\alpha}^{-1}(W)\cap\chi_{\beta}^{-1}(\tilde W) = \emptyset\)&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;h4 id=&quot;notes&quot;&gt;&lt;strong&gt;&lt;em&gt;Notes&lt;/em&gt;&lt;/strong&gt;&lt;/h4&gt;
+
+  &lt;p&gt;&lt;em&gt;The local coordinate charts $\chi_{\alpha}\colon U_{\alpha} \mapsto V_{\alpha}$ endow the manifold $M$ with the structure of a topological space. Namely, we require that for each open subset $W\subset V_{\alpha}\subset\mathbb{R}^{m}$, $\chi_{\alpha}^{-1}(W)$ be an open subset of $M$. These sets form a *basis&lt;/em&gt; for the topology on $M$, so that $U \subset M$ is open if and only if for each $x \in U$ there is a neighborhood of $x$ of the above form contained in $U$; i.e., $x \in \chi_{\alpha}^{-1}(W) \subset U$, where $\chi_{\alpha}\colon U_{\alpha} \mapsto V_{\alpha}$ is a coordinate chart containing $x$, and $W$ is an open subset of $V_{\alpha}$. In terms of this topology, the third requirement in the definition of a manifold is just a statement of the Hausdorff separation axiom. The degree of differentiability of the overlap functions $\chi_{\beta} \circ \chi_{\alpha}^{-1}$ determines the degree of smoothness of the manifold.*&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Zach Wimpee</name></author><summary type="html">&gt; “...we are working towards understanding smooth manifolds as a means to move away from defining transformations applied on objects in terms of local coordinates.</summary></entry><entry><title type="html">Three Perspectives on Deep Learning</title><link href="http://localhost:4000/2023/06/02/intro/" rel="alternate" type="text/html" title="Three Perspectives on Deep Learning" /><published>2023-06-02T06:00:00-05:00</published><updated>2023-06-02T06:00:00-05:00</updated><id>http://localhost:4000/2023/06/02/intro</id><content type="html" xml:base="http://localhost:4000/2023/06/02/intro/">&lt;blockquote&gt;
+  &lt;p&gt;“Deep learning has solved vision…” - Demis Hassabis (Google DeepMind)&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;When &lt;a href=&quot;https://en.wikipedia.org/wiki/Demis_Hassabis&quot;&gt;Demis Hassabis&lt;/a&gt; opened his lecture at the 2015 CERN Data Science conference with this claim, I blinked in disbelief. Hundreds of brilliant scientists have spent their lives pondering the mysteries of the human eye. How could he make that claim so casually? Determined to prove him wrong, I looked at the latest computer vision research and… indeed, certain areas are &lt;a href=&quot;https://arxiv.org/abs/1502.01852v1&quot;&gt;at human performance&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;imgcap&quot;&gt;
+	&lt;img src=&quot;/assets/intro/neural_style.png&quot; width=&quot;65%&quot; /&gt;
+	&lt;div class=&quot;thecap&quot; style=&quot;text-align:center&quot;&gt;Deep learning magic: a ConvNet-based architecture can capture artistic style and apply it to a new image (from &lt;a href=&quot;https://github.com/jcjohnson/neural-style&quot;&gt;jcjohnson&lt;/a&gt;)&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;biological-picture&quot;&gt;Biological picture&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;“A lot of the motivation for deep nets did come from looking at the brain…” - Geoffrey Hinton&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The field of deep learning got started when scientists tried to approximate certain circuits in the brain. For example, the Convolutional Neural Network (ConvNet) – a cornerstone of modern computer vision – was inspired by &lt;a href=&quot;https://www.ncbi.nlm.nih.gov/pubmed/4966457&quot;&gt;a paper&lt;/a&gt; about neurons in the monkey striate cortex. Another example is the field of Reinforcement Learning – the hottest area of AI right now - which was built on our understanding of how the brain processes rewards.&lt;/p&gt;
+
+&lt;div class=&quot;imgcap&quot;&gt;
+	&lt;img src=&quot;/assets/intro/bio_vs_dl.png&quot; width=&quot;90%&quot; /&gt;
+	&lt;div class=&quot;thecap&quot; style=&quot;text-align:center&quot;&gt;The architecture of neural networks is inspired by connections between neurons&lt;/div&gt;
+&lt;/div&gt;</content><author><name>Zach Wimpee</name></author><summary type="html">After being excited about this field for more than a year, I should have a concise and satisfying answer to the question, &apos;What is deep learning?&apos; But I have three.</summary></entry><entry><title type="html">There and Back Again: A Review of Deep Learning</title><link href="http://localhost:4000/2023/06/02/intro/" rel="alternate" type="text/html" title="There and Back Again: A Review of Deep Learning" /><published>2023-06-02T06:00:00-05:00</published><updated>2023-06-02T06:00:00-05:00</updated><id>http://localhost:4000/2023/06/02/intro</id><content type="html" xml:base="http://localhost:4000/2023/06/02/intro/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;This always feels like the hardest part of starting any new project; being able to sit down and write out the first few sentences.&lt;/p&gt;
+
+&lt;p&gt;I have always been put off by the idea of journaling, not because I could not see the value in it, 
+but because I have always had a sense that it would take me back and make me relive things that I would have rather
+remained dormant somewhere in my subconscious.&lt;/p&gt;
+
+&lt;p&gt;Much to my amusement, however, I am finding it quite easy to write this first post. I think it is because I am not
+sure what it is I am writing about, other than the fact that I am writing about my long overdue return into the world of deep learning.&lt;/p&gt;
+
+&lt;h3 id=&quot;a-brief-personal-history&quot;&gt;A Brief Personal History&lt;/h3&gt;
+&lt;p&gt;Some brief background and history about myself: Starting at around 11 or 12 years old, I became absolutely obssessed with the idea
+of becoming a theoretical physicist. Being able to not only develop a deep intution about how the world around me is ordered, but
+also being able to impart this knowledge onto others and see the joy and wonder it could provide them, just as it did for me, was
+something I could not ever really get out of my head.&lt;/p&gt;
+
+&lt;p&gt;My educational and personal background led me through many twists and turns, from performing in extreme metal bands and highly competitive drumlines,
+to living for 3 months in Europe as a student intern at the Large Hadron Collider, to working on cutting edge high energy theoretical particle physics alongside some of the smartest people I could ever hope to meet.&lt;/p&gt;
+
+&lt;p&gt;More recently, for the past 4 years, I have focused on building my career in the field of artifical intelligence. My experience in this field now ranges from training my own custom neural network from scratch (my self-taught introduction to the field), all the way to designing, building, deploying, and monitoring LLM-based pipelines in a production setting.&lt;/p&gt;
+
+&lt;p&gt;If you want to hear me speak on this latest experience in particular, you can check out this talk I gave for  &lt;a href=&quot;https://www.nlpsummit.org/creating-and-maintaining-pipelines-for-machine-learning-operations/&quot;&gt;Jon Snow Labs last year&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;I will spare you the details from each of my experiences, but I want to share enough information for you to be able to decide for yourself if I am someone who is even worth listening to, so as to not waste your time, which I think is the worst sin one can commit against themselves.&lt;/p&gt;
+
+&lt;h3 id=&quot;why-i-am-writing-this&quot;&gt;Why I am Writing This&lt;/h3&gt;
+&lt;p&gt;Spending the last 2 years away from the modeling and applied science side of things, and more on the software engineering side of things, has left me feeling a bit empty. I have been wanting to get back into the world of deep learning hands for quite some time now, but could never really find the right time to begin toying around with models again, since there was so much to learn and so much work to be done on the other side of things.&lt;/p&gt;
+
+&lt;p&gt;I would call it fortunate that life has found a way to provide me the time I need to finally get back to what I love doing again, which is learning about and applying deep learning to solve real world problems.&lt;/p&gt;
+
+&lt;p&gt;In order to do this, and put myself in a position where I can speak with confidence on the subject, there are a few things in my mind which I need to do first:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Review the underlying mathematics behind what makes deep learning work. If I cannot understand the mathematical operations that are being performed, then I cannot understand the models themselves (at least not in a way that I would be satisfied with).&lt;/li&gt;
+  &lt;li&gt;Get back up to speed with the last few years of research and development in the field, which I have admittedly been out of touch with for too long now&lt;/li&gt;
+  &lt;li&gt;Build models from scratch, and build applications from pretrained base models, and apply them to some real world problems in a novel way.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I am hoping that by writing about my journey through these three steps, I will be able to not only help myself learn and grow, but also help others who are in a similar position as myself, or maybe those who are themselves just starting out in the field.&lt;/p&gt;
+
+&lt;p&gt;I know there are a wide range of people who are starting to realize the current value and the upcoming importance and impact of these technologies, especially people coming from the parts of the software engineering world that were until now not really exposed to these ideas, or if they were then it was only at the surface level.&lt;/p&gt;
+
+&lt;p&gt;The amount of information that people in this position have to sift through in order to get up to speed is staggering, and I hope that by writing about my own journey, I can help to make that process a little bit easier for them.&lt;/p&gt;
+
+&lt;h3 id=&quot;what-i-will-be-writing-about-first&quot;&gt;What I Will Be Writing About &lt;em&gt;First&lt;/em&gt;&lt;/h3&gt;
+&lt;p&gt;To start, I will be writing about the first step in my journey, which is to review the underlying mathematics behind what makes deep learning work. I will be doing this in a way that is hopefully accessible to anyone who is interested in learning about the field, but who may not have the mathematical background that is typically required to understand the models themselves. 
+Following this, I will be reviewing the latest research and development in the field, and then finally I will be building models from scratch and applying them to some real world problems.
+After this, I will dive into building these base models from scratch, and walk through the process of building applications from them.&lt;/p&gt;
+
+&lt;p&gt;To summarize some of the high level topics I will be covering in this series, I will be writing about:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;The mathematics behind deep learning&lt;/strong&gt;:&lt;br /&gt;
+ a. Linear Algebra&lt;br /&gt;
+ b. Calculus&lt;br /&gt;
+ c. Probability and Statistics&lt;br /&gt;
+ d. Information Theory&lt;br /&gt;
+ e. Optimization&lt;br /&gt;
+ f. Algorithms&lt;br /&gt;
+ g. Data Structures&lt;br /&gt;
+ h. Graph Theory&lt;br /&gt;
+ i. Many more&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;The latest research and development in the field&lt;/strong&gt;:&lt;br /&gt;
+ a. Transformers&lt;br /&gt;
+ b. Reinforcement Learning&lt;br /&gt;
+ c. Diffusion Models&lt;br /&gt;
+ d. Assistants/Copilots&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Building neural networks from scratch&lt;br /&gt;
+ a. Convolutional Neural Networks&lt;br /&gt;
+ b. Recurrent Neural Networks&lt;br /&gt;
+ c. Transformers&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Building applications from pretrained base models&lt;/strong&gt;:&lt;br /&gt;
+ a. Image Classification&lt;br /&gt;
+ b. Object Detection&lt;br /&gt;
+ c. Text Classification&lt;br /&gt;
+ d. Text Generation&lt;br /&gt;
+ e. Text Summarization&lt;br /&gt;
+ f. Question Answering&lt;br /&gt;
+ g. Speech Recognition&lt;br /&gt;
+ h. Speech Synthesis&lt;br /&gt;
+ i. Machine Translation&lt;br /&gt;
+ j. Image Captioning&lt;br /&gt;
+ k. Style Transfer&lt;br /&gt;
+ l. Anomaly Detection&lt;br /&gt;
+ m. Recommender Systems&lt;br /&gt;
+ n. Reinforcement Learning&lt;br /&gt;
+ o. Generative Adversarial Networks&lt;br /&gt;
+ p. Autoencoders&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Note that this list is not exhaustive, and I will be adding to it as I go along. I will also be adding links to each of these sections as I write about them, so that you can easily navigate to the topics that interest you the most.&lt;/p&gt;
+
+&lt;p&gt;With that, I will leave you with one of my favorite quotes of all time:&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;“All we have to decide is what to do with the time that is given us.” ― J.R.R. Tolkien, The Fellowship of the Ring&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>Zach Wimpee</name></author><summary type="html">&gt; “All we have to decide is what to do with the time that is given us.” ― J.R.R. Tolkien, The Fellowship of the Ring</summary></entry></feed>
