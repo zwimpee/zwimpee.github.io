@@ -56,19 +56,32 @@ In Python, we can create a representation of this circle using a 1-dimensional t
 
 ```python
 import torch
+import torch.nn as nn
+import torch.nn.functional as F
 import matplotlib.pyplot as plt
 
-# Define theta as a 1-dimensional tensor with 1000 points between 0 and 2*pi
-theta = torch.linspace(0, 2 * torch.pi, 1000)
+import torch.optim as optim
 
-# Compute x and y values
+import io
+import zipfile
+import requests
+from torchtext.datasets import WikiText2
+from torchtext.data.utils import get_tokenizer
+from torchtext.vocab import build_vocab_from_iterator
+from torch.utils.data import DataLoader
+
+# An easy example to start with to explore the definition of a manifold is S^1, the circle. We can parameterize the circle
+# such that it can be defined in terms of a single parameter, theta, as follows:
+# x = cos(theta)
+# y = sin(theta)
+
+# The circle is a 1-dimensional manifold, so we can define it as a
+# 1-dimensional tensor. We'll use 1000 points to define the circle.
+theta = torch.linspace(0, 2 * torch.pi, 1000)
 x = torch.cos(theta)
 y = torch.sin(theta)
-```
 
-With this representation, we can also create a visualization to better understand the relationship between $\theta$, $x$, and $y$:
-```python
-# Create a figure with two subplots: x and y as functions of theta, and x plotted against y
+# Create a figure with two subplots: x and y as functions of theta, and x plotted against y with an example right triangle
 fig, axs = plt.subplots(2, 1, figsize=(8, 8))
 
 # Plot x and y as functions of theta
@@ -79,16 +92,35 @@ axs[0].set_xlabel('\u03B8')
 axs[0].set_ylabel('x and y')
 axs[0].legend()
 
-# Plot x vs y to display the circle
+# Plot x vs y and the right triangle with the corresponding angle 
 axs[1].plot(x, y)
 axs[1].set_title('Manifold: $S^1$')
 axs[1].set_xlabel('x')
 axs[1].set_ylabel('y')
+
+# Select the point attheta = pi/4 and plot the triangle
+example_theta = torch.tensor(torch.pi / 4.0)
+example_x = torch.cos(example_theta)
+example_y = torch.sin(example_theta)
+
+axs[1].plot([0, example_x], [0, 0], 'r',label='cos(\u03B8)')                                      # x edge
+axs[1].plot([example_x, example_x], [0, example_y], 'g', label='sin(\u03B8)')                                      # y edge
+axs[1].plot([0, example_x], [0, example_y], 'b', label='radius')                                  # hypotenuse
+axs[1].plot(example_x, example_y, 'ko', label='Point (cos(\u03B8), sin(\u03B8))')                 # point
+axs[1].annotate('\u03B8', (0.1, 0), fontsize=12)                                                   # theta label
+axs[1].legend()
+
+# Set aspect ratio for the x vs y plot
+axs[1].set_aspect('equal', 'box')
+
+# Adjust spacing between subplots
 fig.tight_layout()
 
 # Display the plot
 plt.show()
+
 ```
+<img src="static\s1.png" alt="Example Image" width="200"/>
 
 As $\theta$ varies between 0 and $2\pi$, the $x$ and $y$ values trace out a complete circle. Thus, any point on the circle can be uniquely identified by a single parameter $\theta$. This demonstrates one of the key properties of a manifold: locally, it behaves just like a simple Euclidean space.
 
