@@ -20,8 +20,8 @@ Picking back up from where we left off in part 1 of our discussion, we will now 
 Now that we've explored the circle as a 1-dimensional manifold, let's move on to a 2-dimensional manifold: the sphere $$ S^{2} $$. We can think of the sphere as a 2-dimensional manifold because we can parameterize it using two parameters, say $$ \theta $$ and $$ \phi $$, as follows:
 
 $$ 
-x = \cos(\theta)\sin(\phi)
-y = \sin(\theta)\sin(\phi) 
+x = \cos(\theta)\sin(\phi) \\
+y = \sin(\theta)\sin(\phi) \\
 z = \cos(\phi) 
 $$
 
