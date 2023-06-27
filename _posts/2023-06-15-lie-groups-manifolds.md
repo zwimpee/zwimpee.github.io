@@ -21,12 +21,16 @@ To begin, we are working towards understanding smooth manifolds as a means to mo
 To do this, let's start with a definition.
 
 ### **Definition 1.1** - **$M$-Dimensional Manifold**
-An **$m$-dimensional manifold** is a set **$M$**, together with a countable collection of subsets **$U_{\alpha} \subset M$**, called ***coordinate charts***, and one-to-one functions **$\chi_\alpha \colon U_\alpha \mapsto V_\alpha$** onto connected open subsets **$V_{\alpha}\subset \mathbb{R}^m$**, called ***local coordinate maps***, which satisfy the following properties:
+An **$ m $-dimensional manifold** is a set **$ M $**, together with a countable collection of subsets **$ U_{\alpha} \subset M $**, called ***coordinate charts***, and one-to-one functions **$ \chi_\alpha \colon U_\alpha \mapsto V_\alpha $** onto connected open subsets **$ V_{\alpha}\subset \mathbb{R}^m $**, called ***local coordinate maps***, which satisfy the following properties:
 
-*a)* The ***coordinate charts*** *cover* **$M$**:
-$$\bigcup_{\alpha} U_{\alpha} = M$$
+*a)* The ***coordinate charts*** *cover* **$ M $**:
 
-*b)* On the overlap of any pair of coordinate charts, $U_{\alpha}\cap U_{\beta}$, the composite map
+$$
+\bigcup_{\alpha} U_{\alpha} = M
+$$
+
+*b)* On the overlap of any pair of coordinate charts, $ U_{\alpha}\cap U_{\beta} $, the composite map
+
 $$
 \chi_{\beta}\circ \chi_{\alpha}^{-1}\colon \chi_{\alpha}(
     U_{\alpha}\cap U_{\beta}
@@ -37,7 +41,8 @@ $$
 
 is a smooth (***infinitely differentiable***) function.
 
-*c)* If $x \in U_{\alpha}$ and $\tilde x \in U_{\beta}$ are distinct points of **$M$**, then there exist open subsets $W\subset V_{\alpha}$, $\tilde W \subset V_{\beta}$ with $\chi_{\alpha}(x)\in W$, $\chi_{\beta}(\tilde x)\in \tilde W$, satisfying
+*c)* If $ x \in U_{\alpha} $ and $ \tilde x \in U_{\beta} $ are distinct points of **$ M $**, then there exist open subsets $ W\subset V_{\alpha} $, $\tilde W \subset V_{\beta}$ with $ \chi_{\alpha}(x)\in W $, $ \chi_{\beta}(\tilde x)\in \tilde W $, satisfying
+
 $$
 \chi_{\alpha}^{-1}(W)\cap\chi_{\beta}^{-1}(\tilde W) = \emptyset
 $$
@@ -47,12 +52,12 @@ $$
 ### Manifolds and the Circle $S^{1}$
 In a quest to understand Lie Groups - a powerful mathematical concept that combines the properties of groups and manifolds - we begin by exploring the fundamental building block: the manifold.
 
-We learned in the previous section that an $m$-dimensional manifold is a set $M$, with certain properties that allows it to behave locally like a Euclidean space of dimension $m$. While this definition may seem abstract, let's demystify it by diving into a concrete example: the circle $S^{1}$.
+We learned in the previous section that an $m$-dimensional manifold is a set $M$, with certain properties that allows it to behave locally like a Euclidean space of dimension $m$. While this definition may seem abstract, let's demystify it by diving into a concrete example: the circle $ S^{1}$.
 
 The Circle as a Manifold
-An easy example to start with is the circle $S^{1}$. We can think of a circle as a 1-dimensional manifold because we can parameterize it using a single parameter, say $\theta$, as follows: $x = \cos(\theta)$, $y = \sin(\theta)$.
+An easy example to start with is the circle $ S^{1} $. We can think of a circle as a 1-dimensional manifold because we can parameterize it using a single parameter, say $ \theta $, as follows: $ x = \cos(\theta) $, $ y = \sin(\theta) $.
 
-In Python, we can create a representation of this circle using a 1-dimensional tensor for $\theta$ with 1000 points between 0 and $2\pi$, and then compute the corresponding $x$ and $y$ values to represent points on the circle:
+In Python, we can create a representation of this circle using a 1-dimensional tensor for $ \theta $ with 1000 points between 0 and $ 2\pi $, and then compute the corresponding $ x $ and $ y $ values to represent points on the circle:
 
 ```python
 import torch
@@ -124,6 +129,6 @@ plt.show()
 <img src="/assets/s1.png" width="80%">
 </div>
 
-As $\theta$ varies between 0 and $2\pi$, the $x$ and $y$ values trace out a complete circle. Thus, any point on the circle can be uniquely identified by a single parameter $\theta$. This demonstrates one of the key properties of a manifold: locally, it behaves just like a simple Euclidean space.
+As $ \theta $ varies between 0 and $ 2\pi $, the $ x $ and $ y $ values trace out a complete circle. Thus, any point on the circle can be uniquely identified by a single parameter $ \theta $. This demonstrates one of the key properties of a manifold: locally, it behaves just like a simple Euclidean space.
 
 This code and the associated visualization serve as a practical implementation of the manifold concept, offering an intuitive understanding that you can extend to higher-dimensional manifolds. As we proceed, you'll see that this intuition is crucial to understanding the more complex structures in the realm of Lie Groups. So, keep this circle example in mind as we continue our journey!
