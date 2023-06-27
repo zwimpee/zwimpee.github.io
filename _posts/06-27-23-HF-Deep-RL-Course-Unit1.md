@@ -71,7 +71,7 @@ That is, given some observation about the current state$$s_t$$, the policy$$\pi$
 
 <div class="imgcap_noborder">
 <img src="/assets/policy.jpg" width="500">
-<div>
+</div>
 
 ### Reward
 A reward$$r_t$$is a scalar value that the agent receives after taking an action$$a_t$$:

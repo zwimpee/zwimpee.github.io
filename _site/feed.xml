@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-27T14:05:20-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mathematics for Machine Learning Deep Dive</title><subtitle></subtitle><entry><title type="html">Applications of Lie Groups to Neural Networks - Part 2</title><link href="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/" rel="alternate" type="text/html" title="Applications of Lie Groups to Neural Networks - Part 2" /><published>2023-06-27T08:00:00-05:00</published><updated>2023-06-27T08:00:00-05:00</updated><id>http://localhost:4000/2023/06/27/lie-groups-manifolds-part2</id><content type="html" xml:base="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/">&lt;h1 id=&quot;applications-of-lie-groups-to-neural-networks---part-2&quot;&gt;Applications of Lie Groups to Neural Networks - Part 2&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-27T14:05:51-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mathematics for Machine Learning Deep Dive</title><subtitle></subtitle><entry><title type="html">Applications of Lie Groups to Neural Networks - Part 2</title><link href="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/" rel="alternate" type="text/html" title="Applications of Lie Groups to Neural Networks - Part 2" /><published>2023-06-27T08:00:00-05:00</published><updated>2023-06-27T08:00:00-05:00</updated><id>http://localhost:4000/2023/06/27/lie-groups-manifolds-part2</id><content type="html" xml:base="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/">&lt;h1 id=&quot;applications-of-lie-groups-to-neural-networks---part-2&quot;&gt;Applications of Lie Groups to Neural Networks - Part 2&lt;/h1&gt;
 
 &lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 &lt;p&gt;Picking back up from where we left off in part 1 of our discussion, we will now explore the concept of a manifold in more detail. We will also explore the concept of a Lie group, which is a group that is also a manifold. We will then explore the concept of a Lie algebra, which is a vector space that is also a Lie group. Finally, we will explore the concept of a Lie algebra homomorphism, which is a linear map between two Lie algebras that preserves the Lie bracket.&lt;/p&gt;
@@ -445,105 +445,95 @@ demonstrating the closure property of the group.&lt;/p&gt;
 
 &lt;div class=&quot;imgcap_noborder&quot;&gt;
 &lt;img src=&quot;/assets/policy.jpg&quot; width=&quot;500&quot; /&gt;
-&lt;div&gt;
+&lt;/div&gt;
 
-### Reward
-A reward$$r_t$$is a scalar value that the agent receives after taking an action$$a_t$$:
+&lt;h3 id=&quot;reward&quot;&gt;Reward&lt;/h3&gt;
+&lt;p&gt;A reward\(r_t\)is a scalar value that the agent receives after taking an action\(a_t\):&lt;/p&gt;
 
-$$
-r_t \in R
-$$
+\[r_t \in R\]
 
-That is, given some action$$a_t$$, the agent$$L$$will receive a reward$$r_t$$from the environment$$E$$.
+&lt;p&gt;That is, given some action\(a_t\), the agent\(L\)will receive a reward\(r_t\)from the environment\(E\).&lt;/p&gt;
 
-### Return
-The return$$R_t$$is the sum of the rewards that the agent receives after taking an action$$a_t$$:
-$$
-R_t = r_t + r_{t+1} + r_{t+2} + \cdots
-$$
+&lt;h3 id=&quot;return&quot;&gt;Return&lt;/h3&gt;
+&lt;p&gt;The return\(R_t\)is the sum of the rewards that the agent receives after taking an action\(a_t\):
+\(R_t = r_t + r_{t+1} + r_{t+2} + \cdots\)&lt;/p&gt;
 
-That is, given some action$$a_t$$, the agent$$L$$will receive a reward$$r_t$$from the environment$$E$$. The agent will then take another action$$a_{t+1}$$and receive a reward$$r_{t+1}$$from the environment$$E$$. This process repeats until the agent reaches a terminal state. The return at a given time$$R_t$$is the sum of all of these rewards up to that point.
+&lt;p&gt;That is, given some action\(a_t\), the agent\(L\)will receive a reward\(r_t\)from the environment\(E\). The agent will then take another action\(a_{t+1}\)and receive a reward\(r_{t+1}\)from the environment\(E\). This process repeats until the agent reaches a terminal state. The return at a given time\(R_t\)is the sum of all of these rewards up to that point.&lt;/p&gt;
 
-### Discounted Return
-The discounted return $$G_t$$ is the sum of the rewards that the agent receives after taking an action $$a_t$$, but with each reward discounted by a factor $$\gamma$$:
+&lt;h3 id=&quot;discounted-return&quot;&gt;Discounted Return&lt;/h3&gt;
+&lt;p&gt;The discounted return \(G_t\) is the sum of the rewards that the agent receives after taking an action \(a_t\), but with each reward discounted by a factor \(\gamma\):&lt;/p&gt;
 
-$$
-G_t = r_t + \gamma r_{t+1} + \gamma^2 r_{t+2} + \cdots
-$$
+\[G_t = r_t + \gamma r_{t+1} + \gamma^2 r_{t+2} + \cdots\]
 
-That is, given some action$$a_t$$, the agent$$L$$will receive a reward$$r_t$$from the environment$$E$$. The agent will then take another action$$a_{t+1}$$and receive a reward$$r_{t+1}$$from the environment$$E$$. This process repeats until the agent reaches a terminal state. The return at a given time$$R_t$$is the sum of all of these rewards up to that point, but with each reward discounted by a factor$$\gamma$$. This ensures that the more highly probable, early rewards are weighted more heavily than the less probable, later rewards, with respect to the final total return.
+&lt;p&gt;That is, given some action\(a_t\), the agent\(L\)will receive a reward\(r_t\)from the environment\(E\). The agent will then take another action\(a_{t+1}\)and receive a reward\(r_{t+1}\)from the environment\(E\). This process repeats until the agent reaches a terminal state. The return at a given time\(R_t\)is the sum of all of these rewards up to that point, but with each reward discounted by a factor\(\gamma\). This ensures that the more highly probable, early rewards are weighted more heavily than the less probable, later rewards, with respect to the final total return.&lt;/p&gt;
 
-This idea is a little bit tricky, so we can take a look at the following figure to get a better intuition for why this needs to be done:
+&lt;p&gt;This idea is a little bit tricky, so we can take a look at the following figure to get a better intuition for why this needs to be done:&lt;/p&gt;
 
 &lt;div class=&quot;imgcap_noborder&quot;&gt;
 &lt;img src=&quot;/assets/rewards_3.jpg&quot; width=&quot;500&quot; /&gt;
 &lt;/div&gt;
 
-In this figure, we see that our agent (the mouse) has an advesary (the cat). The cat is intially positioned in the top left corner of the grid, and the mouse is positioned in the bottom middle tile. The mouse&apos;s goal is to maximize the amount of cheese it can eat over a given interval before one of the following two events occur:
+&lt;p&gt;In this figure, we see that our agent (the mouse) has an advesary (the cat). The cat is intially positioned in the top left corner of the grid, and the mouse is positioned in the bottom middle tile. The mouse’s goal is to maximize the amount of cheese it can eat over a given interval before one of the following two events occur:&lt;/p&gt;
 
-- The mouse eats all of the cheese
-- The cat eats the mouse
+&lt;ul&gt;
+  &lt;li&gt;The mouse eats all of the cheese&lt;/li&gt;
+  &lt;li&gt;The cat eats the mouse&lt;/li&gt;
+&lt;/ul&gt;
 
-The cheese positioned closer to the mouse will need to be weighted higher than the cheese further away, because otherwise our policy might end up causing our agent to get eaten by the cat. This is because the agent will be more likely to get eaten by the cat than it is to eat the cheese further away. This is why we need to discount the rewards that are further away from the agent.
+&lt;p&gt;The cheese positioned closer to the mouse will need to be weighted higher than the cheese further away, because otherwise our policy might end up causing our agent to get eaten by the cat. This is because the agent will be more likely to get eaten by the cat than it is to eat the cheese further away. This is why we need to discount the rewards that are further away from the agent.&lt;/p&gt;
 
-## RL-Problem: Finding the Optimal Policy
-We can now describe the RL problem as finding the optimal policy$$\pi^*$$that maximizes the return$$R_t$$:
-$$
-\pi^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t
-$$
+&lt;h2 id=&quot;rl-problem-finding-the-optimal-policy&quot;&gt;RL-Problem: Finding the Optimal Policy&lt;/h2&gt;
+&lt;p&gt;We can now describe the RL problem as finding the optimal policy\(\pi^*\)that maximizes the return\(R_t\):
+\(\pi^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t\)&lt;/p&gt;
 
-There are two main approaches to solving this problem:
-- Value-based methods
-- Policy-based methods
+&lt;p&gt;There are two main approaches to solving this problem:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Value-based methods&lt;/li&gt;
+  &lt;li&gt;Policy-based methods&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;div class=&quot;imgcap_noborder&quot;&gt;
 &lt;img src=&quot;/assets/two-approaches.jpg&quot; width=&quot;500&quot; /&gt;
 &lt;/div&gt;
 
-### Value-Based Methods
-Value-based methods attempt to find the optimal policy$$\pi^*$$by finding the optimal value function$$V^*$$:
-$$
-V^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t
-$$
+&lt;h3 id=&quot;value-based-methods&quot;&gt;Value-Based Methods&lt;/h3&gt;
+&lt;p&gt;Value-based methods attempt to find the optimal policy\(\pi^*\)by finding the optimal value function\(V^*\):
+\(V^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t\)&lt;/p&gt;
 
-We will explore value-based methods in more detail in the next chapter.
+&lt;p&gt;We will explore value-based methods in more detail in the next chapter.&lt;/p&gt;
 
-### Policy-Based Methods
-Policy-based methods attempt to find the optimal policy$$\pi^*$$directly:
-$$
-\pi^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t
-$$
+&lt;h3 id=&quot;policy-based-methods&quot;&gt;Policy-Based Methods&lt;/h3&gt;
+&lt;p&gt;Policy-based methods attempt to find the optimal policy\(\pi^*\)directly:
+\(\pi^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t\)&lt;/p&gt;
 
-We will explore policy-based methods in more detail in later chapters, but for now we can say that policy-based methods are typically more sample efficient than value-based methods, and have become increasingly popular in recent years given the advancements in deep learning algorithms and capabilities empowered by powerful GPUs.
+&lt;p&gt;We will explore policy-based methods in more detail in later chapters, but for now we can say that policy-based methods are typically more sample efficient than value-based methods, and have become increasingly popular in recent years given the advancements in deep learning algorithms and capabilities empowered by powerful GPUs.&lt;/p&gt;
 
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+&lt;p&gt;Returning back to what we introduced at the beginning of this unit, we can describe reinforcement learning as the following process:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;We have an environment\(E\)that is described by a state\(S\).&lt;/li&gt;
+  &lt;li&gt;We have an agent\(L\)that can take actions\(A\)in the environment.&lt;/li&gt;
+  &lt;li&gt;The agent receives a reward\(R\)for each action it takes, along with an observation about the new state.&lt;/li&gt;
+&lt;/ul&gt;
 
-## Summary
-Returning back to what we introduced at the beginning of this unit, we can describe reinforcement learning as the following process:
-- We have an environment$$E$$that is described by a state$$S$$.
-- We have an agent$$L$$that can take actions$$A$$in the environment.
-- The agent receives a reward$$R$$for each action it takes, along with an observation about the new state.
+&lt;p&gt;We can state the goal of the agent as maximizing the total reward it receives.&lt;/p&gt;
 
-We can state the goal of the agent as maximizing the total reward it receives.
+&lt;p&gt;That is, the agent’s goal is to maximize the return\(R_t\):&lt;/p&gt;
 
-That is, the agent&apos;s goal is to maximize the return$$R_t$$:
+\[R_t = r_t + r_{t+1} + r_{t+2} + \cdots\]
 
-$$
-R_t = r_t + r_{t+1} + r_{t+2} + \cdots
-$$
+&lt;p&gt;Therefore &lt;em&gt;our&lt;/em&gt; goal will be to find the optimal polciy\(\pi^*\)that maximizes the return\(R_t\):&lt;/p&gt;
 
-Therefore *our* goal will be to find the optimal polciy$$\pi^*$$that maximizes the return$$R_t$$:
+\[\pi^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t\]
 
-$$
-\pi^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t
-$$
+&lt;p&gt;We can solve this problem using either value-based methods or policy-based methods.&lt;/p&gt;
 
-We can solve this problem using either value-based methods or policy-based methods.
+&lt;p&gt;In the next unit, we will explore value-based methods in more detail through the use of Q-Learning, a popular value-based method for solving RL problems.&lt;/p&gt;
 
-In the next unit, we will explore value-based methods in more detail through the use of Q-Learning, a popular value-based method for solving RL problems.
-
-#### References
-- [HuggingFace Deep RL Course](https://huggingface.co/course/chapter1)
-&lt;/div&gt;&lt;/div&gt;</content><author><name>Zach Wimpee</name></author></entry><entry><title type="html">DIY LLM Fine-Tuning: A Step-by-Step Guide</title><link href="http://localhost:4000/2023/06/15/RLHF-pipeline/" rel="alternate" type="text/html" title="DIY LLM Fine-Tuning: A Step-by-Step Guide" /><published>2023-06-15T03:00:00-05:00</published><updated>2023-06-15T03:00:00-05:00</updated><id>http://localhost:4000/2023/06/15/RLHF-pipeline</id><content type="html" xml:base="http://localhost:4000/2023/06/15/RLHF-pipeline/">&lt;h1 id=&quot;diy-llm-fine-tuning-a-step-by-step-guide&quot;&gt;DIY LLM Fine-Tuning: A Step-by-Step Guide&lt;/h1&gt;
+&lt;h4 id=&quot;references&quot;&gt;References&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://huggingface.co/course/chapter1&quot;&gt;HuggingFace Deep RL Course&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Zach Wimpee</name></author></entry><entry><title type="html">DIY LLM Fine-Tuning: A Step-by-Step Guide</title><link href="http://localhost:4000/2023/06/15/RLHF-pipeline/" rel="alternate" type="text/html" title="DIY LLM Fine-Tuning: A Step-by-Step Guide" /><published>2023-06-15T03:00:00-05:00</published><updated>2023-06-15T03:00:00-05:00</updated><id>http://localhost:4000/2023/06/15/RLHF-pipeline</id><content type="html" xml:base="http://localhost:4000/2023/06/15/RLHF-pipeline/">&lt;h1 id=&quot;diy-llm-fine-tuning-a-step-by-step-guide&quot;&gt;DIY LLM Fine-Tuning: A Step-by-Step Guide&lt;/h1&gt;
 &lt;p&gt;#&lt;/p&gt;
 &lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;In this post, we will walk through the process of fine-tuning a pre-trained language model (LLM) on a custom dataset. We will be using the &lt;a href=&quot;https://huggingface.co/transformers/&quot;&gt;HuggingFace Transformers&lt;/a&gt; library for this purpose.&lt;/p&gt;
