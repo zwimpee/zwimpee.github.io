@@ -97,14 +97,14 @@
 
 <p>To do this, let’s start with a definition.</p>
 
-<h3 id="definition-11---m-dimensional-manifold"><strong>Definition 1.1</strong> - <strong>\(M\)-Dimensional Manifold</strong></h3>
-<p>An <strong>\(m\)-dimensional manifold</strong> is a set <strong>\(M\)</strong>, together with a countable collection of subsets <strong>\(U_{\alpha} \subset M\)</strong>, called <strong><em>coordinate charts</em></strong>, and one-to-one functions <strong>\(\chi_\alpha \colon U_\alpha \mapsto V_\alpha\)</strong> onto connected open subsets <strong>\(V_{\alpha}\subset \mathbb{R}^m\)</strong>, called <strong><em>local coordinate maps</em></strong>, which satisfy the following properties:</p>
+<h3 id="definition-11---m-dimensional-manifold"><strong>Definition 1.1</strong> - \(M\)-Dimensional Manifold**</h3>
+<p>An \(m\)-dimensional manifold** is a set \(M\), together with a countable collection of subsets \(U_{\alpha} \subset M\), called <strong><em>coordinate charts</em></strong>, and one-to-one functions \(\chi_\alpha \colon U_\alpha \mapsto V_\alpha\) onto connected open subsets \(V_{\alpha}\subset \mathbb{R}^m\), called <strong><em>local coordinate maps</em></strong>, which satisfy the following properties:</p>
 
-<p><em>a)</em> The <strong><em>coordinate charts</em></strong> <em>cover</em> <strong>\(M\)</strong>:</p>
+<p><em>a)</em> The <strong><em>coordinate charts</em></strong> <em>cover</em> \(M\):</p>
 
 \[\bigcup_{\alpha} U_{\alpha} = M\]
 
-<p><em>b)</em> On the overlap of any pair of coordinate charts, \(U_{\alpha}\cap U_{\beta}\), the composite map</p>
+<p><em>b)</em> On the overlap of any pair of coordinate charts,\(U_{\alpha}\cap U_{\beta}\), the composite map</p>
 
 \[\chi_{\beta}\circ \chi_{\alpha}^{-1}\colon \chi_{\alpha}(
     U_{\alpha}\cap U_{\beta}
@@ -114,17 +114,19 @@
 
 <p>is a smooth (<strong><em>infinitely differentiable</em></strong>) function.</p>
 
-<p><em>c)</em> If \(x \in U_{\alpha}\) and \(\tilde x \in U_{\beta}\) are distinct points of <strong>\(M\)</strong>, then there exist open subsets \(W\subset V_{\alpha}\), \(\tilde W \subset V_{\beta}\) with \(\chi_{\alpha}(x)\in W\), \(\chi_{\beta}(\tilde x)\in \tilde W\), satisfying</p>
+<p><em>c)</em> If \(x \in U_{\alpha}\) and \(\tilde x \in U_{\beta}\) are distinct points of \(M\), then there exist open subsets \(W\subset V_{\alpha}\),\(\tilde W \subset V_{\beta}\) with \(\chi_{\alpha}(x)\in W\), \(\chi_{\beta}(\tilde x)\in \tilde W\), satisfying</p>
 
 \[\chi_{\alpha}^{-1}(W)\cap\chi_{\beta}^{-1}(\tilde W) = \emptyset\]
 
-<h3 id="manifolds-and-the-circle-s1">Manifolds and the Circle \(S^{1}\)</h3>
+<h3 id="manifolds-and-the-circles1">Manifolds and the Circle\(S^{1}\)</h3>
 <p>In a quest to understand Lie Groups - a powerful mathematical concept that combines the properties of groups and manifolds - we begin by exploring the fundamental building block: the manifold.</p>
 
-<p>We learned in the previous section that an \(m\)-dimensional manifold is a set \(M\), with certain properties that allows it to behave locally like a Euclidean space of dimension \(m\). While this definition may seem abstract, let’s demystify it by diving into a concrete example: the circle \(S^{1}\).</p>
+<p>We learned in the previous section that an \(m\)-dimensional manifold is a set \(M\), with certain properties that allows it to behave locally like a Euclidean space of dimension\(m\). While this definition may seem abstract, let’s demystify it by diving into a concrete example: the circle \(S^{1}\).</p>
 
 <p>The Circle as a Manifold
-An easy example to start with is the circle \(S^{1}\). We can think of a circle as a 1-dimensional manifold because we can parameterize it using a single parameter, say \(\theta\), as follows: \(x = \cos(\theta)\), \(y = \sin(\theta)\).</p>
+An easy example to start with is the circle \(S^{1}\). We can think of a circle as a 1-dimensional manifold because we can parameterize it using a single parameter, say \(\theta\), as follows:
+\(x = \cos(\theta) \\
+y = \sin(\theta)\).</p>
 
 <p>In Python, we can create a representation of this circle using a 1-dimensional tensor for \(\theta\) with 1000 points between 0 and \(2\pi\), and then compute the corresponding \(x\) and \(y\) values to represent points on the circle:</p>
 
@@ -167,7 +169,7 @@ An easy example to start with is the circle \(S^{1}\). We can think of a circle 
 
 <span class="c1"># Plot x vs y and the right triangle with the corresponding angle 
 </span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Manifold: $$S^1$$'</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Manifold:$$S^1$$'</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'x'</span><span class="p">)</span>
 <span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'y'</span><span class="p">)</span>
 

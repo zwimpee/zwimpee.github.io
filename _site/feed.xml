@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-27T13:20:31-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mathematics for Machine Learning Deep Dive</title><subtitle></subtitle><entry><title type="html">Applications of Lie Groups to Neural Networks - Part 2</title><link href="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/" rel="alternate" type="text/html" title="Applications of Lie Groups to Neural Networks - Part 2" /><published>2023-06-27T08:00:00-05:00</published><updated>2023-06-27T08:00:00-05:00</updated><id>http://localhost:4000/2023/06/27/lie-groups-manifolds-part2</id><content type="html" xml:base="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/">&lt;h1 id=&quot;applications-of-lie-groups-to-neural-networks---part-2&quot;&gt;Applications of Lie Groups to Neural Networks - Part 2&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-27T13:30:08-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mathematics for Machine Learning Deep Dive</title><subtitle></subtitle><entry><title type="html">Applications of Lie Groups to Neural Networks - Part 2</title><link href="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/" rel="alternate" type="text/html" title="Applications of Lie Groups to Neural Networks - Part 2" /><published>2023-06-27T08:00:00-05:00</published><updated>2023-06-27T08:00:00-05:00</updated><id>http://localhost:4000/2023/06/27/lie-groups-manifolds-part2</id><content type="html" xml:base="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/">&lt;h1 id=&quot;applications-of-lie-groups-to-neural-networks---part-2&quot;&gt;Applications of Lie Groups to Neural Networks - Part 2&lt;/h1&gt;
 
 &lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 &lt;p&gt;Picking back up from where we left off in part 1 of our discussion, we will now explore the concept of a manifold in more detail. We will also explore the concept of a Lie group, which is a group that is also a manifold. We will then explore the concept of a Lie algebra, which is a vector space that is also a Lie group. Finally, we will explore the concept of a Lie algebra homomorphism, which is a linear map between two Lie algebras that preserves the Lie bracket.&lt;/p&gt;
@@ -631,14 +631,14 @@ In the next unit, we will explore value-based methods in more detail through the
 
 &lt;p&gt;To do this, let’s start with a definition.&lt;/p&gt;
 
-&lt;h3 id=&quot;definition-11---m-dimensional-manifold&quot;&gt;&lt;strong&gt;Definition 1.1&lt;/strong&gt; - &lt;strong&gt;\(M\)-Dimensional Manifold&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;An &lt;strong&gt;\(m\)-dimensional manifold&lt;/strong&gt; is a set &lt;strong&gt;\(M\)&lt;/strong&gt;, together with a countable collection of subsets &lt;strong&gt;\(U_{\alpha} \subset M\)&lt;/strong&gt;, called &lt;strong&gt;&lt;em&gt;coordinate charts&lt;/em&gt;&lt;/strong&gt;, and one-to-one functions &lt;strong&gt;\(\chi_\alpha \colon U_\alpha \mapsto V_\alpha\)&lt;/strong&gt; onto connected open subsets &lt;strong&gt;\(V_{\alpha}\subset \mathbb{R}^m\)&lt;/strong&gt;, called &lt;strong&gt;&lt;em&gt;local coordinate maps&lt;/em&gt;&lt;/strong&gt;, which satisfy the following properties:&lt;/p&gt;
+&lt;h3 id=&quot;definition-11---m-dimensional-manifold&quot;&gt;&lt;strong&gt;Definition 1.1&lt;/strong&gt; - \(M\)-Dimensional Manifold**&lt;/h3&gt;
+&lt;p&gt;An \(m\)-dimensional manifold** is a set \(M\), together with a countable collection of subsets \(U_{\alpha} \subset M\), called &lt;strong&gt;&lt;em&gt;coordinate charts&lt;/em&gt;&lt;/strong&gt;, and one-to-one functions \(\chi_\alpha \colon U_\alpha \mapsto V_\alpha\) onto connected open subsets \(V_{\alpha}\subset \mathbb{R}^m\), called &lt;strong&gt;&lt;em&gt;local coordinate maps&lt;/em&gt;&lt;/strong&gt;, which satisfy the following properties:&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;a)&lt;/em&gt; The &lt;strong&gt;&lt;em&gt;coordinate charts&lt;/em&gt;&lt;/strong&gt; &lt;em&gt;cover&lt;/em&gt; &lt;strong&gt;\(M\)&lt;/strong&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;a)&lt;/em&gt; The &lt;strong&gt;&lt;em&gt;coordinate charts&lt;/em&gt;&lt;/strong&gt; &lt;em&gt;cover&lt;/em&gt; \(M\):&lt;/p&gt;
 
 \[\bigcup_{\alpha} U_{\alpha} = M\]
 
-&lt;p&gt;&lt;em&gt;b)&lt;/em&gt; On the overlap of any pair of coordinate charts, \(U_{\alpha}\cap U_{\beta}\), the composite map&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;b)&lt;/em&gt; On the overlap of any pair of coordinate charts,\(U_{\alpha}\cap U_{\beta}\), the composite map&lt;/p&gt;
 
 \[\chi_{\beta}\circ \chi_{\alpha}^{-1}\colon \chi_{\alpha}(
     U_{\alpha}\cap U_{\beta}
@@ -648,17 +648,19 @@ In the next unit, we will explore value-based methods in more detail through the
 
 &lt;p&gt;is a smooth (&lt;strong&gt;&lt;em&gt;infinitely differentiable&lt;/em&gt;&lt;/strong&gt;) function.&lt;/p&gt;
 
-&lt;p&gt;&lt;em&gt;c)&lt;/em&gt; If \(x \in U_{\alpha}\) and \(\tilde x \in U_{\beta}\) are distinct points of &lt;strong&gt;\(M\)&lt;/strong&gt;, then there exist open subsets \(W\subset V_{\alpha}\), \(\tilde W \subset V_{\beta}\) with \(\chi_{\alpha}(x)\in W\), \(\chi_{\beta}(\tilde x)\in \tilde W\), satisfying&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;c)&lt;/em&gt; If \(x \in U_{\alpha}\) and \(\tilde x \in U_{\beta}\) are distinct points of \(M\), then there exist open subsets \(W\subset V_{\alpha}\),\(\tilde W \subset V_{\beta}\) with \(\chi_{\alpha}(x)\in W\), \(\chi_{\beta}(\tilde x)\in \tilde W\), satisfying&lt;/p&gt;
 
 \[\chi_{\alpha}^{-1}(W)\cap\chi_{\beta}^{-1}(\tilde W) = \emptyset\]
 
-&lt;h3 id=&quot;manifolds-and-the-circle-s1&quot;&gt;Manifolds and the Circle \(S^{1}\)&lt;/h3&gt;
+&lt;h3 id=&quot;manifolds-and-the-circles1&quot;&gt;Manifolds and the Circle\(S^{1}\)&lt;/h3&gt;
 &lt;p&gt;In a quest to understand Lie Groups - a powerful mathematical concept that combines the properties of groups and manifolds - we begin by exploring the fundamental building block: the manifold.&lt;/p&gt;
 
-&lt;p&gt;We learned in the previous section that an \(m\)-dimensional manifold is a set \(M\), with certain properties that allows it to behave locally like a Euclidean space of dimension \(m\). While this definition may seem abstract, let’s demystify it by diving into a concrete example: the circle \(S^{1}\).&lt;/p&gt;
+&lt;p&gt;We learned in the previous section that an \(m\)-dimensional manifold is a set \(M\), with certain properties that allows it to behave locally like a Euclidean space of dimension\(m\). While this definition may seem abstract, let’s demystify it by diving into a concrete example: the circle \(S^{1}\).&lt;/p&gt;
 
 &lt;p&gt;The Circle as a Manifold
-An easy example to start with is the circle \(S^{1}\). We can think of a circle as a 1-dimensional manifold because we can parameterize it using a single parameter, say \(\theta\), as follows: \(x = \cos(\theta)\), \(y = \sin(\theta)\).&lt;/p&gt;
+An easy example to start with is the circle \(S^{1}\). We can think of a circle as a 1-dimensional manifold because we can parameterize it using a single parameter, say \(\theta\), as follows:
+\(x = \cos(\theta) \\
+y = \sin(\theta)\).&lt;/p&gt;
 
 &lt;p&gt;In Python, we can create a representation of this circle using a 1-dimensional tensor for \(\theta\) with 1000 points between 0 and \(2\pi\), and then compute the corresponding \(x\) and \(y\) values to represent points on the circle:&lt;/p&gt;
 
@@ -701,7 +703,7 @@ An easy example to start with is the circle \(S^{1}\). We can think of a circle 
 
 &lt;span class=&quot;c1&quot;&gt;# Plot x vs y and the right triangle with the corresponding angle 
 &lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;Manifold: $$S^1$$&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;Manifold:$$S^1$$&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_xlabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;x&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_ylabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;y&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
