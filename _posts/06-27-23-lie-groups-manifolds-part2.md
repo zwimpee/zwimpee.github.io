@@ -224,7 +224,7 @@ Let's break down the definition:
 
 3. **Compatibility of Structures:** The group operations (multiplication and inversion) are required to be smooth functions when considered as maps between manifolds. More formally, if we denote the multiplication operation by $$\mu: G \times G \rightarrow G$$ (so that $$\mu(g, h) = g \cdot h$$) and the inversion operation by $$i: G \rightarrow G$$ (so that $$i(g) = g^{-1}$$), then $$\mu$$ and $$i$$ are required to be smooth.
 
-An example of a Lie group is the general linear group $$GL(n, \mathbb{R})$$, which consists of all $$n \times n$$ invertible matrices with real entries. The group operation is matrix multiplication, and the manifold structure comes from identifying each matrix with a point in $$\mathbb{R}^{n^2}$$. The group operations are smooth functions, so $$GL\(n, \mathbb{R}\)$$ is a Lie group.
+An example of a Lie group is the general linear group $$GL(n, \mathbb{R})$$, which consists of all $$n \times n$$ invertible matrices with real entries. The group operation is matrix multiplication, and the manifold structure comes from identifying each matrix with a point in $$\mathbb{R}^{n^2}$$. The group operations are smooth functions, so $$GL(n, \mathbb{R})$$ is a Lie group.
 
 Another example is the circle $$S^1$$ with the operation of complex multiplication. Each point on the circle can be identified with a complex number of absolute value 1, and multiplication of such numbers is a smooth operation.
 
@@ -252,7 +252,7 @@ Now, let's consider some subgroups of $$GL(2, \mathbb{R})$$:
 
     where $$\theta$$ is a real number.
 
-2. Special Orthogonal Group $$SO(2)$$: This is the subgroup of $$O(2)$$ consisting of matrices with determinant 1. These are rotations in the plane. A general element of $$SO(2)$$ can be written as:
+2. **Special Orthogonal Group $$SO(2)$$**: This is the subgroup of $$O(2)$$ consisting of matrices with determinant 1. These are rotations in the plane. A general element of $$SO(2)$$ can be written as:
 
     $$
     SO = \begin{bmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{bmatrix}
