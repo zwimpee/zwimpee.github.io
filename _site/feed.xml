@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-27T11:59:06-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mathematics for Machine Learning Deep Dive</title><subtitle></subtitle><entry><title type="html">HuggingFace Deep RL Course Notes - Unit 1</title><link href="http://localhost:4000/2023/06/27/HF-Deep-RL-Course-Unit1/" rel="alternate" type="text/html" title="HuggingFace Deep RL Course Notes - Unit 1" /><published>2023-06-27T05:00:00-05:00</published><updated>2023-06-27T05:00:00-05:00</updated><id>http://localhost:4000/2023/06/27/HF-Deep-RL-Course-Unit1</id><content type="html" xml:base="http://localhost:4000/2023/06/27/HF-Deep-RL-Course-Unit1/">&lt;h1 id=&quot;huggingface-deep-rl-course-notes&quot;&gt;HuggingFace Deep RL Course Notes&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-27T12:03:23-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mathematics for Machine Learning Deep Dive</title><subtitle></subtitle><entry><title type="html">HuggingFace Deep RL Course Notes - Unit 1</title><link href="http://localhost:4000/2023/06/27/HF-Deep-RL-Course-Unit1/" rel="alternate" type="text/html" title="HuggingFace Deep RL Course Notes - Unit 1" /><published>2023-06-27T05:00:00-05:00</published><updated>2023-06-27T05:00:00-05:00</updated><id>http://localhost:4000/2023/06/27/HF-Deep-RL-Course-Unit1</id><content type="html" xml:base="http://localhost:4000/2023/06/27/HF-Deep-RL-Course-Unit1/">&lt;h1 id=&quot;huggingface-deep-rl-course-notes&quot;&gt;HuggingFace Deep RL Course Notes&lt;/h1&gt;
 &lt;p&gt;This post is going to be slightly different, as I am going to be using it as a sort of living document to record my notes from the &lt;a href=&quot;https://huggingface.co/course/chapter1&quot;&gt;HuggingFace Deep RL Course&lt;/a&gt;. I will be updating this post as I work through the course, so check back often for updates!&lt;/p&gt;
 
 &lt;h1 id=&quot;unit-1-introduction-to-deep-reinforcement-learning&quot;&gt;Unit 1: Introduction to Deep Reinforcement Learning&lt;/h1&gt;
@@ -16,7 +16,7 @@
 &lt;/ul&gt;
 
 &lt;div class=&quot;imgcap_noborder&quot;&gt;
-&lt;img src=&quot;../assets/rl-process.jpg&quot; width=&quot;500&quot; /&gt;
+&lt;img src=&quot;/assets/rl-process.jpg&quot; width=&quot;500&quot; /&gt;
 &lt;div&gt;
 
 
@@ -60,7 +60,7 @@ $$
 That is, given some observation about the current state $s_t$, the policy $\pi$ will return an action $a_t$. This choice is determined by the agent&apos;s policy $\pi$.
 
 &lt;div class=&quot;imgcap_noborder&quot;&gt;
-&lt;img src=&quot;../assets/policy.jpg&quot; width=&quot;500&quot; /&gt;
+&lt;img src=&quot;/assets/policy.jpg&quot; width=&quot;500&quot; /&gt;
 &lt;div&gt;
 
 ### Reward
@@ -90,7 +90,7 @@ That is, given some action $a_t$, the agent $L$ will receive a reward $r_t$ from
 This idea is a little bit tricky, so we can take a look at the following figure to get a better intuition for why this needs to be done:
 
 &lt;div class=&quot;imgcap_noborder&quot;&gt;
-&lt;img src=&quot;../assets/rewards_3.jpg&quot; width=&quot;500&quot; /&gt;
+&lt;img src=&quot;/assets/rewards_3.jpg&quot; width=&quot;500&quot; /&gt;
 &lt;/div&gt;
 
 In this figure, we see that our agent (the mouse) has an advesary (the cat). The cat is intially positioned in the top left corner of the grid, and the mouse is positioned in the bottom middle tile. The mouse&apos;s goal is to maximize the amount of cheese it can eat over a given interval before one of the following two events occur:
@@ -111,7 +111,7 @@ There are two main approaches to solving this problem:
 - Policy-based methods
 
 &lt;div class=&quot;imgcap_noborder&quot;&gt;
-&lt;img src=&quot;../assets/two-approaches.jpg&quot; width=&quot;500&quot; /&gt;
+&lt;img src=&quot;/assets/two-approaches.jpg&quot; width=&quot;500&quot; /&gt;
 &lt;/div&gt;
 
 ### Value-Based Methods
@@ -351,7 +351,7 @@ An easy example to start with is the circle $S^{1}$. We can think of a circle as
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;div class=&quot;imgcap_noborder&quot;&gt;
-&lt;img src=&quot;../assets/s1.png&quot; width=&quot;80%&quot; /&gt;
+&lt;img src=&quot;/assets/s1.png&quot; width=&quot;80%&quot; /&gt;
 &lt;/div&gt;
 
 &lt;p&gt;As $\theta$ varies between 0 and $2\pi$, the $x$ and $y$ values trace out a complete circle. Thus, any point on the circle can be uniquely identified by a single parameter $\theta$. This demonstrates one of the key properties of a manifold: locally, it behaves just like a simple Euclidean space.&lt;/p&gt;
