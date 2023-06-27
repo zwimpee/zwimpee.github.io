@@ -123,7 +123,7 @@ There are two main approaches to solving this problem:
 - Policy-based methods
 
 <div class="imgcap_noborder">
-<img src="/assets/two-approaches.jpg" width="500">
+<img src="/assets/two-approaches.jpg" width="80%">
 </div>
 
 ### Value-Based Methods
