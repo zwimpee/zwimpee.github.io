@@ -23,7 +23,7 @@ We can describe reinforcement learning at a high level via the following process
 - The agent's goal is to maximize the total reward it receives.
 
 <div class="imgcap_noborder">
-<img src="/assets/rl-process.jpg" width="80%">
+<img src="/assets/rl-process.jpg" width="500">
 <div>
 
 
