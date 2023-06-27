@@ -377,7 +377,7 @@ These results have significant implications for understanding how to apply Lie g
 
 ### Lie Algebra
 
-The set of generators of for a Lie Group form what is called a **Lie algebra**. This is a vector space equipped with a binary operation called the **Lie bracket**. The Lie bracket satisfies the following axioms[1]:
+The set of generators a Lie Group form a basis for what is called a **Lie algebra**. This is a vector space equipped with a binary operation called the **Lie bracket**. The Lie bracket satisfies the following axioms[1]:
 - Bilinearity: $$[aX + bY, Z] = a[X, Z] + b[Y, Z]$$ and $$[Z, aX + bY] = a[Z, X] + b[Z, Y]$$
 - Anticommutativity: $$[X, Y] = -[Y, X]$$
 - Jacobi identity: $$[X, [Y, Z]] + [Y, [Z, X]] + [Z, [X, Y]] = 0$$
