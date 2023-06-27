@@ -46,10 +46,10 @@ $$
 s_t \in S
 $$ 
 
-That is, given some state$$ s_t$$ , the environment$$ E$$ will return a reward$$ r_t$$ . The environment also transitions to a new state$$ s_{t+1}$$ . This reward and observations about the new state are then provided to the agent,$$ L$$ .
+That is, given some state $$ s_t$$ , the environment $$ E$$ will return a reward$$ r_t$$. The environment also transitions to a new state$$ s_{t+1}$$ . This reward and observations about the new state are then provided to the agent,$$ L$$ .
 
 ### Agent
-An agent$$ L$$ is an entity that exists within and interacts with the environment$$ E$$ . Roughly speaking, the agent$$ L$$ is the entity that is trying to solve the RL problem. The agent$$ L$$ is described by a policy$$ \pi$$ and takes actions$$ a_t$$ in the environment$$ E$$ . 
+An agent $$ L$$ is an entity that exists within and interacts with the environment $$ E $$ . Roughly speaking, the agent $$ L$$ is the entity that is trying to solve the RL problem. The agent $$ L$$ is described by a policy $$ \pi$$ and takes actions$$ a_t$$ in the environment$$ E$$. 
 
 More formally, the agent is described by a policy$$ \pi$$ that maps states to actions:
 
@@ -70,7 +70,7 @@ $$
 That is, given some observation about the current state$$ s_t$$ , the policy$$ \pi$$ will return an action$$ a_t$$ . This choice is determined by the agent's policy$$ \pi$$ .
 
 <div class="imgcap_noborder">
-<img src="/assets/policy.jpg" width="500">
+<img src="/assets/policy.jpg" width="80%">
 </div>
 
 ### Reward
