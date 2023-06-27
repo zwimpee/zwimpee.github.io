@@ -44,7 +44,7 @@ $$
 
 
 
-Manifolds and the Circle $S^{1}$
+### Manifolds and the Circle $S^{1}$
 In a quest to understand Lie Groups - a powerful mathematical concept that combines the properties of groups and manifolds - we begin by exploring the fundamental building block: the manifold.
 
 We learned in the previous section that an $m$-dimensional manifold is a set $M$, with certain properties that allows it to behave locally like a Euclidean space of dimension $m$. While this definition may seem abstract, let's demystify it by diving into a concrete example: the circle $S^{1}$.
@@ -120,7 +120,9 @@ fig.tight_layout()
 plt.show()
 
 ```
-![Alt text](../assets/s1.png)
+<div class="imgcap_noborder">
+<img src="../assets/s1.png" width="80%">
+</div>
 
 As $\theta$ varies between 0 and $2\pi$, the $x$ and $y$ values trace out a complete circle. Thus, any point on the circle can be uniquely identified by a single parameter $\theta$. This demonstrates one of the key properties of a manifold: locally, it behaves just like a simple Euclidean space.
 

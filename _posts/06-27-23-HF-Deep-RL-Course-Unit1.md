@@ -22,7 +22,9 @@ We can describe reinforcement learning at a high level via the following process
 - The agent receives a reward $R$ for each action it takes.
 - The agent's goal is to maximize the total reward it receives.
 
-![Alt text](../assets/rl-process.jpg)
+<div class="imgcap_noborder">
+<img src="../assets/rl-process.jpg" width="500">
+<div>
 
 
 More formally, we can say that an agent first receives an observation $s_0$ from the environment. The agent then takes an action $a_0$ based on the observation $s_0$. The environment then transitions to a new state $s_1$ and returns a reward $r_1$ to the agent. This process repeats until the agent reaches a terminal state.
@@ -64,7 +66,9 @@ $$
 
 That is, given some observation about the current state $s_t$, the policy $\pi$ will return an action $a_t$. This choice is determined by the agent's policy $\pi$.
 
-![Alt text](../assets/policy.jpg)
+<div class="imgcap_noborder">
+<img src="../assets/policy.jpg" width="500">
+<div>
 
 ### Reward
 A reward $r_t$ is a scalar value that the agent receives after taking an action $a_t$:
@@ -92,9 +96,12 @@ That is, given some action $a_t$, the agent $L$ will receive a reward $r_t$ from
 
 This idea is a little bit tricky, so we can take a look at the following figure to get a better intuition for why this needs to be done:
 
-![Alt text](../assets/rewards_3.jpg)
+<div class="imgcap_noborder">
+<img src="../assets/rewards_3.jpg" width="500">
+</div>
 
 In this figure, we see that our agent (the mouse) has an advesary (the cat). The cat is intially positioned in the top left corner of the grid, and the mouse is positioned in the bottom middle tile. The mouse's goal is to maximize the amount of cheese it can eat over a given interval before one of the following two events occur:
+
 - The mouse eats all of the cheese
 - The cat eats the mouse
 
@@ -110,7 +117,9 @@ There are two main approaches to solving this problem:
 - Value-based methods
 - Policy-based methods
 
-![Alt text](../assets/two-approaches.jpg)
+<div class="imgcap_noborder">
+<img src="../assets/two-approaches.jpg" width="500">
+</div>
 
 ### Value-Based Methods
 Value-based methods attempt to find the optimal policy $\pi^*$ by finding the optimal value function $V^*$:
@@ -150,48 +159,6 @@ $$
 We can solve this problem using either value-based methods or policy-based methods.
 
 In the next unit, we will explore value-based methods in more detail through the use of Q-Learning, a popular value-based method for solving RL problems.
-
-
-# Unit 2: Introduction to Q-Learning
-In this unit, we will explore Q-Learning, a popular value-based method for solving RL problems.
-
-This will involve us implementing an RL-agent from scratch, in 2 environments:
-- Frozen-Lake-v1 (non-slippery version): where our agent will need to go from the starting state (S) to the goal state (G) by walking only on frozen tiles (F) and avoiding holes (H).
-- An autonomous taxi: where our agent will need to learn to navigate a city to transport its passengers from point A to point B.
-
-Pulling directly from the course material:
-> Concretely, we will:
-    > - Learn about value-based methods.
-    > - Learn about the differences between Monte Carlo and Temporal Difference Learning.
-    > - Study and implement our first RL algorithm: Q-Learning.
-> This unit is fundamental if you want to be able to work on Deep Q-Learning: the first Deep RL algorithm that played Atari games and beat the human level on some of them (breakout, space invaders, etc).
->
-> So let’s get started! 🚀
-
-## Value-Based Methods
-![Alt text](../assets/vbm-1.jpg)
-
-In value-based methods, we learn a value function that maps a state to the expected value of being at that state. This value function is typically denoted as $V(s)$.
-
-Borrowing directly from HuggingFace:
->*The value of a state is the expected discounted return the agent can get if it starts at that state and then acts according to our policy.*
-
-That is, given some state $s_t$, the value function $V(s)$ will return the expected value of being at that state.
-
-
-
-### Two types of value-based methods
-There are two types of value-based methods:
-- Monte Carlo methods
-- Temporal Difference methods
-
-
-### Monte Carlo Methods
-Monte Carlo methods are a type of value-based method that learn directly from episodes of experience. That is, Monte Carlo methods learn from complete episodes of experience, rather than step-by-step. We can more formally define Monte Carlo methods as follows:
-
-
-
-
 
 #### References
 - [HuggingFace Deep RL Course](https://huggingface.co/course/chapter1)

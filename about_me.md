@@ -4,18 +4,21 @@ permalink: /about_me/
 includelink: true
 ---
 
-![Profile Picture](/static/me.jpeg){: width="50%"}
+<div class="imgcap_noborder" align="left">
+  <img src="static/me.jpg" width="25%" height="25% align="left">
+</div>
 
 ## Links
 * [LinkedIn](https://www.linkedin.com/in/zwimpee/)
 * [GitHub](https://github.com/zwimpee)
-* []
 
 ### A Brief Personal History
 Some brief background and history about myself: Starting at around 11 or 12 years old, I became absolutely obssessed with the idea
 of becoming a theoretical physicist. Being able to not only develop a deep intution about how the world around me is ordered, but
 also being able to impart this knowledge onto others and see the joy and wonder it could provide them, just as it did for me, was
 something I could not ever really get out of my head. 
+
+While this dream now exists in the modified form of my career in machine learning applications, I still have a deep love for the field of theoretical physics, and have started to spend a lot more of my free time reading about the latest developments in the field.
 
 My educational and personal background led me through many twists and turns, from performing in extreme metal bands and highly competitive drumlines,
 to living for 3 months in Europe as a student intern at the Large Hadron Collider, to working on cutting edge high energy theoretical particle physics alongside some of the smartest people I could ever hope to meet.
