@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Applications of Lie Groups to Neural Networks - Part 1</title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="">
+    <link rel="canonical" href="http://localhost:4000/2023/06/15/lie-groups-manifolds-part1/">
+    <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Mathematics for Machine Learning Deep Dive posts" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/assets/main.css">
+
+    <!-- Google Analytics -->
+<!--     <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-00000000-0', 'auto');
+      ga('send', 'pageview');
+
+    </script> -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    
+    <link rel="alternate" type="application/atom+xml" title="Zach Wimpee’s blog" href="/feed.xml">
+
+</head>
+
+
+    <body>
+
+    <header class="site-header">
+
+  <div class="wrap">
+
+    <div style="float:left; margin-top:11px; margin-right:10px;">
+    <img src="/assets/oak.png" width="50px">
+    </div>
+
+    <div style="float:left; margin-top:4px; margin-right:10px;">
+      <a class="site-title" style="padding-top:0px; padding-bottom:0px;" href="/ ">Mathematics for Machine Learning Deep Dive</a>
+      <!--<p style="font-size:14px;">‎‎ㅤㅤㅤ&zwnj;</p> This is very hacky but I couldn't find a better way -->
+      <br>
+      <p style="padding-bottom:6px; font-size:15px;font-weight: 300;"></p>
+    </div>
+
+<!--     <a class="site-title" style="padding-top:8px; font-size:28px" href="/ ">Mathematics for Machine Learning Deep Dive</a> -->
+    
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+           viewBox="0 0 18 15" enable-background="new 0 0 18 15" xml:space="preserve">
+          <path fill="#505050" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0
+            h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#505050" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484
+            h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#505050" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0
+            c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger" style="margin-bottom:0px; padding-top:10px; font-size:13px;font-weight: 300;">
+        <a class="page-link" style="margin-bottom: 0px; padding-bottom:0px;" href="../../../../index.html">Home</a>
+        <a class="page-link" style="margin-bottom: 0px; padding-bottom:0px;" href="/about_me">About me</a>
+      </div>
+    </nav>
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrap">
+      <div class="post">
+
+  <header class="post-header">
+    <h1>Applications of Lie Groups to Neural Networks - Part 1</h1>
+    <p class="meta">Jun 15, 2023 • Zach Wimpee</p>
+  </header>
+
+  <article class="post-content">
+  <h1 id="graudate-texts-in-mathematics---applications-of-lie-groups-to-differential-equations">Graudate Texts in Mathematics - Applications of Lie Groups to Differential Equations</h1>
+
+<h2 id="chapter-1---introduction-to-lie-groups">Chapter 1 - Introduction to Lie Groups</h2>
+<blockquote>
+  <p>“<em>…Once we have freed outselves of this dependence on coordinates, it is a small step to the general definition of a smooth manifold.</em>” - Olver, pg. 3</p>
+</blockquote>
+
+<p>We want to understand what a Lie Group is, given the simple definition that it is a Group that is also a Manifold.</p>
+
+<p>To begin, we are working towards understanding smooth manifolds as a means to move away from defining transformations applied on objects in terms of local coordinates.</p>
+
+<p>To do this, let’s start with a definition.</p>
+
+<h3 id="definition-11---m-dimensional-manifold"><strong>Definition 1.1</strong> - <strong>\(M\)-Dimensional Manifold</strong></h3>
+<p>An <strong>\(m\)-dimensional manifold</strong> is a set <strong>\(M\)</strong>, together with a countable collection of subsets <strong>\(U_{\alpha} \subset M\)</strong>, called <strong><em>coordinate charts</em></strong>, and one-to-one functions <strong>\(\chi_\alpha \colon U_\alpha \mapsto V_\alpha\)</strong> onto connected open subsets <strong>\(V_{\alpha}\subset \mathbb{R}^m\)</strong>, called <strong><em>local coordinate maps</em></strong>, which satisfy the following properties:</p>
+
+<p><em>a)</em> The <strong><em>coordinate charts</em></strong> <em>cover</em> <strong>\(M\)</strong>:</p>
+
+\[\bigcup_{\alpha} U_{\alpha} = M\]
+
+<p><em>b)</em> On the overlap of any pair of coordinate charts, \(U_{\alpha}\cap U_{\beta}\), the composite map</p>
+
+\[\chi_{\beta}\circ \chi_{\alpha}^{-1}\colon \chi_{\alpha}(
+    U_{\alpha}\cap U_{\beta}
+) \mapsto \chi_{\beta}(
+    U_{\alpha}\cap U_{\beta}
+)\]
+
+<p>is a smooth (<strong><em>infinitely differentiable</em></strong>) function.</p>
+
+<p><em>c)</em> If \(x \in U_{\alpha}\) and \(\tilde x \in U_{\beta}\) are distinct points of <strong>\(M\)</strong>, then there exist open subsets \(W\subset V_{\alpha}\), \(\tilde W \subset V_{\beta}\) with \(\chi_{\alpha}(x)\in W\), \(\chi_{\beta}(\tilde x)\in \tilde W\), satisfying</p>
+
+\[\chi_{\alpha}^{-1}(W)\cap\chi_{\beta}^{-1}(\tilde W) = \emptyset\]
+
+<h3 id="manifolds-and-the-circle-s1">Manifolds and the Circle \(S^{1}\)</h3>
+<p>In a quest to understand Lie Groups - a powerful mathematical concept that combines the properties of groups and manifolds - we begin by exploring the fundamental building block: the manifold.</p>
+
+<p>We learned in the previous section that an \(m\)-dimensional manifold is a set \(M\), with certain properties that allows it to behave locally like a Euclidean space of dimension \(m\). While this definition may seem abstract, let’s demystify it by diving into a concrete example: the circle \(S^{1}\).</p>
+
+<p>The Circle as a Manifold
+An easy example to start with is the circle \(S^{1}\). We can think of a circle as a 1-dimensional manifold because we can parameterize it using a single parameter, say \(\theta\), as follows: \(x = \cos(\theta)\), \(y = \sin(\theta)\).</p>
+
+<p>In Python, we can create a representation of this circle using a 1-dimensional tensor for \(\theta\) with 1000 points between 0 and \(2\pi\), and then compute the corresponding \(x\) and \(y\) values to represent points on the circle:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">torch</span>
+<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="n">nn</span>
+<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="n">F</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="n">optim</span>
+
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">zipfile</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">from</span> <span class="nn">torchtext.datasets</span> <span class="kn">import</span> <span class="n">WikiText2</span>
+<span class="kn">from</span> <span class="nn">torchtext.data.utils</span> <span class="kn">import</span> <span class="n">get_tokenizer</span>
+<span class="kn">from</span> <span class="nn">torchtext.vocab</span> <span class="kn">import</span> <span class="n">build_vocab_from_iterator</span>
+<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span>
+
+<span class="c1"># An easy example to start with to explore the definition of a manifold is S^1, the circle. We can parameterize the circle
+# such that it can be defined in terms of a single parameter, theta, as follows:
+# x = cos(theta)
+# y = sin(theta)
+</span>
+<span class="c1"># The circle is a 1-dimensional manifold, so we can define it as a
+# 1-dimensional tensor. We'll use 1000 points to define the circle.
+</span><span class="n">theta</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">torch</span><span class="p">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+
+<span class="c1"># Create a figure with two subplots: x and y as functions of theta, and x plotted against y with an example right triangle
+</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+
+<span class="c1"># Plot x and y as functions of theta
+</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'x'</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'y'</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">set_title</span><span class="p">(</span><span class="s">'</span><span class="se">\u03B8</span><span class="s"> vs. x and y'</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'</span><span class="se">\u03B8</span><span class="s">'</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'x and y'</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Plot x vs y and the right triangle with the corresponding angle 
+</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Manifold: $$S^1$$'</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'x'</span><span class="p">)</span>
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'y'</span><span class="p">)</span>
+
+<span class="c1"># Select the point attheta = pi/4 and plot the triangle
+</span><span class="n">example_theta</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">torch</span><span class="p">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">4.0</span><span class="p">)</span>
+<span class="n">example_x</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">example_theta</span><span class="p">)</span>
+<span class="n">example_y</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">example_theta</span><span class="p">)</span>
+
+<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">example_x</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="s">'r'</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">'cos(</span><span class="se">\u03B8</span><span class="s">)'</span><span class="p">)</span>                                      <span class="c1"># x edge
+</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">plot</span><span class="p">([</span><span class="n">example_x</span><span class="p">,</span> <span class="n">example_x</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">example_y</span><span class="p">],</span> <span class="s">'g'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'sin(</span><span class="se">\u03B8</span><span class="s">)'</span><span class="p">)</span>                                      <span class="c1"># y edge
+</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">example_x</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">example_y</span><span class="p">],</span> <span class="s">'b'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'radius'</span><span class="p">)</span>                                  <span class="c1"># hypotenuse
+</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="n">example_x</span><span class="p">,</span> <span class="n">example_y</span><span class="p">,</span> <span class="s">'ko'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'Point (cos(</span><span class="se">\u03B8</span><span class="s">), sin(</span><span class="se">\u03B8</span><span class="s">))'</span><span class="p">)</span>                 <span class="c1"># point
+</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">annotate</span><span class="p">(</span><span class="s">'</span><span class="se">\u03B8</span><span class="s">'</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>                                                   <span class="c1"># theta label
+</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Set aspect ratio for the x vs y plot
+</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">set_aspect</span><span class="p">(</span><span class="s">'equal'</span><span class="p">,</span> <span class="s">'box'</span><span class="p">)</span>
+
+<span class="c1"># Adjust spacing between subplots
+</span><span class="n">fig</span><span class="p">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+<span class="c1"># Display the plot
+</span><span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="imgcap_noborder">
+<img src="/assets/s1.png" width="80%" />
+</div>
+
+<p>As \(\theta\) varies between 0 and \(2\pi\), the \(x\) and \(y\) values trace out a complete circle. Thus, any point on the circle can be uniquely identified by a single parameter \(\theta\). This demonstrates one of the key properties of a manifold: locally, it behaves just like a simple Euclidean space.</p>
+
+<p>This code and the associated visualization serve as a practical implementation of the manifold concept, offering an intuitive understanding that you can extend to higher-dimensional manifolds. As we proceed, you’ll see that this intuition is crucial to understanding the more complex structures in the realm of Lie Groups. So, keep this circle example in mind as we continue our journey!</p>
+
+<p>This will conclude part 1 of this discussion on the application of Lie Groups to deep learning. In part 2, we’ll explore the concept of a Lie Group, and how it relates to the concept of a manifold. We’ll also explore the concept of a Lie Algebra, and how it relates to the concept of a tangent space. Finally, we’ll explore the concept of a Lie Group action, and how it relates to the concept of a group action.</p>
+
+
+  </article>
+
+  <!-- mathjax -->
+  
+  <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+  <!-- disqus comments -->
+ 
+  <div id="disqus_thread"></div>
+  <script>
+      /**
+       *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+       *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+       */
+      /*
+      var disqus_config = function () {
+          this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+          this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+      */
+      (function() {  // DON'T EDIT BELOW THIS LINE
+          var d = document, s = d.createElement('script');
+          
+          s.src = '//zwimpee-blog.disqus.com/embed.js';
+          
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+      })();
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+  
+
+
+  
+</div>
+
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrap">
+
+    <!-- <h2 class="footer-heading">Mathematics for Machine Learning Deep Dive</h2> -->
+
+    <div class="footer-col-1 column">
+      <ul>
+        <li>Mathematics for Machine Learning Deep Dive</li>
+        <!-- <li><a href="mailto:zwimpee(at)gmail.com">zwimpee(at)gmail.com</a></li> -->
+      </ul>
+    </div>
+
+    <div class="footer-col-2 column">
+      <ul>
+        <li>
+          <a href="https://github.com/zwimpee">
+            <span class="icon github">
+              <svg version="1.1" class="github-icon-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                 viewBox="0 0 16 16" enable-background="new 0 0 16 16" xml:space="preserve">
+                <path fill-rule="evenodd" clip-rule="evenodd" fill="#C2C2C2" d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761
+                c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32
+                c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472
+                c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037
+                C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65
+                c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261
+                c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082
+                c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129
+                c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z"/>
+              </svg>
+            </span>
+            <span class="username">zwimpee</span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="../../../../feed.xml">
+            <span class="icon rss">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><path fill="#C2C2C2" d="M6.503 20.752c0 1.794-1.456 3.248-3.251 3.248-1.796 0-3.252-1.454-3.252-3.248 0-1.794 1.456-3.248 3.252-3.248 1.795.001 3.251 1.454 3.251 3.248zm-6.503-12.572v4.811c6.05.062 10.96 4.966 11.022 11.009h4.817c-.062-8.71-7.118-15.758-15.839-15.82zm0-3.368c10.58.046 19.152 8.594 19.183 19.188h4.817c-.03-13.231-10.755-23.954-24-24v4.812z"/></svg>
+            </span>
+            <span class="username">RSS</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-col-3 column">
+      <p class="text"></p>
+    </div>
+
+  </div>
+
+</footer>
+
+
+    </body>
+</html>

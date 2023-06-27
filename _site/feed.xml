@@ -1,379 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-27T12:46:49-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mathematics for Machine Learning Deep Dive</title><subtitle></subtitle><entry><title type="html">HuggingFace Deep RL Course Notes - Unit 1</title><link href="http://localhost:4000/2023/06/27/HF-Deep-RL-Course-Unit1/" rel="alternate" type="text/html" title="HuggingFace Deep RL Course Notes - Unit 1" /><published>2023-06-27T05:00:00-05:00</published><updated>2023-06-27T05:00:00-05:00</updated><id>http://localhost:4000/2023/06/27/HF-Deep-RL-Course-Unit1</id><content type="html" xml:base="http://localhost:4000/2023/06/27/HF-Deep-RL-Course-Unit1/">&lt;h1 id=&quot;huggingface-deep-rl-course-notes&quot;&gt;HuggingFace Deep RL Course Notes&lt;/h1&gt;
-&lt;p&gt;This post is going to be slightly different, as I am going to be using it as a sort of living document to record my notes from the &lt;a href=&quot;https://huggingface.co/course/chapter1&quot;&gt;HuggingFace Deep RL Course&lt;/a&gt;. I will be updating this post as I work through the course, so check back often for updates!&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-27T13:12:48-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mathematics for Machine Learning Deep Dive</title><subtitle></subtitle><entry><title type="html">Applications of Lie Groups to Neural Networks - Part 2</title><link href="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/" rel="alternate" type="text/html" title="Applications of Lie Groups to Neural Networks - Part 2" /><published>2023-06-27T08:00:00-05:00</published><updated>2023-06-27T08:00:00-05:00</updated><id>http://localhost:4000/2023/06/27/lie-groups-manifolds-part2</id><content type="html" xml:base="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/">&lt;h1 id=&quot;applications-of-lie-groups-to-neural-networks---part-2&quot;&gt;Applications of Lie Groups to Neural Networks - Part 2&lt;/h1&gt;
 
-&lt;h1 id=&quot;unit-1-introduction-to-deep-reinforcement-learning&quot;&gt;Unit 1: Introduction to Deep Reinforcement Learning&lt;/h1&gt;
+&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;Picking back up from where we left off in part 1 of our discussion, we will now explore the concept of a manifold in more detail. We will also explore the concept of a Lie group, which is a group that is also a manifold. We will then explore the concept of a Lie algebra, which is a vector space that is also a Lie group. Finally, we will explore the concept of a Lie algebra homomorphism, which is a linear map between two Lie algebras that preserves the Lie bracket.&lt;/p&gt;
 
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;em&gt;Deep&lt;/em&gt; in Deep Reinforcement Learning refers to the use of deep neural networks to approximate the agent’s policy \(\pi\), value function \(V\), or action-value function \(Q\). We will explore these concepts in more detail in later units.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;We can describe reinforcement learning at a high level via the following process:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;We have an environment \(E\) that is described by a state \(S\).&lt;/li&gt;
-  &lt;li&gt;We have an agent \(L\) that can take actions \(A\) in the environment.&lt;/li&gt;
-  &lt;li&gt;The agent receives a reward \(R\) for each action it takes.&lt;/li&gt;
-  &lt;li&gt;The agent’s goal is to maximize the total reward it receives.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;imgcap_noborder&quot; align=&quot;left&quot;&gt;
-&lt;img src=&quot;/assets/rl-process.jpg&quot; width=&quot;80%&quot; /&gt;
-&lt;div&gt;
-
-
-More formally, we can say that an agent first receives an observation $$ s_0 $$ from the environment. The agent then takes an action $$ a_0 $$ based on the observation $$ s_0 $$. The environment then transitions to a new state $$ s_1 $$ and returns a reward $$ r_1 $$ to the agent. This process repeats until the agent reaches a terminal state.
-
-
-
-We can further formalize this even further with the following definitions:
-
-## Definitions
-
-### Environment
-An environment $$ E $$ is a function that maps states to rewards:
-
-$$
-E: S \rightarrow R
-$$
-
-and is described by a state $$ s_t $$ at time $$ t $$:
-
-$$
-s_t \in S
-$$
-
-That is, given some state $$ s_t $$, the environment $$ E $$ will return a reward $$ r_t $$. The environment also transitions to a new state $$ s_{t+1} $$. This reward and observations about the new state are then provided to the agent, $$ L $$.
-
-### Agent
-An agent $$ L $$ is an entity that exists within and interacts with the environment $$ E $$. Roughly speaking, the agent $$ L $$ is the entity that is trying to solve the RL problem. The agent $$ L $$ is described by a policy $$ \pi $$ and takes actions $$ a_t $$ in the environment $$ E $$. 
-
-More formally, the agent is described by a policy $$ \pi $$ that maps states to actions:
-
-$$
-L: S \rightarrow A
-$$
-
-That is, given some observation about the current state $$ s_t $$, the agent $$ L $$ will return an action $$ a_t $$. This choice is determined by the agent&apos;s policy $$ \pi $$.
-
-
-### Policy
-A policy $$ \pi $$ is a function that maps states to actions:
-
-$$
-\pi: S \rightarrow A
-$$
-
-That is, given some observation about the current state $$ s_t $$, the policy $$ \pi $$ will return an action $$ a_t $$. This choice is determined by the agent&apos;s policy $$ \pi $$.
-
-&lt;div class=&quot;imgcap_noborder&quot;&gt;
-&lt;img src=&quot;/assets/policy.jpg&quot; width=&quot;500&quot; /&gt;
-&lt;div&gt;
-
-### Reward
-A reward $$r_t$$ is a scalar value that the agent receives after taking an action $$ a_t $$:
-
-$$
-r_t \in R
-$$
-
-That is, given some action $$ a_t $$, the agent $$ L $$ will receive a reward $$ r_t $$ from the environment $$ E $$.
-
-### Return
-The return $$ R_t $$ is the sum of the rewards that the agent receives after taking an action $$ a_t $$:
-$$
-R_t = r_t + r_{t+1} + r_{t+2} + \cdots
-$$
-
-That is, given some action $$ a_t $$, the agent $$ L $$ will receive a reward $$ r_t $$ from the environment $$ E $$. The agent will then take another action $$ a_{t+1} $$ and receive a reward $$ r_{t+1} $$ from the environment $$ E $$. This process repeats until the agent reaches a terminal state. The return at a given time $$ R_t $$ is the sum of all of these rewards up to that point.
-
-### Discounted Return
-The discounted return $$ G_t $$ is the sum of the rewards that the agent receives after taking an action $$ a_t $$, but with each reward discounted by a factor $$ \gamma $$:
-
-$$
-G_t = r_t + \gamma r_{t+1} + \gamma^2 r_{t+2} + \cdots
-$$
-
-That is, given some action $$ a_t $$, the agent $$ L $$ will receive a reward $$ r_t $$ from the environment $$ E $$. The agent will then take another action $$ a_{t+1} $$ and receive a reward $$ r_{t+1} $$ from the environment $$ E $$. This process repeats until the agent reaches a terminal state. The return at a given time $$R_t$$ is the sum of all of these rewards up to that point, but with each reward discounted by a factor $$ \gamma $$. This ensures that the more highly probable, early rewards are weighted more heavily than the less probable, later rewards, with respect to the final total return.
-
-This idea is a little bit tricky, so we can take a look at the following figure to get a better intuition for why this needs to be done:
-
-&lt;div class=&quot;imgcap_noborder&quot;&gt;
-&lt;img src=&quot;/assets/rewards_3.jpg&quot; width=&quot;500&quot; /&gt;
-&lt;/div&gt;
-
-In this figure, we see that our agent (the mouse) has an advesary (the cat). The cat is intially positioned in the top left corner of the grid, and the mouse is positioned in the bottom middle tile. The mouse&apos;s goal is to maximize the amount of cheese it can eat over a given interval before one of the following two events occur:
-
-- The mouse eats all of the cheese
-- The cat eats the mouse
-
-The cheese positioned closer to the mouse will need to be weighted higher than the cheese further away, because otherwise our policy might end up causing our agent to get eaten by the cat. This is because the agent will be more likely to get eaten by the cat than it is to eat the cheese further away. This is why we need to discount the rewards that are further away from the agent.
-
-## RL-Problem: Finding the Optimal Policy
-We can now describe the RL problem as finding the optimal policy $$ \pi^* $$ that maximizes the return $$ R_t $$:
-$$
-\pi^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t
-$$
-
-There are two main approaches to solving this problem:
-- Value-based methods
-- Policy-based methods
-
-&lt;div class=&quot;imgcap_noborder&quot;&gt;
-&lt;img src=&quot;/assets/two-approaches.jpg&quot; width=&quot;500&quot; /&gt;
-&lt;/div&gt;
-
-### Value-Based Methods
-Value-based methods attempt to find the optimal policy $$ \pi^* $$ by finding the optimal value function $$ V^* $$:
-$$
-V^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t
-$$
-
-We will explore value-based methods in more detail in the next chapter.
-
-### Policy-Based Methods
-Policy-based methods attempt to find the optimal policy $$ \pi^* $$ directly:
-$$
-\pi^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t
-$$
-
-We will explore policy-based methods in more detail in later chapters, but for now we can say that policy-based methods are typically more sample efficient than value-based methods, and have become increasingly popular in recent years given the advancements in deep learning algorithms and capabilities empowered by powerful GPUs.
-
-
-## Summary
-Returning back to what we introduced at the beginning of this unit, we can describe reinforcement learning as the following process:
-- We have an environment $$ E $$ that is described by a state $$ S $$.
-- We have an agent $$ L $$ that can take actions $$ A $$ in the environment.
-- The agent receives a reward $$ R $$ for each action it takes, along with an observation about the new state.
-
-We can state the goal of the agent as maximizing the total reward it receives.
-
-That is, the agent&apos;s goal is to maximize the return $$ R_t $$:
-$$
-R_t = r_t + r_{t+1} + r_{t+2} + \cdots
-$$
-
-Therefore *our* goal will be to find the optimal polciy $$ \pi^* $$ that maximizes the return $$ R_t $$:
-$$
-\pi^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t
-$$
-
-We can solve this problem using either value-based methods or policy-based methods.
-
-In the next unit, we will explore value-based methods in more detail through the use of Q-Learning, a popular value-based method for solving RL problems.
-
-#### References
-- [HuggingFace Deep RL Course](https://huggingface.co/course/chapter1)
-&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Zach Wimpee</name></author></entry><entry><title type="html">DIY LLM Fine-Tuning: A Step-by-Step Guide</title><link href="http://localhost:4000/2023/06/15/RLHF-pipeline/" rel="alternate" type="text/html" title="DIY LLM Fine-Tuning: A Step-by-Step Guide" /><published>2023-06-15T03:00:00-05:00</published><updated>2023-06-15T03:00:00-05:00</updated><id>http://localhost:4000/2023/06/15/RLHF-pipeline</id><content type="html" xml:base="http://localhost:4000/2023/06/15/RLHF-pipeline/">&lt;h1 id=&quot;diy-llm-fine-tuning-a-step-by-step-guide&quot;&gt;DIY LLM Fine-Tuning: A Step-by-Step Guide&lt;/h1&gt;
-&lt;p&gt;#&lt;/p&gt;
-&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;In this post, we will walk through the process of fine-tuning a pre-trained language model (LLM) on a custom dataset. We will be using the &lt;a href=&quot;https://huggingface.co/transformers/&quot;&gt;HuggingFace Transformers&lt;/a&gt; library for this purpose.&lt;/p&gt;
-
-&lt;h2 id=&quot;step-1-install-dependencies&quot;&gt;Step 1: Install Dependencies&lt;/h2&gt;
-&lt;p&gt;First, we need to install the required dependencies. We will be using the &lt;a href=&quot;https://pytorch.org/&quot;&gt;PyTorch&lt;/a&gt; backend for this tutorial, but you can also use TensorFlow if you prefer.&lt;/p&gt;
-
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;torch torchvision torchaudio transformers datasets
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;step-2-import-libraries&quot;&gt;Step 2: Import Libraries&lt;/h2&gt;
-&lt;p&gt;Next, we import the required libraries. We will be using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Trainer&lt;/code&gt; class from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;transformers&lt;/code&gt; library to fine-tune our model. We will also be using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;datasets&lt;/code&gt; library to load our custom dataset.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;transformers&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Trainer&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;datasets&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;load_dataset&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;step-3-load-dataset&quot;&gt;Step 3: Load Dataset&lt;/h2&gt;
-&lt;p&gt;Now, we load our custom dataset. We will be using the &lt;a href=&quot;https://huggingface.co/datasets/wikitext&quot;&gt;Wikitext-2&lt;/a&gt; dataset for this tutorial.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;dataset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;load_dataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;wikitext&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;wikitext-2-raw-v1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;train&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;step-4-load-model&quot;&gt;Step 4: Load Model&lt;/h2&gt;
-&lt;p&gt;Next, we load the pre-trained model that we want to fine-tune. We will be using the &lt;a href=&quot;https://huggingface.co/transformers/model_doc/gpt2.html&quot;&gt;GPT2&lt;/a&gt; model for this tutorial.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;transformers&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GPT2Tokenizer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GPT2LMHeadModel&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;tokenizer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GPT2Tokenizer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;from_pretrained&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;gpt2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;model&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GPT2LMHeadModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;from_pretrained&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;gpt2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;step-5-tokenize-dataset&quot;&gt;Step 5: Tokenize Dataset&lt;/h2&gt;
-&lt;p&gt;Now, we tokenize our dataset using the tokenizer that we loaded in the previous step.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;tokenize_function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;examples&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tokenizer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;examples&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;tokenized_dataset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tokenize_function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batched&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_proc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;remove_columns&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;step-6-define-training-arguments&quot;&gt;Step 6: Define Training Arguments&lt;/h2&gt;
-&lt;p&gt;Next, we define the training arguments for our model. We will be using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Trainer&lt;/code&gt; class from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;transformers&lt;/code&gt; library to fine-tune our model.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;transformers&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TrainingArguments&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;training_args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TrainingArguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;output_dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;./results&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;overwrite_output_dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;num_train_epochs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;per_device_train_batch_size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;save_steps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10_000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;save_total_limit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;prediction_loss_only&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;step-7-define-training-function&quot;&gt;Step 7: Define Training Function&lt;/h2&gt;
-&lt;p&gt;Now, we define the training function for our model. We will be using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Trainer&lt;/code&gt; class from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;transformers&lt;/code&gt; library to fine-tune our model.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;model_init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
-    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GPT2LMHeadModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;from_pretrained&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;gpt2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;trainer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Trainer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;model_init&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;model_init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;training_args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;train_dataset&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tokenized_dataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;step-8-train-model&quot;&gt;Step 8: Train Model&lt;/h2&gt;
-&lt;p&gt;Finally, we train our model using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Trainer&lt;/code&gt; class from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;transformers&lt;/code&gt; library.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;trainer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
-&lt;p&gt;In this post, we walked through the process of fine-tuning a pre-trained language model (LLM) on a custom dataset. We used the &lt;a href=&quot;https://huggingface.co/transformers/&quot;&gt;HuggingFace Transformers&lt;/a&gt; library for this purpose.&lt;/p&gt;
-
-&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://huggingface.co/transformers/&quot;&gt;HuggingFace Transformers&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://pytorch.org/&quot;&gt;PyTorch&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://huggingface.co/datasets/wikitext&quot;&gt;Wikitext-2&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://huggingface.co/transformers/model_doc/gpt2.html&quot;&gt;GPT2&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://huggingface.co/transformers/main_classes/trainer.html&quot;&gt;Trainer&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://huggingface.co/transformers/main_classes/trainer.html#transformers.TrainingArguments&quot;&gt;TrainingArguments&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://huggingface.co/transformers/model_doc/gpt2.html#gpt2lmheadmodel&quot;&gt;GPT2LMHeadModel&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Zach Wimpee</name></author></entry><entry><title type="html">Applications of Lie Groups to Neural Networks - Part 1</title><link href="http://localhost:4000/2023/06/15/lie-groups-manifolds/" rel="alternate" type="text/html" title="Applications of Lie Groups to Neural Networks - Part 1" /><published>2023-06-15T03:00:00-05:00</published><updated>2023-06-15T03:00:00-05:00</updated><id>http://localhost:4000/2023/06/15/lie-groups-manifolds</id><content type="html" xml:base="http://localhost:4000/2023/06/15/lie-groups-manifolds/">&lt;h1 id=&quot;graudate-texts-in-mathematics---applications-of-lie-groups-to-differential-equations&quot;&gt;Graudate Texts in Mathematics - Applications of Lie Groups to Differential Equations&lt;/h1&gt;
-
-&lt;h2 id=&quot;chapter-1---introduction-to-lie-groups&quot;&gt;Chapter 1 - Introduction to Lie Groups&lt;/h2&gt;
-&lt;blockquote&gt;
-  &lt;p&gt;“&lt;em&gt;…Once we have freed outselves of this dependence on coordinates, it is a small step to the general definition of a smooth manifold.&lt;/em&gt;” - Olver, pg. 3&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;We want to understand what a Lie Group is, given the simple definition that it is a Group that is also a Manifold.&lt;/p&gt;
-
-&lt;p&gt;To begin, we are working towards understanding smooth manifolds as a means to move away from defining transformations applied on objects in terms of local coordinates.&lt;/p&gt;
-
-&lt;p&gt;To do this, let’s start with a definition.&lt;/p&gt;
-
-&lt;h3 id=&quot;definition-11---m-dimensional-manifold&quot;&gt;&lt;strong&gt;Definition 1.1&lt;/strong&gt; - &lt;strong&gt;\(M\)-Dimensional Manifold&lt;/strong&gt;&lt;/h3&gt;
-&lt;p&gt;An &lt;strong&gt;\(m\)-dimensional manifold&lt;/strong&gt; is a set &lt;strong&gt;\(M\)&lt;/strong&gt;, together with a countable collection of subsets &lt;strong&gt;\(U_{\alpha} \subset M\)&lt;/strong&gt;, called &lt;strong&gt;&lt;em&gt;coordinate charts&lt;/em&gt;&lt;/strong&gt;, and one-to-one functions &lt;strong&gt;\(\chi_\alpha \colon U_\alpha \mapsto V_\alpha\)&lt;/strong&gt; onto connected open subsets &lt;strong&gt;\(V_{\alpha}\subset \mathbb{R}^m\)&lt;/strong&gt;, called &lt;strong&gt;&lt;em&gt;local coordinate maps&lt;/em&gt;&lt;/strong&gt;, which satisfy the following properties:&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;a)&lt;/em&gt; The &lt;strong&gt;&lt;em&gt;coordinate charts&lt;/em&gt;&lt;/strong&gt; &lt;em&gt;cover&lt;/em&gt; &lt;strong&gt;\(M\)&lt;/strong&gt;:&lt;/p&gt;
-
-\[\bigcup_{\alpha} U_{\alpha} = M\]
-
-&lt;p&gt;&lt;em&gt;b)&lt;/em&gt; On the overlap of any pair of coordinate charts, \(U_{\alpha}\cap U_{\beta}\), the composite map&lt;/p&gt;
-
-\[\chi_{\beta}\circ \chi_{\alpha}^{-1}\colon \chi_{\alpha}(
-    U_{\alpha}\cap U_{\beta}
-) \mapsto \chi_{\beta}(
-    U_{\alpha}\cap U_{\beta}
-)\]
-
-&lt;p&gt;is a smooth (&lt;strong&gt;&lt;em&gt;infinitely differentiable&lt;/em&gt;&lt;/strong&gt;) function.&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;c)&lt;/em&gt; If \(x \in U_{\alpha}\) and \(\tilde x \in U_{\beta}\) are distinct points of &lt;strong&gt;\(M\)&lt;/strong&gt;, then there exist open subsets \(W\subset V_{\alpha}\), \(\tilde W \subset V_{\beta}\) with \(\chi_{\alpha}(x)\in W\), \(\chi_{\beta}(\tilde x)\in \tilde W\), satisfying&lt;/p&gt;
-
-\[\chi_{\alpha}^{-1}(W)\cap\chi_{\beta}^{-1}(\tilde W) = \emptyset\]
-
-&lt;h3 id=&quot;manifolds-and-the-circle-s1&quot;&gt;Manifolds and the Circle \(S^{1}\)&lt;/h3&gt;
-&lt;p&gt;In a quest to understand Lie Groups - a powerful mathematical concept that combines the properties of groups and manifolds - we begin by exploring the fundamental building block: the manifold.&lt;/p&gt;
-
-&lt;p&gt;We learned in the previous section that an \(m\)-dimensional manifold is a set \(M\), with certain properties that allows it to behave locally like a Euclidean space of dimension \(m\). While this definition may seem abstract, let’s demystify it by diving into a concrete example: the circle \(S^{1}\).&lt;/p&gt;
-
-&lt;p&gt;The Circle as a Manifold
-An easy example to start with is the circle \(S^{1}\). We can think of a circle as a 1-dimensional manifold because we can parameterize it using a single parameter, say \(\theta\), as follows: \(x = \cos(\theta)\), \(y = \sin(\theta)\).&lt;/p&gt;
-
-&lt;p&gt;In Python, we can create a representation of this circle using a 1-dimensional tensor for \(\theta\) with 1000 points between 0 and \(2\pi\), and then compute the corresponding \(x\) and \(y\) values to represent points on the circle:&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;torch&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;torch.nn&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nn&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;torch.nn.functional&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;F&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;
-
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;torch.optim&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;optim&lt;/span&gt;
-
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;io&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;zipfile&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;requests&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;torchtext.datasets&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WikiText2&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;torchtext.data.utils&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get_tokenizer&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;torchtext.vocab&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;build_vocab_from_iterator&lt;/span&gt;
-&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;torch.utils.data&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DataLoader&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;# An easy example to start with to explore the definition of a manifold is S^1, the circle. We can parameterize the circle
-# such that it can be defined in terms of a single parameter, theta, as follows:
-# x = cos(theta)
-# y = sin(theta)
-&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# The circle is a 1-dimensional manifold, so we can define it as a
-# 1-dimensional tensor. We&apos;ll use 1000 points to define the circle.
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;linspace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;# Create a figure with two subplots: x and y as functions of theta, and x plotted against y with an example right triangle
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subplots&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;figsize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;# Plot x and y as functions of theta
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;x&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;y&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u03B8&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; vs. x and y&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_xlabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u03B8&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_ylabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;x and y&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;legend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;# Plot x vs y and the right triangle with the corresponding angle 
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;Manifold: $$S^1$$&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_xlabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;x&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_ylabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;y&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;# Select the point attheta = pi/4 and plot the triangle
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;example_theta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;4.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;example_x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;example_theta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;example_y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;example_theta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;example_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;r&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;cos(&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u03B8&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;)&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                                      &lt;span class=&quot;c1&quot;&gt;# x edge
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;example_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;example_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;example_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;g&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;sin(&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u03B8&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;)&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                                      &lt;span class=&quot;c1&quot;&gt;# y edge
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;example_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;example_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;b&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;radius&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                                  &lt;span class=&quot;c1&quot;&gt;# hypotenuse
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;example_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;example_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;ko&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;Point (cos(&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u03B8&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;), sin(&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u03B8&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;))&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                 &lt;span class=&quot;c1&quot;&gt;# point
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;annotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u03B8&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fontsize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                                                   &lt;span class=&quot;c1&quot;&gt;# theta label
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;legend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;# Set aspect ratio for the x vs y plot
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_aspect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;equal&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;box&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;# Adjust spacing between subplots
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tight_layout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;# Display the plot
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;imgcap_noborder&quot;&gt;
-&lt;img src=&quot;/assets/s1.png&quot; width=&quot;80%&quot; /&gt;
-&lt;/div&gt;
-
-&lt;p&gt;As \(\theta\) varies between 0 and \(2\pi\), the \(x\) and \(y\) values trace out a complete circle. Thus, any point on the circle can be uniquely identified by a single parameter \(\theta\). This demonstrates one of the key properties of a manifold: locally, it behaves just like a simple Euclidean space.&lt;/p&gt;
-
-&lt;p&gt;This code and the associated visualization serve as a practical implementation of the manifold concept, offering an intuitive understanding that you can extend to higher-dimensional manifolds. As we proceed, you’ll see that this intuition is crucial to understanding the more complex structures in the realm of Lie Groups. So, keep this circle example in mind as we continue our journey!&lt;/p&gt;
+&lt;h2 id=&quot;some-additional-manifold-examples&quot;&gt;Some additional manifold examples&lt;/h2&gt;
 
 &lt;h3 id=&quot;manifolds-and-the-sphere-s2&quot;&gt;Manifolds and the Sphere \(S^{2}\)&lt;/h3&gt;
 &lt;p&gt;Now that we’ve explored the circle as a 1-dimensional manifold, let’s move on to a 2-dimensional manifold: the sphere \(S^{2}\). We can think of the sphere as a 2-dimensional manifold because we can parameterize it using two parameters, say \(\theta\) and \(\phi\), as follows:&lt;/p&gt;
 
-&lt;p&gt;\(x = \cos(\theta)\sin(\phi)\)
-\(y = \sin(\theta)\sin(\phi)\)
-\(z = \cos(\phi)\)&lt;/p&gt;
+\[x = \cos(\theta)\sin(\phi)
+y = \sin(\theta)\sin(\phi) 
+z = \cos(\phi)\]
 
 &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# S^2 is a good example of a nontrivial two-dimensional manifold,
 # realized as a surface in three-dimensional space.
@@ -434,9 +71,6 @@ The local coordinate maps for the sphere $S^2$ can be defined using spherical co
 
 $$
 \chi_{\alpha}(p) = (\theta, \phi) = (\arctan(y/x), \arccos(z))
-$$
-
-$$
 \chi_{\beta}(p) = (\theta&apos;, \phi&apos;) = (\arctan(y/x), \pi - \arccos(z))
 $$
 
@@ -731,4 +365,374 @@ One possibility is to incorporate equivariance to Lie group actions into the sel
 To incorporate this idea into the self-attention mechanism, we need to rethink the computation of attention scores. Currently, attention scores are computed using a dot product between the query, key, and value vectors. Instead, we could design an attention mechanism that computes the scores after some consideration of the Lie group transformations.
 
 For example, considering a Lie group of rotations, the design could compute attention scores in a rotation-invariant manner. This would involve redefining the computation of attention scores as the similarity between input element embeddings up to rotations (Lie group actions), rather than solely relying on dot products, which are not rotation-invariant
-&lt;/div&gt;</content><author><name>Zach Wimpee</name></author><summary type="html">&gt; “...we are working towards understanding smooth manifolds as a means to move away from defining transformations applied on objects in terms of local coordinates.</summary></entry></feed>
+&lt;/div&gt;</content><author><name>Zach Wimpee</name></author><summary type="html">&gt; “...different choices of local coordinate charts can satisfy the definition of a manifold. This is a key property of manifolds and is fundamental to their study in differential geometry and related fields.</summary></entry><entry><title type="html">HuggingFace Deep RL Course Notes - Unit 1</title><link href="http://localhost:4000/2023/06/27/HF-Deep-RL-Course-Unit1/" rel="alternate" type="text/html" title="HuggingFace Deep RL Course Notes - Unit 1" /><published>2023-06-27T05:00:00-05:00</published><updated>2023-06-27T05:00:00-05:00</updated><id>http://localhost:4000/2023/06/27/HF-Deep-RL-Course-Unit1</id><content type="html" xml:base="http://localhost:4000/2023/06/27/HF-Deep-RL-Course-Unit1/">&lt;h1 id=&quot;huggingface-deep-rl-course-notes&quot;&gt;HuggingFace Deep RL Course Notes&lt;/h1&gt;
+&lt;p&gt;This post is going to be slightly different, as I am going to be using it as a sort of living document to record my notes from the &lt;a href=&quot;https://huggingface.co/course/chapter1&quot;&gt;HuggingFace Deep RL Course&lt;/a&gt;. I will be updating this post as I work through the course, so check back often for updates!&lt;/p&gt;
+
+&lt;h1 id=&quot;unit-1-introduction-to-deep-reinforcement-learning&quot;&gt;Unit 1: Introduction to Deep Reinforcement Learning&lt;/h1&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The &lt;em&gt;Deep&lt;/em&gt; in Deep Reinforcement Learning refers to the use of deep neural networks to approximate the agent’s policy \(\pi\), value function \(V\), or action-value function \(Q\). We will explore these concepts in more detail in later units.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;We can describe reinforcement learning at a high level via the following process:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;We have an environment \(E\) that is described by a state \(S\).&lt;/li&gt;
+  &lt;li&gt;We have an agent \(L\) that can take actions \(A\) in the environment.&lt;/li&gt;
+  &lt;li&gt;The agent receives a reward \(R\) for each action it takes.&lt;/li&gt;
+  &lt;li&gt;The agent’s goal is to maximize the total reward it receives.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;imgcap_noborder&quot; align=&quot;left&quot;&gt;
+&lt;img src=&quot;/assets/rl-process.jpg&quot; width=&quot;80%&quot; /&gt;
+&lt;div&gt;
+
+
+More formally, we can say that an agent first receives an observation $$ s_0 $$ from the environment. The agent then takes an action $$ a_0 $$ based on the observation $$ s_0 $$. The environment then transitions to a new state $$ s_1 $$ and returns a reward $$ r_1 $$ to the agent. This process repeats until the agent reaches a terminal state.
+
+
+
+We can further formalize this even further with the following definitions:
+
+## Definitions
+
+### Environment
+An environment $$ E $$ is a function that maps states to rewards:
+
+$$
+E: S \rightarrow R
+$$
+
+and is described by a state $$ s_t $$ at time $$ t $$:
+
+$$
+s_t \in S
+$$
+
+That is, given some state $$ s_t $$, the environment $$ E $$ will return a reward $$ r_t $$. The environment also transitions to a new state $$ s_{t+1} $$. This reward and observations about the new state are then provided to the agent, $$ L $$.
+
+### Agent
+An agent $$ L $$ is an entity that exists within and interacts with the environment $$ E $$. Roughly speaking, the agent $$ L $$ is the entity that is trying to solve the RL problem. The agent $$ L $$ is described by a policy $$ \pi $$ and takes actions $$ a_t $$ in the environment $$ E $$. 
+
+More formally, the agent is described by a policy $$ \pi $$ that maps states to actions:
+
+$$
+L: S \rightarrow A
+$$
+
+That is, given some observation about the current state $$ s_t $$, the agent $$ L $$ will return an action $$ a_t $$. This choice is determined by the agent&apos;s policy $$ \pi $$.
+
+
+### Policy
+A policy $$ \pi $$ is a function that maps states to actions:
+
+$$
+\pi: S \rightarrow A
+$$
+
+That is, given some observation about the current state $$ s_t $$, the policy $$ \pi $$ will return an action $$ a_t $$. This choice is determined by the agent&apos;s policy $$ \pi $$.
+
+&lt;div class=&quot;imgcap_noborder&quot;&gt;
+&lt;img src=&quot;/assets/policy.jpg&quot; width=&quot;500&quot; /&gt;
+&lt;div&gt;
+
+### Reward
+A reward $$r_t$$ is a scalar value that the agent receives after taking an action $$ a_t $$:
+
+$$
+r_t \in R
+$$
+
+That is, given some action $$ a_t $$, the agent $$ L $$ will receive a reward $$ r_t $$ from the environment $$ E $$.
+
+### Return
+The return $$ R_t $$ is the sum of the rewards that the agent receives after taking an action $$ a_t $$:
+$$
+R_t = r_t + r_{t+1} + r_{t+2} + \cdots
+$$
+
+That is, given some action $$ a_t $$, the agent $$ L $$ will receive a reward $$ r_t $$ from the environment $$ E $$. The agent will then take another action $$ a_{t+1} $$ and receive a reward $$ r_{t+1} $$ from the environment $$ E $$. This process repeats until the agent reaches a terminal state. The return at a given time $$ R_t $$ is the sum of all of these rewards up to that point.
+
+### Discounted Return
+The discounted return $$ G_t $$ is the sum of the rewards that the agent receives after taking an action $$ a_t $$, but with each reward discounted by a factor $$ \gamma $$:
+
+$$
+G_t = r_t + \gamma r_{t+1} + \gamma^2 r_{t+2} + \cdots
+$$
+
+That is, given some action $$ a_t $$, the agent $$ L $$ will receive a reward $$ r_t $$ from the environment $$ E $$. The agent will then take another action $$ a_{t+1} $$ and receive a reward $$ r_{t+1} $$ from the environment $$ E $$. This process repeats until the agent reaches a terminal state. The return at a given time $$R_t$$ is the sum of all of these rewards up to that point, but with each reward discounted by a factor $$ \gamma $$. This ensures that the more highly probable, early rewards are weighted more heavily than the less probable, later rewards, with respect to the final total return.
+
+This idea is a little bit tricky, so we can take a look at the following figure to get a better intuition for why this needs to be done:
+
+&lt;div class=&quot;imgcap_noborder&quot;&gt;
+&lt;img src=&quot;/assets/rewards_3.jpg&quot; width=&quot;500&quot; /&gt;
+&lt;/div&gt;
+
+In this figure, we see that our agent (the mouse) has an advesary (the cat). The cat is intially positioned in the top left corner of the grid, and the mouse is positioned in the bottom middle tile. The mouse&apos;s goal is to maximize the amount of cheese it can eat over a given interval before one of the following two events occur:
+
+- The mouse eats all of the cheese
+- The cat eats the mouse
+
+The cheese positioned closer to the mouse will need to be weighted higher than the cheese further away, because otherwise our policy might end up causing our agent to get eaten by the cat. This is because the agent will be more likely to get eaten by the cat than it is to eat the cheese further away. This is why we need to discount the rewards that are further away from the agent.
+
+## RL-Problem: Finding the Optimal Policy
+We can now describe the RL problem as finding the optimal policy $$ \pi^* $$ that maximizes the return $$ R_t $$:
+$$
+\pi^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t
+$$
+
+There are two main approaches to solving this problem:
+- Value-based methods
+- Policy-based methods
+
+&lt;div class=&quot;imgcap_noborder&quot;&gt;
+&lt;img src=&quot;/assets/two-approaches.jpg&quot; width=&quot;500&quot; /&gt;
+&lt;/div&gt;
+
+### Value-Based Methods
+Value-based methods attempt to find the optimal policy $$ \pi^* $$ by finding the optimal value function $$ V^* $$:
+$$
+V^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t
+$$
+
+We will explore value-based methods in more detail in the next chapter.
+
+### Policy-Based Methods
+Policy-based methods attempt to find the optimal policy $$ \pi^* $$ directly:
+$$
+\pi^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t
+$$
+
+We will explore policy-based methods in more detail in later chapters, but for now we can say that policy-based methods are typically more sample efficient than value-based methods, and have become increasingly popular in recent years given the advancements in deep learning algorithms and capabilities empowered by powerful GPUs.
+
+
+## Summary
+Returning back to what we introduced at the beginning of this unit, we can describe reinforcement learning as the following process:
+- We have an environment $$ E $$ that is described by a state $$ S $$.
+- We have an agent $$ L $$ that can take actions $$ A $$ in the environment.
+- The agent receives a reward $$ R $$ for each action it takes, along with an observation about the new state.
+
+We can state the goal of the agent as maximizing the total reward it receives.
+
+That is, the agent&apos;s goal is to maximize the return $$ R_t $$:
+$$
+R_t = r_t + r_{t+1} + r_{t+2} + \cdots
+$$
+
+Therefore *our* goal will be to find the optimal polciy $$ \pi^* $$ that maximizes the return $$ R_t $$:
+$$
+\pi^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t
+$$
+
+We can solve this problem using either value-based methods or policy-based methods.
+
+In the next unit, we will explore value-based methods in more detail through the use of Q-Learning, a popular value-based method for solving RL problems.
+
+#### References
+- [HuggingFace Deep RL Course](https://huggingface.co/course/chapter1)
+&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Zach Wimpee</name></author></entry><entry><title type="html">DIY LLM Fine-Tuning: A Step-by-Step Guide</title><link href="http://localhost:4000/2023/06/15/RLHF-pipeline/" rel="alternate" type="text/html" title="DIY LLM Fine-Tuning: A Step-by-Step Guide" /><published>2023-06-15T03:00:00-05:00</published><updated>2023-06-15T03:00:00-05:00</updated><id>http://localhost:4000/2023/06/15/RLHF-pipeline</id><content type="html" xml:base="http://localhost:4000/2023/06/15/RLHF-pipeline/">&lt;h1 id=&quot;diy-llm-fine-tuning-a-step-by-step-guide&quot;&gt;DIY LLM Fine-Tuning: A Step-by-Step Guide&lt;/h1&gt;
+&lt;p&gt;#&lt;/p&gt;
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;In this post, we will walk through the process of fine-tuning a pre-trained language model (LLM) on a custom dataset. We will be using the &lt;a href=&quot;https://huggingface.co/transformers/&quot;&gt;HuggingFace Transformers&lt;/a&gt; library for this purpose.&lt;/p&gt;
+
+&lt;h2 id=&quot;step-1-install-dependencies&quot;&gt;Step 1: Install Dependencies&lt;/h2&gt;
+&lt;p&gt;First, we need to install the required dependencies. We will be using the &lt;a href=&quot;https://pytorch.org/&quot;&gt;PyTorch&lt;/a&gt; backend for this tutorial, but you can also use TensorFlow if you prefer.&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;torch torchvision torchaudio transformers datasets
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;step-2-import-libraries&quot;&gt;Step 2: Import Libraries&lt;/h2&gt;
+&lt;p&gt;Next, we import the required libraries. We will be using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Trainer&lt;/code&gt; class from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;transformers&lt;/code&gt; library to fine-tune our model. We will also be using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;datasets&lt;/code&gt; library to load our custom dataset.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;transformers&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Trainer&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;datasets&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;load_dataset&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;step-3-load-dataset&quot;&gt;Step 3: Load Dataset&lt;/h2&gt;
+&lt;p&gt;Now, we load our custom dataset. We will be using the &lt;a href=&quot;https://huggingface.co/datasets/wikitext&quot;&gt;Wikitext-2&lt;/a&gt; dataset for this tutorial.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;dataset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;load_dataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;wikitext&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;wikitext-2-raw-v1&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;train&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;step-4-load-model&quot;&gt;Step 4: Load Model&lt;/h2&gt;
+&lt;p&gt;Next, we load the pre-trained model that we want to fine-tune. We will be using the &lt;a href=&quot;https://huggingface.co/transformers/model_doc/gpt2.html&quot;&gt;GPT2&lt;/a&gt; model for this tutorial.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;transformers&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GPT2Tokenizer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GPT2LMHeadModel&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;tokenizer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GPT2Tokenizer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;from_pretrained&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;gpt2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;model&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GPT2LMHeadModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;from_pretrained&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;gpt2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;step-5-tokenize-dataset&quot;&gt;Step 5: Tokenize Dataset&lt;/h2&gt;
+&lt;p&gt;Now, we tokenize our dataset using the tokenizer that we loaded in the previous step.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;tokenize_function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;examples&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tokenizer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;examples&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;tokenized_dataset&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;dataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tokenize_function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;batched&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;num_proc&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;remove_columns&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;text&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;step-6-define-training-arguments&quot;&gt;Step 6: Define Training Arguments&lt;/h2&gt;
+&lt;p&gt;Next, we define the training arguments for our model. We will be using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Trainer&lt;/code&gt; class from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;transformers&lt;/code&gt; library to fine-tune our model.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;transformers&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TrainingArguments&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;training_args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;TrainingArguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;output_dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;./results&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;overwrite_output_dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;num_train_epochs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;per_device_train_batch_size&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;save_steps&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10_000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;save_total_limit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;prediction_loss_only&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;step-7-define-training-function&quot;&gt;Step 7: Define Training Function&lt;/h2&gt;
+&lt;p&gt;Now, we define the training function for our model. We will be using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Trainer&lt;/code&gt; class from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;transformers&lt;/code&gt; library to fine-tune our model.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;model_init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;GPT2LMHeadModel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;from_pretrained&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;gpt2&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;trainer&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Trainer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;model_init&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;model_init&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;training_args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;train_dataset&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tokenized_dataset&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;step-8-train-model&quot;&gt;Step 8: Train Model&lt;/h2&gt;
+&lt;p&gt;Finally, we train our model using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Trainer&lt;/code&gt; class from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;transformers&lt;/code&gt; library.&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;trainer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;In this post, we walked through the process of fine-tuning a pre-trained language model (LLM) on a custom dataset. We used the &lt;a href=&quot;https://huggingface.co/transformers/&quot;&gt;HuggingFace Transformers&lt;/a&gt; library for this purpose.&lt;/p&gt;
+
+&lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://huggingface.co/transformers/&quot;&gt;HuggingFace Transformers&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://pytorch.org/&quot;&gt;PyTorch&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://huggingface.co/datasets/wikitext&quot;&gt;Wikitext-2&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://huggingface.co/transformers/model_doc/gpt2.html&quot;&gt;GPT2&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://huggingface.co/transformers/main_classes/trainer.html&quot;&gt;Trainer&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://huggingface.co/transformers/main_classes/trainer.html#transformers.TrainingArguments&quot;&gt;TrainingArguments&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://huggingface.co/transformers/model_doc/gpt2.html#gpt2lmheadmodel&quot;&gt;GPT2LMHeadModel&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Zach Wimpee</name></author></entry><entry><title type="html">Applications of Lie Groups to Neural Networks - Part 1</title><link href="http://localhost:4000/2023/06/15/lie-groups-manifolds-part1/" rel="alternate" type="text/html" title="Applications of Lie Groups to Neural Networks - Part 1" /><published>2023-06-15T03:00:00-05:00</published><updated>2023-06-15T03:00:00-05:00</updated><id>http://localhost:4000/2023/06/15/lie-groups-manifolds-part1</id><content type="html" xml:base="http://localhost:4000/2023/06/15/lie-groups-manifolds-part1/">&lt;h1 id=&quot;graudate-texts-in-mathematics---applications-of-lie-groups-to-differential-equations&quot;&gt;Graudate Texts in Mathematics - Applications of Lie Groups to Differential Equations&lt;/h1&gt;
+
+&lt;h2 id=&quot;chapter-1---introduction-to-lie-groups&quot;&gt;Chapter 1 - Introduction to Lie Groups&lt;/h2&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;“&lt;em&gt;…Once we have freed outselves of this dependence on coordinates, it is a small step to the general definition of a smooth manifold.&lt;/em&gt;” - Olver, pg. 3&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;We want to understand what a Lie Group is, given the simple definition that it is a Group that is also a Manifold.&lt;/p&gt;
+
+&lt;p&gt;To begin, we are working towards understanding smooth manifolds as a means to move away from defining transformations applied on objects in terms of local coordinates.&lt;/p&gt;
+
+&lt;p&gt;To do this, let’s start with a definition.&lt;/p&gt;
+
+&lt;h3 id=&quot;definition-11---m-dimensional-manifold&quot;&gt;&lt;strong&gt;Definition 1.1&lt;/strong&gt; - &lt;strong&gt;\(M\)-Dimensional Manifold&lt;/strong&gt;&lt;/h3&gt;
+&lt;p&gt;An &lt;strong&gt;\(m\)-dimensional manifold&lt;/strong&gt; is a set &lt;strong&gt;\(M\)&lt;/strong&gt;, together with a countable collection of subsets &lt;strong&gt;\(U_{\alpha} \subset M\)&lt;/strong&gt;, called &lt;strong&gt;&lt;em&gt;coordinate charts&lt;/em&gt;&lt;/strong&gt;, and one-to-one functions &lt;strong&gt;\(\chi_\alpha \colon U_\alpha \mapsto V_\alpha\)&lt;/strong&gt; onto connected open subsets &lt;strong&gt;\(V_{\alpha}\subset \mathbb{R}^m\)&lt;/strong&gt;, called &lt;strong&gt;&lt;em&gt;local coordinate maps&lt;/em&gt;&lt;/strong&gt;, which satisfy the following properties:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;a)&lt;/em&gt; The &lt;strong&gt;&lt;em&gt;coordinate charts&lt;/em&gt;&lt;/strong&gt; &lt;em&gt;cover&lt;/em&gt; &lt;strong&gt;\(M\)&lt;/strong&gt;:&lt;/p&gt;
+
+\[\bigcup_{\alpha} U_{\alpha} = M\]
+
+&lt;p&gt;&lt;em&gt;b)&lt;/em&gt; On the overlap of any pair of coordinate charts, \(U_{\alpha}\cap U_{\beta}\), the composite map&lt;/p&gt;
+
+\[\chi_{\beta}\circ \chi_{\alpha}^{-1}\colon \chi_{\alpha}(
+    U_{\alpha}\cap U_{\beta}
+) \mapsto \chi_{\beta}(
+    U_{\alpha}\cap U_{\beta}
+)\]
+
+&lt;p&gt;is a smooth (&lt;strong&gt;&lt;em&gt;infinitely differentiable&lt;/em&gt;&lt;/strong&gt;) function.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;c)&lt;/em&gt; If \(x \in U_{\alpha}\) and \(\tilde x \in U_{\beta}\) are distinct points of &lt;strong&gt;\(M\)&lt;/strong&gt;, then there exist open subsets \(W\subset V_{\alpha}\), \(\tilde W \subset V_{\beta}\) with \(\chi_{\alpha}(x)\in W\), \(\chi_{\beta}(\tilde x)\in \tilde W\), satisfying&lt;/p&gt;
+
+\[\chi_{\alpha}^{-1}(W)\cap\chi_{\beta}^{-1}(\tilde W) = \emptyset\]
+
+&lt;h3 id=&quot;manifolds-and-the-circle-s1&quot;&gt;Manifolds and the Circle \(S^{1}\)&lt;/h3&gt;
+&lt;p&gt;In a quest to understand Lie Groups - a powerful mathematical concept that combines the properties of groups and manifolds - we begin by exploring the fundamental building block: the manifold.&lt;/p&gt;
+
+&lt;p&gt;We learned in the previous section that an \(m\)-dimensional manifold is a set \(M\), with certain properties that allows it to behave locally like a Euclidean space of dimension \(m\). While this definition may seem abstract, let’s demystify it by diving into a concrete example: the circle \(S^{1}\).&lt;/p&gt;
+
+&lt;p&gt;The Circle as a Manifold
+An easy example to start with is the circle \(S^{1}\). We can think of a circle as a 1-dimensional manifold because we can parameterize it using a single parameter, say \(\theta\), as follows: \(x = \cos(\theta)\), \(y = \sin(\theta)\).&lt;/p&gt;
+
+&lt;p&gt;In Python, we can create a representation of this circle using a 1-dimensional tensor for \(\theta\) with 1000 points between 0 and \(2\pi\), and then compute the corresponding \(x\) and \(y\) values to represent points on the circle:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;torch&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;torch.nn&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nn&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;torch.nn.functional&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;F&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;matplotlib.pyplot&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;torch.optim&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;optim&lt;/span&gt;
+
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;io&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;zipfile&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;requests&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;torchtext.datasets&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WikiText2&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;torchtext.data.utils&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;get_tokenizer&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;torchtext.vocab&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;build_vocab_from_iterator&lt;/span&gt;
+&lt;span class=&quot;kn&quot;&gt;from&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;torch.utils.data&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;DataLoader&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# An easy example to start with to explore the definition of a manifold is S^1, the circle. We can parameterize the circle
+# such that it can be defined in terms of a single parameter, theta, as follows:
+# x = cos(theta)
+# y = sin(theta)
+&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# The circle is a 1-dimensional manifold, so we can define it as a
+# 1-dimensional tensor. We&apos;ll use 1000 points to define the circle.
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;linspace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Create a figure with two subplots: x and y as functions of theta, and x plotted against y with an example right triangle
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;subplots&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;figsize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Plot x and y as functions of theta
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;x&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;y&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u03B8&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; vs. x and y&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_xlabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u03B8&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_ylabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;x and y&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;legend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Plot x vs y and the right triangle with the corresponding angle 
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_title&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;Manifold: $$S^1$$&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_xlabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;x&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_ylabel&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;y&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Select the point attheta = pi/4 and plot the triangle
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;example_theta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;4.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;example_x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;example_theta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;example_y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;example_theta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;example_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;r&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;cos(&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u03B8&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;)&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                                      &lt;span class=&quot;c1&quot;&gt;# x edge
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;example_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;example_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;example_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;g&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;sin(&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u03B8&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;)&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                                      &lt;span class=&quot;c1&quot;&gt;# y edge
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;example_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;example_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;b&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;radius&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                                  &lt;span class=&quot;c1&quot;&gt;# hypotenuse
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;example_x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;example_y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;ko&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;label&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;Point (cos(&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u03B8&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;), sin(&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u03B8&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;))&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                 &lt;span class=&quot;c1&quot;&gt;# point
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;annotate&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\u03B8&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fontsize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;                                                   &lt;span class=&quot;c1&quot;&gt;# theta label
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;legend&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Set aspect ratio for the x vs y plot
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;axs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_aspect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;equal&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&apos;box&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Adjust spacing between subplots
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tight_layout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# Display the plot
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;imgcap_noborder&quot;&gt;
+&lt;img src=&quot;/assets/s1.png&quot; width=&quot;80%&quot; /&gt;
+&lt;/div&gt;
+
+&lt;p&gt;As \(\theta\) varies between 0 and \(2\pi\), the \(x\) and \(y\) values trace out a complete circle. Thus, any point on the circle can be uniquely identified by a single parameter \(\theta\). This demonstrates one of the key properties of a manifold: locally, it behaves just like a simple Euclidean space.&lt;/p&gt;
+
+&lt;p&gt;This code and the associated visualization serve as a practical implementation of the manifold concept, offering an intuitive understanding that you can extend to higher-dimensional manifolds. As we proceed, you’ll see that this intuition is crucial to understanding the more complex structures in the realm of Lie Groups. So, keep this circle example in mind as we continue our journey!&lt;/p&gt;
+
+&lt;p&gt;This will conclude part 1 of this discussion on the application of Lie Groups to deep learning. In part 2, we’ll explore the concept of a Lie Group, and how it relates to the concept of a manifold. We’ll also explore the concept of a Lie Algebra, and how it relates to the concept of a tangent space. Finally, we’ll explore the concept of a Lie Group action, and how it relates to the concept of a group action.&lt;/p&gt;</content><author><name>Zach Wimpee</name></author><summary type="html">&gt; “...we are working towards understanding smooth manifolds as a means to move away from defining transformations applied on objects in terms of local coordinates.</summary></entry></feed>

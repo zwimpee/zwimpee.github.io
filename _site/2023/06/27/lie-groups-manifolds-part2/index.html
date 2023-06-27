@@ -4,10 +4,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Applications of Lie Groups to Neural Networks - Part 1</title>
+    <title>Applications of Lie Groups to Neural Networks - Part 2</title>
     <meta name="viewport" content="width=device-width">
     <meta name="description" content="">
-    <link rel="canonical" href="http://localhost:4000/2023/06/15/lie-groups-manifolds/">
+    <link rel="canonical" href="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/">
     <link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Mathematics for Machine Learning Deep Dive posts" />
 
     <!-- Custom CSS -->
@@ -79,134 +79,24 @@
       <div class="post">
 
   <header class="post-header">
-    <h1>Applications of Lie Groups to Neural Networks - Part 1</h1>
-    <p class="meta">Jun 15, 2023 • Zach Wimpee</p>
+    <h1>Applications of Lie Groups to Neural Networks - Part 2</h1>
+    <p class="meta">Jun 27, 2023 • Zach Wimpee</p>
   </header>
 
   <article class="post-content">
-  <h1 id="graudate-texts-in-mathematics---applications-of-lie-groups-to-differential-equations">Graudate Texts in Mathematics - Applications of Lie Groups to Differential Equations</h1>
+  <h1 id="applications-of-lie-groups-to-neural-networks---part-2">Applications of Lie Groups to Neural Networks - Part 2</h1>
 
-<h2 id="chapter-1---introduction-to-lie-groups">Chapter 1 - Introduction to Lie Groups</h2>
-<blockquote>
-  <p>“<em>…Once we have freed outselves of this dependence on coordinates, it is a small step to the general definition of a smooth manifold.</em>” - Olver, pg. 3</p>
-</blockquote>
+<h1 id="introduction">Introduction</h1>
+<p>Picking back up from where we left off in part 1 of our discussion, we will now explore the concept of a manifold in more detail. We will also explore the concept of a Lie group, which is a group that is also a manifold. We will then explore the concept of a Lie algebra, which is a vector space that is also a Lie group. Finally, we will explore the concept of a Lie algebra homomorphism, which is a linear map between two Lie algebras that preserves the Lie bracket.</p>
 
-<p>We want to understand what a Lie Group is, given the simple definition that it is a Group that is also a Manifold.</p>
-
-<p>To begin, we are working towards understanding smooth manifolds as a means to move away from defining transformations applied on objects in terms of local coordinates.</p>
-
-<p>To do this, let’s start with a definition.</p>
-
-<h3 id="definition-11---m-dimensional-manifold"><strong>Definition 1.1</strong> - <strong>\(M\)-Dimensional Manifold</strong></h3>
-<p>An <strong>\(m\)-dimensional manifold</strong> is a set <strong>\(M\)</strong>, together with a countable collection of subsets <strong>\(U_{\alpha} \subset M\)</strong>, called <strong><em>coordinate charts</em></strong>, and one-to-one functions <strong>\(\chi_\alpha \colon U_\alpha \mapsto V_\alpha\)</strong> onto connected open subsets <strong>\(V_{\alpha}\subset \mathbb{R}^m\)</strong>, called <strong><em>local coordinate maps</em></strong>, which satisfy the following properties:</p>
-
-<p><em>a)</em> The <strong><em>coordinate charts</em></strong> <em>cover</em> <strong>\(M\)</strong>:</p>
-
-\[\bigcup_{\alpha} U_{\alpha} = M\]
-
-<p><em>b)</em> On the overlap of any pair of coordinate charts, \(U_{\alpha}\cap U_{\beta}\), the composite map</p>
-
-\[\chi_{\beta}\circ \chi_{\alpha}^{-1}\colon \chi_{\alpha}(
-    U_{\alpha}\cap U_{\beta}
-) \mapsto \chi_{\beta}(
-    U_{\alpha}\cap U_{\beta}
-)\]
-
-<p>is a smooth (<strong><em>infinitely differentiable</em></strong>) function.</p>
-
-<p><em>c)</em> If \(x \in U_{\alpha}\) and \(\tilde x \in U_{\beta}\) are distinct points of <strong>\(M\)</strong>, then there exist open subsets \(W\subset V_{\alpha}\), \(\tilde W \subset V_{\beta}\) with \(\chi_{\alpha}(x)\in W\), \(\chi_{\beta}(\tilde x)\in \tilde W\), satisfying</p>
-
-\[\chi_{\alpha}^{-1}(W)\cap\chi_{\beta}^{-1}(\tilde W) = \emptyset\]
-
-<h3 id="manifolds-and-the-circle-s1">Manifolds and the Circle \(S^{1}\)</h3>
-<p>In a quest to understand Lie Groups - a powerful mathematical concept that combines the properties of groups and manifolds - we begin by exploring the fundamental building block: the manifold.</p>
-
-<p>We learned in the previous section that an \(m\)-dimensional manifold is a set \(M\), with certain properties that allows it to behave locally like a Euclidean space of dimension \(m\). While this definition may seem abstract, let’s demystify it by diving into a concrete example: the circle \(S^{1}\).</p>
-
-<p>The Circle as a Manifold
-An easy example to start with is the circle \(S^{1}\). We can think of a circle as a 1-dimensional manifold because we can parameterize it using a single parameter, say \(\theta\), as follows: \(x = \cos(\theta)\), \(y = \sin(\theta)\).</p>
-
-<p>In Python, we can create a representation of this circle using a 1-dimensional tensor for \(\theta\) with 1000 points between 0 and \(2\pi\), and then compute the corresponding \(x\) and \(y\) values to represent points on the circle:</p>
-
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">torch</span>
-<span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="n">nn</span>
-<span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="n">F</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
-
-<span class="kn">import</span> <span class="nn">torch.optim</span> <span class="k">as</span> <span class="n">optim</span>
-
-<span class="kn">import</span> <span class="nn">io</span>
-<span class="kn">import</span> <span class="nn">zipfile</span>
-<span class="kn">import</span> <span class="nn">requests</span>
-<span class="kn">from</span> <span class="nn">torchtext.datasets</span> <span class="kn">import</span> <span class="n">WikiText2</span>
-<span class="kn">from</span> <span class="nn">torchtext.data.utils</span> <span class="kn">import</span> <span class="n">get_tokenizer</span>
-<span class="kn">from</span> <span class="nn">torchtext.vocab</span> <span class="kn">import</span> <span class="n">build_vocab_from_iterator</span>
-<span class="kn">from</span> <span class="nn">torch.utils.data</span> <span class="kn">import</span> <span class="n">DataLoader</span>
-
-<span class="c1"># An easy example to start with to explore the definition of a manifold is S^1, the circle. We can parameterize the circle
-# such that it can be defined in terms of a single parameter, theta, as follows:
-# x = cos(theta)
-# y = sin(theta)
-</span>
-<span class="c1"># The circle is a 1-dimensional manifold, so we can define it as a
-# 1-dimensional tensor. We'll use 1000 points to define the circle.
-</span><span class="n">theta</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">torch</span><span class="p">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
-
-<span class="c1"># Create a figure with two subplots: x and y as functions of theta, and x plotted against y with an example right triangle
-</span><span class="n">fig</span><span class="p">,</span> <span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
-
-<span class="c1"># Plot x and y as functions of theta
-</span><span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'x'</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'y'</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">set_title</span><span class="p">(</span><span class="s">'</span><span class="se">\u03B8</span><span class="s"> vs. x and y'</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'</span><span class="se">\u03B8</span><span class="s">'</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'x and y'</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">legend</span><span class="p">()</span>
-
-<span class="c1"># Plot x vs y and the right triangle with the corresponding angle 
-</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">set_title</span><span class="p">(</span><span class="s">'Manifold: $$S^1$$'</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">'x'</span><span class="p">)</span>
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">'y'</span><span class="p">)</span>
-
-<span class="c1"># Select the point attheta = pi/4 and plot the triangle
-</span><span class="n">example_theta</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">torch</span><span class="p">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">4.0</span><span class="p">)</span>
-<span class="n">example_x</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">cos</span><span class="p">(</span><span class="n">example_theta</span><span class="p">)</span>
-<span class="n">example_y</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">sin</span><span class="p">(</span><span class="n">example_theta</span><span class="p">)</span>
-
-<span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">example_x</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="s">'r'</span><span class="p">,</span><span class="n">label</span><span class="o">=</span><span class="s">'cos(</span><span class="se">\u03B8</span><span class="s">)'</span><span class="p">)</span>                                      <span class="c1"># x edge
-</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">plot</span><span class="p">([</span><span class="n">example_x</span><span class="p">,</span> <span class="n">example_x</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">example_y</span><span class="p">],</span> <span class="s">'g'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'sin(</span><span class="se">\u03B8</span><span class="s">)'</span><span class="p">)</span>                                      <span class="c1"># y edge
-</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">plot</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">example_x</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">example_y</span><span class="p">],</span> <span class="s">'b'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'radius'</span><span class="p">)</span>                                  <span class="c1"># hypotenuse
-</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">plot</span><span class="p">(</span><span class="n">example_x</span><span class="p">,</span> <span class="n">example_y</span><span class="p">,</span> <span class="s">'ko'</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">'Point (cos(</span><span class="se">\u03B8</span><span class="s">), sin(</span><span class="se">\u03B8</span><span class="s">))'</span><span class="p">)</span>                 <span class="c1"># point
-</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">annotate</span><span class="p">(</span><span class="s">'</span><span class="se">\u03B8</span><span class="s">'</span><span class="p">,</span> <span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>                                                   <span class="c1"># theta label
-</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">legend</span><span class="p">()</span>
-
-<span class="c1"># Set aspect ratio for the x vs y plot
-</span><span class="n">axs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">set_aspect</span><span class="p">(</span><span class="s">'equal'</span><span class="p">,</span> <span class="s">'box'</span><span class="p">)</span>
-
-<span class="c1"># Adjust spacing between subplots
-</span><span class="n">fig</span><span class="p">.</span><span class="n">tight_layout</span><span class="p">()</span>
-
-<span class="c1"># Display the plot
-</span><span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
-</code></pre></div></div>
-
-<div class="imgcap_noborder">
-<img src="/assets/s1.png" width="80%" />
-</div>
-
-<p>As \(\theta\) varies between 0 and \(2\pi\), the \(x\) and \(y\) values trace out a complete circle. Thus, any point on the circle can be uniquely identified by a single parameter \(\theta\). This demonstrates one of the key properties of a manifold: locally, it behaves just like a simple Euclidean space.</p>
-
-<p>This code and the associated visualization serve as a practical implementation of the manifold concept, offering an intuitive understanding that you can extend to higher-dimensional manifolds. As we proceed, you’ll see that this intuition is crucial to understanding the more complex structures in the realm of Lie Groups. So, keep this circle example in mind as we continue our journey!</p>
+<h2 id="some-additional-manifold-examples">Some additional manifold examples</h2>
 
 <h3 id="manifolds-and-the-sphere-s2">Manifolds and the Sphere \(S^{2}\)</h3>
 <p>Now that we’ve explored the circle as a 1-dimensional manifold, let’s move on to a 2-dimensional manifold: the sphere \(S^{2}\). We can think of the sphere as a 2-dimensional manifold because we can parameterize it using two parameters, say \(\theta\) and \(\phi\), as follows:</p>
 
-<p>\(x = \cos(\theta)\sin(\phi)\)
-\(y = \sin(\theta)\sin(\phi)\)
-\(z = \cos(\phi)\)</p>
+\[x = \cos(\theta)\sin(\phi)
+y = \sin(\theta)\sin(\phi) 
+z = \cos(\phi)\]
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># S^2 is a good example of a nontrivial two-dimensional manifold,
 # realized as a surface in three-dimensional space.
@@ -267,9 +157,6 @@ The local coordinate maps for the sphere $S^2$ can be defined using spherical co
 
 $$
 \chi_{\alpha}(p) = (\theta, \phi) = (\arctan(y/x), \arccos(z))
-$$
-
-$$
 \chi_{\beta}(p) = (\theta', \phi') = (\arctan(y/x), \pi - \arccos(z))
 $$
 
