@@ -229,11 +229,11 @@ Let's break down the definition:
 
 3. **Compatibility of Structures:** The group operations (multiplication and inversion) are required to be smooth functions when considered as maps between manifolds. More formally, if we denote the multiplication operation by $$\mu: G \times G \rightarrow G$$ (so that $$\mu(g, h) = g \cdot h$$) and the inversion operation by $$i: G \rightarrow G$$ (so that $$i(g) = g^{-1}$$), then $$\mu$$ and $$i$$ are required to be smooth.
 
-An example of a Lie group is the general linear group $$GL(n, \R)$$, which consists of all $$n \times n$$ invertible matrices with real entries. The group operation is matrix multiplication, and the manifold structure comes from identifying each matrix with a point in $$\R^{n^2}$$. The group operations are smooth functions, so $$GL(n, \R)$$ is a Lie group.
+An example of a Lie group is the general linear group $$GL(n, \mathbb{R})$$, which consists of all $$n \times n$$ invertible matrices with real entries. The group operation is matrix multiplication, and the manifold structure comes from identifying each matrix with a point in $$\mathbb{R}^{n^2}$$. The group operations are smooth functions, so $$GL(n, \mathbb{R})$$ is a Lie group.
 
 Another example is the circle $$S^1$$ with the operation of complex multiplication. Each point on the circle can be identified with a complex number of absolute value 1, and multiplication of such numbers is a smooth operation.
 
-Let's consider the general linear group $$GL(2, \R)$$ for simplicity. This group consists of all $$2 \times 2$$ invertible matrices with real entries. A general element of $$GL(2, \R)$$ can be written as:
+Let's consider the general linear group $$GL(2, \mathbb{R})$$ for simplicity. This group consists of all $$2 \times 2$$ invertible matrices with real entries. A general element of $$GL(2, \mathbb{R})$$ can be written as:
 
 $$
 A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}
@@ -247,7 +247,7 @@ $$
 A^{-1} = \frac{1}{ad - bc} \begin{bmatrix} d & -b \\ -c & a \end{bmatrix}
 $$
 
-Now, let's consider some subgroups of $$GL(2, \R)$$:
+Now, let's consider some subgroups of $$GL(2, \mathbb{R})$$:
 
 1. **Orthogonal Group $$O(2)$$:** This is the group of $$2 \times 2$$ matrices that preserve the Euclidean norm, i.e., $$AA^T = A^TA = I$$. The determinant of such matrices is either 1 or -1. A general element of $$O(2)$$ can be written as:
 
@@ -257,7 +257,7 @@ Now, let's consider some subgroups of $$GL(2, \R)$$:
 
     where $$\theta$$ is a real number.
 
-2. **Special Orthogonal Group $$SO(2)$$:** This is the subgroup of $$O(2)$$ consisting of matrices with determinant 1. These are rotations in the plane. A general element of $$SO(2)$$ can be written as:
+2. Special Orthogonal Group $$SO(2)$$: This is the subgroup of $$O(2)$$ consisting of matrices with determinant 1. These are rotations in the plane. A general element of $$SO(2)$$ can be written as:
 
     $$
     SO = \begin{bmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{bmatrix}
@@ -265,15 +265,15 @@ Now, let's consider some subgroups of $$GL(2, \R)$$:
 
     where $$\theta$$ is a real number.
 
-These subgroups are also Lie groups, as they are groups and differentiable manifolds, and the group operations are smooth. They are also examples of compact Lie groups, as they are closed and bounded subsets of $$\R^{2 \times 2}$$.
+These subgroups are also Lie groups, as they are groups and differentiable manifolds, and the group operations are smooth. They are also examples of compact Lie groups, as they are closed and bounded subsets of $$\mathbb{R}^{2 \times 2}$$.
 
 ## Group Operations
 
-In the case of $$GL(2, \R)$$, the group operation is matrix multiplication.
+In the case of $$GL(2, \mathbb{R})$$, the group operation is matrix multiplication.
 
 Matrix multiplication is a binary operation that takes a pair of matrices, and produces another matrix. For $$2 \times 2$$ matrices, the multiplication is defined as follows:
 
-If we have two matrices $$A$$ and $$B$$ in $$GL(2, \R)$$, where
+If we have two matrices $$A$$ and $$B$$ in $$GL(2, \mathbb{R})$$, where
 
 $$
 A = \begin{bmatrix} a & b \\ c & d \end{bmatrix} \quad \text{and} \quad B = \begin{bmatrix} e & f \\ g & h \end{bmatrix}
@@ -285,11 +285,11 @@ $$
 AB = \begin{bmatrix} a & b \\ c & d \end{bmatrix} \begin{bmatrix} e & f \\ g & h \end{bmatrix} = \begin{bmatrix} ae + bg & af + bh \\ ce + dg & cf + dh \end{bmatrix}
 $$
 
-This operation is associative, meaning that for any three matrices $$A\$$, $$B$$, and $$C$$ in $$GL(2, \R)$$, we have $$(AB)C = A(BC)$$.
+This operation is associative, meaning that for any three matrices $$A\$$, $$B$$, and $$C$$ in $$GL(2, \mathbb{R})$$, we have $$(AB)C = A(BC)$$.
 
 **Example:**
 
-Let's consider two specific matrices in $$GL(2, \R)$$:
+Let's consider two specific matrices in $$GL(2, \mathbb{R})$$:
 
 $$
 A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} \quad \text{and} \quad B = \begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix}

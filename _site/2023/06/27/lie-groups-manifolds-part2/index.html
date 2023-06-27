@@ -299,11 +299,11 @@ z &amp;= r\sin\theta
   </li>
 </ol>
 
-<p>An example of a Lie group is the general linear group \(GL(n, \R)\), which consists of all \(n \times n\) invertible matrices with real entries. The group operation is matrix multiplication, and the manifold structure comes from identifying each matrix with a point in \(\R^{n^2}\). The group operations are smooth functions, so \(GL(n, \R)\) is a Lie group.</p>
+<p>An example of a Lie group is the general linear group \(GL(n, \mathbb{R})\), which consists of all \(n \times n\) invertible matrices with real entries. The group operation is matrix multiplication, and the manifold structure comes from identifying each matrix with a point in \(\mathbb{R}^{n^2}\). The group operations are smooth functions, so \(GL(n, \mathbb{R})\) is a Lie group.</p>
 
 <p>Another example is the circle \(S^1\) with the operation of complex multiplication. Each point on the circle can be identified with a complex number of absolute value 1, and multiplication of such numbers is a smooth operation.</p>
 
-<p>Let’s consider the general linear group \(GL(2, \R)\) for simplicity. This group consists of all \(2 \times 2\) invertible matrices with real entries. A general element of \(GL(2, \R)\) can be written as:</p>
+<p>Let’s consider the general linear group \(GL(2, \mathbb{R})\) for simplicity. This group consists of all \(2 \times 2\) invertible matrices with real entries. A general element of \(GL(2, \mathbb{R})\) can be written as:</p>
 
 \[A = \begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix}\]
 
@@ -313,7 +313,7 @@ z &amp;= r\sin\theta
 
 \[A^{-1} = \frac{1}{ad - bc} \begin{bmatrix} d &amp; -b \\ -c &amp; a \end{bmatrix}\]
 
-<p>Now, let’s consider some subgroups of \(GL(2, \R)\):</p>
+<p>Now, let’s consider some subgroups of \(GL(2, \mathbb{R})\):</p>
 
 <ol>
   <li>
@@ -324,7 +324,7 @@ z &amp;= r\sin\theta
     <p>where \(\theta\) is a real number.</p>
   </li>
   <li>
-    <p><strong>Special Orthogonal Group \(SO(2)\):</strong> This is the subgroup of \(O(2)\) consisting of matrices with determinant 1. These are rotations in the plane. A general element of \(SO(2)\) can be written as:</p>
+    <p>Special Orthogonal Group \(SO(2)\): This is the subgroup of \(O(2)\) consisting of matrices with determinant 1. These are rotations in the plane. A general element of \(SO(2)\) can be written as:</p>
 
 \[SO = \begin{bmatrix} \cos \theta &amp; -\sin \theta \\ \sin \theta &amp; \cos \theta \end{bmatrix}\]
 
@@ -332,15 +332,15 @@ z &amp;= r\sin\theta
   </li>
 </ol>
 
-<p>These subgroups are also Lie groups, as they are groups and differentiable manifolds, and the group operations are smooth. They are also examples of compact Lie groups, as they are closed and bounded subsets of \(\R^{2 \times 2}\).</p>
+<p>These subgroups are also Lie groups, as they are groups and differentiable manifolds, and the group operations are smooth. They are also examples of compact Lie groups, as they are closed and bounded subsets of \(\mathbb{R}^{2 \times 2}\).</p>
 
 <h2 id="group-operations">Group Operations</h2>
 
-<p>In the case of \(GL(2, \R)\), the group operation is matrix multiplication.</p>
+<p>In the case of \(GL(2, \mathbb{R})\), the group operation is matrix multiplication.</p>
 
 <p>Matrix multiplication is a binary operation that takes a pair of matrices, and produces another matrix. For \(2 \times 2\) matrices, the multiplication is defined as follows:</p>
 
-<p>If we have two matrices \(A\) and \(B\) in \(GL(2, \R)\), where</p>
+<p>If we have two matrices \(A\) and \(B\) in \(GL(2, \mathbb{R})\), where</p>
 
 \[A = \begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix} \quad \text{and} \quad B = \begin{bmatrix} e &amp; f \\ g &amp; h \end{bmatrix}\]
 
@@ -348,11 +348,11 @@ z &amp;= r\sin\theta
 
 \[AB = \begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix} \begin{bmatrix} e &amp; f \\ g &amp; h \end{bmatrix} = \begin{bmatrix} ae + bg &amp; af + bh \\ ce + dg &amp; cf + dh \end{bmatrix}\]
 
-<p>This operation is associative, meaning that for any three matrices \(A\\), \(B\), and \(C\) in \(GL(2, \R)\), we have \((AB)C = A(BC)\).</p>
+<p>This operation is associative, meaning that for any three matrices \(A\\), \(B\), and \(C\) in \(GL(2, \mathbb{R})\), we have \((AB)C = A(BC)\).</p>
 
 <p><strong>Example:</strong></p>
 
-<p>Let’s consider two specific matrices in \(GL(2, \R)\):</p>
+<p>Let’s consider two specific matrices in \(GL(2, \mathbb{R})\):</p>
 
 \[A = \begin{bmatrix} 1 &amp; 2 \\ 3 &amp; 4 \end{bmatrix} \quad \text{and} \quad B = \begin{bmatrix} 5 &amp; 6 \\ 7 &amp; 8 \end{bmatrix}\]
 

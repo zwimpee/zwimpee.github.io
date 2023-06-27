@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-27T14:11:39-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mathematics for Machine Learning Deep Dive</title><subtitle></subtitle><entry><title type="html">Applications of Lie Groups to Neural Networks - Part 2</title><link href="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/" rel="alternate" type="text/html" title="Applications of Lie Groups to Neural Networks - Part 2" /><published>2023-06-27T08:00:00-05:00</published><updated>2023-06-27T08:00:00-05:00</updated><id>http://localhost:4000/2023/06/27/lie-groups-manifolds-part2</id><content type="html" xml:base="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/">&lt;h1 id=&quot;applications-of-lie-groups-to-neural-networks---part-2&quot;&gt;Applications of Lie Groups to Neural Networks - Part 2&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-27T14:14:26-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mathematics for Machine Learning Deep Dive</title><subtitle></subtitle><entry><title type="html">Applications of Lie Groups to Neural Networks - Part 2</title><link href="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/" rel="alternate" type="text/html" title="Applications of Lie Groups to Neural Networks - Part 2" /><published>2023-06-27T08:00:00-05:00</published><updated>2023-06-27T08:00:00-05:00</updated><id>http://localhost:4000/2023/06/27/lie-groups-manifolds-part2</id><content type="html" xml:base="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/">&lt;h1 id=&quot;applications-of-lie-groups-to-neural-networks---part-2&quot;&gt;Applications of Lie Groups to Neural Networks - Part 2&lt;/h1&gt;
 &lt;p&gt;#&lt;/p&gt;
 &lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;Picking back up from where we left off in part 1 of our discussion, we will now explore the concept of a manifold in more detail. We will also explore the concept of a Lie group, which is a group that is also a manifold. We will then explore the concept of a Lie algebra, which is a vector space that is also a Lie group. Finally, we will explore the concept of a Lie algebra homomorphism, which is a linear map between two Lie algebras that preserves the Lie bracket.&lt;/p&gt;
@@ -213,11 +213,11 @@ z &amp;amp;= r\sin\theta
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;An example of a Lie group is the general linear group \(GL(n, \R)\), which consists of all \(n \times n\) invertible matrices with real entries. The group operation is matrix multiplication, and the manifold structure comes from identifying each matrix with a point in \(\R^{n^2}\). The group operations are smooth functions, so \(GL(n, \R)\) is a Lie group.&lt;/p&gt;
+&lt;p&gt;An example of a Lie group is the general linear group \(GL(n, \mathbb{R})\), which consists of all \(n \times n\) invertible matrices with real entries. The group operation is matrix multiplication, and the manifold structure comes from identifying each matrix with a point in \(\mathbb{R}^{n^2}\). The group operations are smooth functions, so \(GL(n, \mathbb{R})\) is a Lie group.&lt;/p&gt;
 
 &lt;p&gt;Another example is the circle \(S^1\) with the operation of complex multiplication. Each point on the circle can be identified with a complex number of absolute value 1, and multiplication of such numbers is a smooth operation.&lt;/p&gt;
 
-&lt;p&gt;Let’s consider the general linear group \(GL(2, \R)\) for simplicity. This group consists of all \(2 \times 2\) invertible matrices with real entries. A general element of \(GL(2, \R)\) can be written as:&lt;/p&gt;
+&lt;p&gt;Let’s consider the general linear group \(GL(2, \mathbb{R})\) for simplicity. This group consists of all \(2 \times 2\) invertible matrices with real entries. A general element of \(GL(2, \mathbb{R})\) can be written as:&lt;/p&gt;
 
 \[A = \begin{bmatrix} a &amp;amp; b \\ c &amp;amp; d \end{bmatrix}\]
 
@@ -227,7 +227,7 @@ z &amp;amp;= r\sin\theta
 
 \[A^{-1} = \frac{1}{ad - bc} \begin{bmatrix} d &amp;amp; -b \\ -c &amp;amp; a \end{bmatrix}\]
 
-&lt;p&gt;Now, let’s consider some subgroups of \(GL(2, \R)\):&lt;/p&gt;
+&lt;p&gt;Now, let’s consider some subgroups of \(GL(2, \mathbb{R})\):&lt;/p&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
@@ -238,7 +238,7 @@ z &amp;amp;= r\sin\theta
     &lt;p&gt;where \(\theta\) is a real number.&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;&lt;strong&gt;Special Orthogonal Group \(SO(2)\):&lt;/strong&gt; This is the subgroup of \(O(2)\) consisting of matrices with determinant 1. These are rotations in the plane. A general element of \(SO(2)\) can be written as:&lt;/p&gt;
+    &lt;p&gt;Special Orthogonal Group \(SO(2)\): This is the subgroup of \(O(2)\) consisting of matrices with determinant 1. These are rotations in the plane. A general element of \(SO(2)\) can be written as:&lt;/p&gt;
 
 \[SO = \begin{bmatrix} \cos \theta &amp;amp; -\sin \theta \\ \sin \theta &amp;amp; \cos \theta \end{bmatrix}\]
 
@@ -246,15 +246,15 @@ z &amp;amp;= r\sin\theta
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;These subgroups are also Lie groups, as they are groups and differentiable manifolds, and the group operations are smooth. They are also examples of compact Lie groups, as they are closed and bounded subsets of \(\R^{2 \times 2}\).&lt;/p&gt;
+&lt;p&gt;These subgroups are also Lie groups, as they are groups and differentiable manifolds, and the group operations are smooth. They are also examples of compact Lie groups, as they are closed and bounded subsets of \(\mathbb{R}^{2 \times 2}\).&lt;/p&gt;
 
 &lt;h2 id=&quot;group-operations&quot;&gt;Group Operations&lt;/h2&gt;
 
-&lt;p&gt;In the case of \(GL(2, \R)\), the group operation is matrix multiplication.&lt;/p&gt;
+&lt;p&gt;In the case of \(GL(2, \mathbb{R})\), the group operation is matrix multiplication.&lt;/p&gt;
 
 &lt;p&gt;Matrix multiplication is a binary operation that takes a pair of matrices, and produces another matrix. For \(2 \times 2\) matrices, the multiplication is defined as follows:&lt;/p&gt;
 
-&lt;p&gt;If we have two matrices \(A\) and \(B\) in \(GL(2, \R)\), where&lt;/p&gt;
+&lt;p&gt;If we have two matrices \(A\) and \(B\) in \(GL(2, \mathbb{R})\), where&lt;/p&gt;
 
 \[A = \begin{bmatrix} a &amp;amp; b \\ c &amp;amp; d \end{bmatrix} \quad \text{and} \quad B = \begin{bmatrix} e &amp;amp; f \\ g &amp;amp; h \end{bmatrix}\]
 
@@ -262,11 +262,11 @@ z &amp;amp;= r\sin\theta
 
 \[AB = \begin{bmatrix} a &amp;amp; b \\ c &amp;amp; d \end{bmatrix} \begin{bmatrix} e &amp;amp; f \\ g &amp;amp; h \end{bmatrix} = \begin{bmatrix} ae + bg &amp;amp; af + bh \\ ce + dg &amp;amp; cf + dh \end{bmatrix}\]
 
-&lt;p&gt;This operation is associative, meaning that for any three matrices \(A\\), \(B\), and \(C\) in \(GL(2, \R)\), we have \((AB)C = A(BC)\).&lt;/p&gt;
+&lt;p&gt;This operation is associative, meaning that for any three matrices \(A\\), \(B\), and \(C\) in \(GL(2, \mathbb{R})\), we have \((AB)C = A(BC)\).&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;Let’s consider two specific matrices in \(GL(2, \R)\):&lt;/p&gt;
+&lt;p&gt;Let’s consider two specific matrices in \(GL(2, \mathbb{R})\):&lt;/p&gt;
 
 \[A = \begin{bmatrix} 1 &amp;amp; 2 \\ 3 &amp;amp; 4 \end{bmatrix} \quad \text{and} \quad B = \begin{bmatrix} 5 &amp;amp; 6 \\ 7 &amp;amp; 8 \end{bmatrix}\]
 
