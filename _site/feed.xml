@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-27T14:00:45-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mathematics for Machine Learning Deep Dive</title><subtitle></subtitle><entry><title type="html">Applications of Lie Groups to Neural Networks - Part 2</title><link href="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/" rel="alternate" type="text/html" title="Applications of Lie Groups to Neural Networks - Part 2" /><published>2023-06-27T08:00:00-05:00</published><updated>2023-06-27T08:00:00-05:00</updated><id>http://localhost:4000/2023/06/27/lie-groups-manifolds-part2</id><content type="html" xml:base="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/">&lt;h1 id=&quot;applications-of-lie-groups-to-neural-networks---part-2&quot;&gt;Applications of Lie Groups to Neural Networks - Part 2&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-27T14:05:20-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mathematics for Machine Learning Deep Dive</title><subtitle></subtitle><entry><title type="html">Applications of Lie Groups to Neural Networks - Part 2</title><link href="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/" rel="alternate" type="text/html" title="Applications of Lie Groups to Neural Networks - Part 2" /><published>2023-06-27T08:00:00-05:00</published><updated>2023-06-27T08:00:00-05:00</updated><id>http://localhost:4000/2023/06/27/lie-groups-manifolds-part2</id><content type="html" xml:base="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/">&lt;h1 id=&quot;applications-of-lie-groups-to-neural-networks---part-2&quot;&gt;Applications of Lie Groups to Neural Networks - Part 2&lt;/h1&gt;
 
 &lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 &lt;p&gt;Picking back up from where we left off in part 1 of our discussion, we will now explore the concept of a manifold in more detail. We will also explore the concept of a Lie group, which is a group that is also a manifold. We will then explore the concept of a Lie algebra, which is a vector space that is also a Lie group. Finally, we will explore the concept of a Lie algebra homomorphism, which is a linear map between two Lie algebras that preserves the Lie bracket.&lt;/p&gt;
@@ -408,52 +408,40 @@ demonstrating the closure property of the group.&lt;/p&gt;
 
 &lt;div class=&quot;imgcap_noborder&quot;&gt;
 &lt;img src=&quot;/assets/rl-process.jpg&quot; width=&quot;500&quot; /&gt;
-&lt;div&gt;
+&lt;/div&gt;
 
+&lt;p&gt;More formally, we can say that an agent first receives an observation \(s_0\) from the environment. The agent then takes an action \(a_0\) based on the observation \(s_0\). The environment then transitions to a new state \(s_1\)and returns a reward \(r_1\)to the agent. This process repeats until the agent reaches a terminal state.&lt;/p&gt;
 
-More formally, we can say that an agent first receives an observation $$s_0$$ from the environment. The agent then takes an action $$a_0$$ based on the observation $$s_0$$. The environment then transitions to a new state $$s_1$$and returns a reward $$r_1$$to the agent. This process repeats until the agent reaches a terminal state.
+&lt;p&gt;We can further formalize this even further with the following definitions:&lt;/p&gt;
 
+&lt;h2 id=&quot;definitions&quot;&gt;Definitions&lt;/h2&gt;
 
+&lt;h3 id=&quot;environment&quot;&gt;Environment&lt;/h3&gt;
+&lt;p&gt;An environment \(E\) is a function that maps states to rewards:&lt;/p&gt;
 
-We can further formalize this even further with the following definitions:
+\[E: S \rightarrow R\]
 
-## Definitions
+&lt;p&gt;and is described by a state\(s_t\)at time\(t\):&lt;/p&gt;
 
-### Environment
-An environment $$E$$ is a function that maps states to rewards:
+\[s_t \in S\]
 
-$$
-E: S \rightarrow R
-$$
+&lt;p&gt;That is, given some state\(s_t\), the environment\(E\)will return a reward\(r_t\). The environment also transitions to a new state\(s_{t+1}\). This reward and observations about the new state are then provided to the agent,\(L\).&lt;/p&gt;
 
-and is described by a state$$s_t$$at time$$t$$:
+&lt;h3 id=&quot;agent&quot;&gt;Agent&lt;/h3&gt;
+&lt;p&gt;An agent\(L\)is an entity that exists within and interacts with the environment\(E\). Roughly speaking, the agent\(L\)is the entity that is trying to solve the RL problem. The agent\(L\)is described by a policy\(\pi\)and takes actions\(a_t\)in the environment\(E\).&lt;/p&gt;
 
-$$
-s_t \in S
-$$
+&lt;p&gt;More formally, the agent is described by a policy\(\pi\)that maps states to actions:&lt;/p&gt;
 
-That is, given some state$$s_t$$, the environment$$E$$will return a reward$$r_t$$. The environment also transitions to a new state$$s_{t+1}$$. This reward and observations about the new state are then provided to the agent,$$L$$.
+\[L: S \rightarrow A\]
 
-### Agent
-An agent$$L$$is an entity that exists within and interacts with the environment$$E$$. Roughly speaking, the agent$$L$$is the entity that is trying to solve the RL problem. The agent$$L$$is described by a policy$$\pi$$and takes actions$$a_t$$in the environment$$E$$. 
+&lt;p&gt;That is, given some observation about the current state\(s_t\), the agent\(L\)will return an action\(a_t\). This choice is determined by the agent’s policy\(\pi\).&lt;/p&gt;
 
-More formally, the agent is described by a policy$$\pi$$that maps states to actions:
+&lt;h3 id=&quot;policy&quot;&gt;Policy&lt;/h3&gt;
+&lt;p&gt;A policy\(\pi\)is a function that maps states to actions:&lt;/p&gt;
 
-$$
-L: S \rightarrow A
-$$
+\[\pi: S \rightarrow A\]
 
-That is, given some observation about the current state$$s_t$$, the agent$$L$$will return an action$$a_t$$. This choice is determined by the agent&apos;s policy$$\pi$$.
-
-
-### Policy
-A policy$$\pi$$is a function that maps states to actions:
-
-$$
-\pi: S \rightarrow A
-$$
-
-That is, given some observation about the current state$$s_t$$, the policy$$\pi$$will return an action$$a_t$$. This choice is determined by the agent&apos;s policy$$\pi$$.
+&lt;p&gt;That is, given some observation about the current state\(s_t\), the policy\(\pi\)will return an action\(a_t\). This choice is determined by the agent’s policy\(\pi\).&lt;/p&gt;
 
 &lt;div class=&quot;imgcap_noborder&quot;&gt;
 &lt;img src=&quot;/assets/policy.jpg&quot; width=&quot;500&quot; /&gt;
@@ -538,11 +526,13 @@ Returning back to what we introduced at the beginning of this unit, we can descr
 We can state the goal of the agent as maximizing the total reward it receives.
 
 That is, the agent&apos;s goal is to maximize the return$$R_t$$:
+
 $$
 R_t = r_t + r_{t+1} + r_{t+2} + \cdots
 $$
 
 Therefore *our* goal will be to find the optimal polciy$$\pi^*$$that maximizes the return$$R_t$$:
+
 $$
 \pi^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t
 $$
@@ -553,7 +543,7 @@ In the next unit, we will explore value-based methods in more detail through the
 
 #### References
 - [HuggingFace Deep RL Course](https://huggingface.co/course/chapter1)
-&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name>Zach Wimpee</name></author></entry><entry><title type="html">DIY LLM Fine-Tuning: A Step-by-Step Guide</title><link href="http://localhost:4000/2023/06/15/RLHF-pipeline/" rel="alternate" type="text/html" title="DIY LLM Fine-Tuning: A Step-by-Step Guide" /><published>2023-06-15T03:00:00-05:00</published><updated>2023-06-15T03:00:00-05:00</updated><id>http://localhost:4000/2023/06/15/RLHF-pipeline</id><content type="html" xml:base="http://localhost:4000/2023/06/15/RLHF-pipeline/">&lt;h1 id=&quot;diy-llm-fine-tuning-a-step-by-step-guide&quot;&gt;DIY LLM Fine-Tuning: A Step-by-Step Guide&lt;/h1&gt;
+&lt;/div&gt;&lt;/div&gt;</content><author><name>Zach Wimpee</name></author></entry><entry><title type="html">DIY LLM Fine-Tuning: A Step-by-Step Guide</title><link href="http://localhost:4000/2023/06/15/RLHF-pipeline/" rel="alternate" type="text/html" title="DIY LLM Fine-Tuning: A Step-by-Step Guide" /><published>2023-06-15T03:00:00-05:00</published><updated>2023-06-15T03:00:00-05:00</updated><id>http://localhost:4000/2023/06/15/RLHF-pipeline</id><content type="html" xml:base="http://localhost:4000/2023/06/15/RLHF-pipeline/">&lt;h1 id=&quot;diy-llm-fine-tuning-a-step-by-step-guide&quot;&gt;DIY LLM Fine-Tuning: A Step-by-Step Guide&lt;/h1&gt;
 &lt;p&gt;#&lt;/p&gt;
 &lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;In this post, we will walk through the process of fine-tuning a pre-trained language model (LLM) on a custom dataset. We will be using the &lt;a href=&quot;https://huggingface.co/transformers/&quot;&gt;HuggingFace Transformers&lt;/a&gt; library for this purpose.&lt;/p&gt;

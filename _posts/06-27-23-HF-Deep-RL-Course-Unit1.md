@@ -24,12 +24,10 @@ We can describe reinforcement learning at a high level via the following process
 
 <div class="imgcap_noborder">
 <img src="/assets/rl-process.jpg" width="500">
-<div>
+</div>
 
 
 More formally, we can say that an agent first receives an observation $$s_0$$ from the environment. The agent then takes an action $$a_0$$ based on the observation $$s_0$$. The environment then transitions to a new state $$s_1$$and returns a reward $$r_1$$to the agent. This process repeats until the agent reaches a terminal state.
-
-
 
 We can further formalize this even further with the following definitions:
 
@@ -154,11 +152,13 @@ Returning back to what we introduced at the beginning of this unit, we can descr
 We can state the goal of the agent as maximizing the total reward it receives.
 
 That is, the agent's goal is to maximize the return$$R_t$$:
+
 $$
 R_t = r_t + r_{t+1} + r_{t+2} + \cdots
 $$
 
 Therefore *our* goal will be to find the optimal polciy$$\pi^*$$that maximizes the return$$R_t$$:
+
 $$
 \pi^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t
 $$
