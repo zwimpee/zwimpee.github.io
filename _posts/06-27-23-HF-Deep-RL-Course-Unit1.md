@@ -155,7 +155,7 @@ Returning back to what we introduced at the beginning of this unit, we can descr
 
 We can state the goal of the agent as maximizing the total reward it receives.
 
-That is, the agent's goal is to maximize the return$$ R_t$$ :
+That is, the agent's goal is to maximize the return $$ R_t$$ :
 
 $$ 
 R_t = r_t + r_{t+1} + r_{t+2} + \cdots
