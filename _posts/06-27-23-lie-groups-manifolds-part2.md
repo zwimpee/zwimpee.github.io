@@ -6,7 +6,7 @@ excerpt: "> “...different choices of local coordinate charts can satisfy the d
 date:   2023-06-27 13:00:00
 mathjax: true
 author: Zach Wimpee
-thumbnail: /assets/intro/thumbnail.png
+thumbnail: /assets/lie-groups/lie-groups.jpg
 ---
 
 # Applications of Lie Groups to Neural Networks - Part 2

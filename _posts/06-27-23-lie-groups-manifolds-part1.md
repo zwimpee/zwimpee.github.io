@@ -6,7 +6,7 @@ excerpt: "> “...we are working towards understanding smooth manifolds as a mea
 date:   2023-06-15 08:00:00
 mathjax: true
 author: Zach Wimpee
-thumbnail: /assets/intro/thumbnail.png
+thumbnail: /assets/lie-groups/lie-groups.jpg
 ---
 
 # Graudate Texts in Mathematics - Applications of Lie Groups to Differential Equations

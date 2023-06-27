@@ -6,7 +6,7 @@ excerpt: ""
 date:   2023-06-27 10:00:00
 mathjax: true
 author: Zach Wimpee
-thumbnail: /assets/intro/thumbnail.png
+thumbnail: /assets/hf.png
 ---
 
 # HuggingFace Deep RL Course Notes

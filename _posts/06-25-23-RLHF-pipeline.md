@@ -6,7 +6,7 @@ excerpt: ""
 date:   2023-06-15 08:00:00
 mathjax: true
 author: Zach Wimpee
-thumbnail: /assets/intro/thumbnail.png
+thumbnail: /assets/hf.png
 ---
 
 # DIY LLM Fine-Tuning: A Step-by-Step Guide
