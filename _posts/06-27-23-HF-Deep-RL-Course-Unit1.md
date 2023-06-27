@@ -34,19 +34,13 @@ We can further formalize this even further with the following definitions:
 ## Definitions
 
 ### Environment
-An environment $$ E$$  is a function that maps states to rewards:
+An environment $$ E$$  is .
 
-$$ 
-E: S \rightarrow R
-$$ 
-
-and is described by a state$$ s_t$$ at time $$ t$$ :
+It can be described by a by a state$$ s_t$$ at time $$ t$$ :
 
 $$ 
 s_t \in S
 $$ 
-
-That is, given some state $$ s_t$$ , the environment $$ E$$ will return a reward $$ r_t$$. The environment also transitions to a new state $$ s_{t+1}$$ . This reward and observations about the new state are then provided to the agent,$$ L$$ .
 
 ### Agent
 An agent $$ L$$ is an entity that exists within and interacts with the environment $$ E $$ . Roughly speaking, the agent $$ L$$ is the entity that is trying to solve the RL problem. The agent $$ L$$ is described by a policy $$ \pi$$ and takes actions $$ a_t$$ in the environment $$ E$$. 
