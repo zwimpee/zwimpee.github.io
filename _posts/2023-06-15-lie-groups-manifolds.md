@@ -120,7 +120,7 @@ fig.tight_layout()
 plt.show()
 
 ```
-<img src="static\s1.png" alt="Example Image" width="200"/>
+![Alt text](../assets/s1.png)
 
 As $\theta$ varies between 0 and $2\pi$, the $x$ and $y$ values trace out a complete circle. Thus, any point on the circle can be uniquely identified by a single parameter $\theta$. This demonstrates one of the key properties of a manifold: locally, it behaves just like a simple Euclidean space.
 

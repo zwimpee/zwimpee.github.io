@@ -8,7 +8,13 @@
 		},
 		{
 			"path": "../cv.github.io"
+		},
+		{
+			"path": "../sandbox"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"python.envFile": "${workspaceFolder}\\.databricks\\.databricks.env",
+		"databricks.python.envFile": "${workspaceFolder}/.env"
+	}
 }
