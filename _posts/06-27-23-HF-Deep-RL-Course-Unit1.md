@@ -17,7 +17,7 @@ This post is going to be slightly different, as I am going to be using it as a s
 > **Note:** The *Deep* in Deep Reinforcement Learning refers to the use of deep neural networks to approximate the agent's policy $$ \pi$$ , value function $$ V$$ , or action-value function $$ Q$$ . We will explore these concepts in more detail in later units.
 
 We can describe reinforcement learning at a high level via the following process:
-- We have an environment $$ E$$ that is described by a state$$ S$$ .
+- We have an environment $$ E$$ that is described by a state $$ S$$ .
 - We have an agent $$ L$$ that can take actions $$ A$$ in the environment.
 - The agent receives a reward $$ R$$ for each action it takes.
 - The agent's goal is to maximize the total reward it receives.
@@ -40,55 +40,56 @@ $$
 E: S \rightarrow R
 $$ 
 
-and is described by a state$$ s_t$$ at time$$ t$$ :
+and is described by a state$$ s_t$$ at time $$ t$$ :
 
 $$ 
 s_t \in S
 $$ 
 
-That is, given some state $$ s_t$$ , the environment $$ E$$ will return a reward$$ r_t$$. The environment also transitions to a new state$$ s_{t+1}$$ . This reward and observations about the new state are then provided to the agent,$$ L$$ .
+That is, given some state $$ s_t$$ , the environment $$ E$$ will return a reward $$ r_t$$. The environment also transitions to a new state $$ s_{t+1}$$ . This reward and observations about the new state are then provided to the agent,$$ L$$ .
 
 ### Agent
-An agent $$ L$$ is an entity that exists within and interacts with the environment $$ E $$ . Roughly speaking, the agent $$ L$$ is the entity that is trying to solve the RL problem. The agent $$ L$$ is described by a policy $$ \pi$$ and takes actions$$ a_t$$ in the environment$$ E$$. 
+An agent $$ L$$ is an entity that exists within and interacts with the environment $$ E $$ . Roughly speaking, the agent $$ L$$ is the entity that is trying to solve the RL problem. The agent $$ L$$ is described by a policy $$ \pi$$ and takes actions $$ a_t$$ in the environment $$ E$$. 
 
-More formally, the agent is described by a policy$$ \pi$$ that maps states to actions:
+More formally, the agent is described by a policy $$ \pi$$ that maps states to actions:
 
 $$ 
 L: S \rightarrow A
 $$ 
 
-That is, given some observation about the current state$$ s_t$$ , the agent$$ L$$ will return an action$$ a_t$$ . This choice is determined by the agent's policy$$ \pi$$ .
+That is, given some observation about the current state $$ s_t$$ , the agent $$ L$$ will return an action $$ a_t$$ . This choice is determined by the agent's policy $$ \pi$$ .
 
 
 ### Policy
-A policy$$ \pi$$ is a function that maps states to actions:
+A policy $$ \pi$$ is a function that maps states to actions:
 
 $$ 
 \pi: S \rightarrow A
 $$ 
 
-That is, given some observation about the current state$$ s_t$$ , the policy$$ \pi$$ will return an action$$ a_t$$ . This choice is determined by the agent's policy$$ \pi$$ .
+That is, given some observation about the current state $$ s_t$$ , the policy $$ \pi$$ will return an action $$ a_t$$ . This choice is determined by the agent's policy $$ \pi$$ .
 
 <div class="imgcap_noborder">
 <img src="/assets/policy.jpg" width="80%">
 </div>
 
 ### Reward
-A reward$$ r_t$$ is a scalar value that the agent receives after taking an action$$ a_t$$ :
+A reward$$ r_t$$ is a scalar value that the agent receives after taking an action $$ a_t$$ :
 
 $$ 
 r_t \in R
 $$ 
 
-That is, given some action$$ a_t$$ , the agent$$ L$$ will receive a reward$$ r_t$$ from the environment$$ E$$ .
+That is, given some action $$ a_t$$ , the agent $$ L$$ will receive a reward $$ r_t$$ from the environment $$ E$$ .
 
 ### Return
-The return$$ R_t$$ is the sum of the rewards that the agent receives after taking an action$$ a_t$$ :
+The return $$ R_t$$ is the sum of the rewards that the agent receives after taking an action $$ a_t$$ :
+
 $$ 
 R_t = r_t + r_{t+1} + r_{t+2} + \cdots
 $$ 
 
-That is, given some action$$ a_t$$ , the agent$$ L$$ will receive a reward$$ r_t$$ from the environment$$ E$$ . The agent will then take another action$$ a_{t+1}$$ and receive a reward$$ r_{t+1}$$ from the environment$$ E$$ . This process repeats until the agent reaches a terminal state. The return at a given time$$ R_t$$ is the sum of all of these rewards up to that point.
+That is, given some action $$ a_t$$ , the agent $$ L$$ will receive a reward $$ r_t$$ from the environment $$ E$$ . The agent will then take another action $$ a_{t+1}$$ and receive a reward $$ r_{t+1}$$ from the environment $$ E$$ . This process repeats until the agent reaches a terminal state. The return at a given time $$ R_t$$ is the sum of all of these rewards up to that point.
 
 ### Discounted Return
 The discounted return $$ G_t$$  is the sum of the rewards that the agent receives after taking an action $$ a_t$$ , but with each reward discounted by a factor $$ \gamma$$ :
@@ -97,7 +98,7 @@ $$
 G_t = r_t + \gamma r_{t+1} + \gamma^2 r_{t+2} + \cdots
 $$ 
 
-That is, given some action$$ a_t$$ , the agent$$ L$$ will receive a reward$$ r_t$$ from the environment$$ E$$ . The agent will then take another action$$ a_{t+1}$$ and receive a reward$$ r_{t+1}$$ from the environment$$ E$$ . This process repeats until the agent reaches a terminal state. The return at a given time$$ R_t$$ is the sum of all of these rewards up to that point, but with each reward discounted by a factor$$ \gamma$$ . This ensures that the more highly probable, early rewards are weighted more heavily than the less probable, later rewards, with respect to the final total return.
+That is, given some action $$ a_t$$ , the agent $$ L$$ will receive a reward $$ r_t$$ from the environment $$ E$$ . The agent will then take another action $$ a_{t+1}$$ and receive a reward $$ r_{t+1}$$ from the environment $$ E$$ . This process repeats until the agent reaches a terminal state. The return at a given time $$ R_t$$ is the sum of all of these rewards up to that point, but with each reward discounted by a factor $$ \gamma$$ . This ensures that the more highly probable, early rewards are weighted more heavily than the less probable, later rewards, with respect to the final total return.
 
 This idea is a little bit tricky, so we can take a look at the following figure to get a better intuition for why this needs to be done:
 
@@ -113,7 +114,7 @@ In this figure, we see that our agent (the mouse) has an advesary (the cat). The
 The cheese positioned closer to the mouse will need to be weighted higher than the cheese further away, because otherwise our policy might end up causing our agent to get eaten by the cat. This is because the agent will be more likely to get eaten by the cat than it is to eat the cheese further away. This is why we need to discount the rewards that are further away from the agent.
 
 ## RL-Problem: Finding the Optimal Policy
-We can now describe the RL problem as finding the optimal policy$$ \pi^*$$ that maximizes the return$$ R_t$$ :
+We can now describe the RL problem as finding the optimal policy $$ \pi^*$$ that maximizes the return $$ R_t$$ :
 
 $$ 
 \pi^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t
@@ -128,7 +129,7 @@ There are two main approaches to solving this problem:
 </div>
 
 ### Value-Based Methods
-Value-based methods attempt to find the optimal policy$$ \pi^*$$ by finding the optimal value function$$ V^*$$ :
+Value-based methods attempt to find the optimal policy $$ \pi^*$$ by finding the optimal value function $$ V^*$$ :
 
 $$ 
 V^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t
@@ -137,7 +138,7 @@ $$
 We will explore value-based methods in more detail in the next chapter.
 
 ### Policy-Based Methods
-Policy-based methods attempt to find the optimal policy$$ \pi^*$$ directly:
+Policy-based methods attempt to find the optimal policy $$ \pi^*$$ directly:
 
 $$ 
 \pi^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t
@@ -148,8 +149,8 @@ We will explore policy-based methods in more detail in later chapters, but for n
 
 ## Summary
 Returning back to what we introduced at the beginning of this unit, we can describe reinforcement learning as the following process:
-- We have an environment$$ E$$ that is described by a state$$ S$$ .
-- We have an agent$$ L$$ that can take actions$$ A$$ in the environment.
+- We have an environment $$ E$$ that is described by a state $$ S$$ .
+- We have an agent $$ L$$ that can take actions $$ A$$ in the environment.
 - The agent receives a reward$$ R$$ for each action it takes, along with an observation about the new state.
 
 We can state the goal of the agent as maximizing the total reward it receives.
@@ -160,7 +161,7 @@ $$
 R_t = r_t + r_{t+1} + r_{t+2} + \cdots
 $$ 
 
-Therefore *our* goal will be to find the optimal polciy$$ \pi^*$$ that maximizes the return$$ R_t$$ :
+Therefore *our* goal will be to find the optimal polciy $$ \pi^*$$ that maximizes the return $$ R_t$$ :
 
 $$ 
 \pi^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t
