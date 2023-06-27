@@ -94,7 +94,7 @@ Now let's go a little bit deeper, and explicitly define the coordinate charts fo
 The local coordinate maps for the sphere $$S^2$$ can be defined using spherical coordinates. For a point $$p = (x, y, z)$$ on the sphere, we can define the local coordinate maps $$\chi_{\alpha}$$ and $$\chi_{\beta}$$ as follows:
 
 $$
-\chi_{\alpha}(p) = (\theta, \phi) = (\arctan(y/x), \arccos(z))
+\chi_{\alpha}(p) = (\theta, \phi) = (\arctan(y/x), \arccos(z)) \\
 \chi_{\beta}(p) = (\theta', \phi') = (\arctan(y/x), \pi - \arccos(z))
 $$
 
