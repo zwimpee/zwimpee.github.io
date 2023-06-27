@@ -36,7 +36,7 @@ We can further formalize this even further with the following definitions:
 ### Environment
 An environment $$ E$$  is .
 
-It can be described by a by a state$$ s_t$$ at time $$ t$$ :
+It can be described by a by a state $$ s_t$$ at time $$ t$$ :
 
 $$ 
 s_t \in S
