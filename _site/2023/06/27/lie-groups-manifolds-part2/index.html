@@ -160,7 +160,7 @@ z = \cos(\phi)\]
 
 <p>The local coordinate maps for the sphere \(S^2\) can be defined using spherical coordinates. For a point \(p = (x, y, z)\) on the sphere, we can define the local coordinate maps \(\chi_{\alpha}\) and \(\chi_{\beta}\) as follows:</p>
 
-\[\chi_{\alpha}(p) = (\theta, \phi) = (\arctan(y/x), \arccos(z)) \\
+\[\chi_{\alpha}(p) = (\theta, \phi) = (\arctan(y/x), \arccos(z)) \\ 
 \chi_{\beta}(p) = (\theta', \phi') = (\arctan(y/x), \pi - \arccos(z))\]
 
 <p>where \(\theta, \theta' \in [0, 2\pi]\) and \(\phi, \phi' \in [0, \pi]\). The local coordinate maps \(\chi_{\alpha}\) and \(\chi_{\beta}\) map points in \(U_{\alpha}\) and \(U_{\beta}\) respectively to points in \(V_{\alpha} = [0, 2\pi) \times [0, \pi)\) and \(V_{\beta} = [0, 2\pi) \times (0, \pi]\).</p>
@@ -207,7 +207,8 @@ z = \cos(\phi)\]
 <span class="k">print</span><span class="p">(</span><span class="n">torch</span><span class="p">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">phi</span><span class="p">,</span> <span class="n">phi_prime</span><span class="p">,</span> <span class="n">atol</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">))</span>
 </code></pre></div></div>
 
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>True
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;[</span>Out]: True
+<span class="o">&gt;[</span>Out]: True
 </code></pre></div></div>
 
 <h2 id="review-of-the-verification-of-the-manifold-property-of-s2">Review of the Verification of the Manifold Property of \(S^2\)</h2>
@@ -299,11 +300,11 @@ z &amp;= r\sin\theta
   </li>
 </ol>
 
-<p>An example of a Lie group is the general linear group \(GL(n, \mathbb{R})\), which consists of all \(n \times n\) invertible matrices with real entries. The group operation is matrix multiplication, and the manifold structure comes from identifying each matrix with a point in \(\mathbb{R}^{n^2}\). The group operations are smooth functions, so \(GL(n, \mathbb{R})\) is a Lie group.</p>
+<p>An example of a Lie group is the general linear group \(GL\(n, \mathbb{R}\)\), which consists of all \(n \times n\) invertible matrices with real entries. The group operation is matrix multiplication, and the manifold structure comes from identifying each matrix with a point in \(\mathbb{R}^{n^2}\). The group operations are smooth functions, so \(GL\(n, \mathbb{R}\)\) is a Lie group.</p>
 
 <p>Another example is the circle \(S^1\) with the operation of complex multiplication. Each point on the circle can be identified with a complex number of absolute value 1, and multiplication of such numbers is a smooth operation.</p>
 
-<p>Let’s consider the general linear group \(GL(2, \mathbb{R})\) for simplicity. This group consists of all \(2 \times 2\) invertible matrices with real entries. A general element of \(GL(2, \mathbb{R})\) can be written as:</p>
+<p>Let’s consider the general linear group \(GL\(2, \mathbb{R}\)\) for simplicity. This group consists of all \(2 \times 2\) invertible matrices with real entries. A general element of \(GL(2, \mathbb{R})\) can be written as:</p>
 
 \[A = \begin{bmatrix} a &amp; b \\ c &amp; d \end{bmatrix}\]
 

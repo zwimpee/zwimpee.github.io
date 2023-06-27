@@ -94,7 +94,7 @@ Now let's go a little bit deeper, and explicitly define the coordinate charts fo
 The local coordinate maps for the sphere $$S^2$$ can be defined using spherical coordinates. For a point $$p = (x, y, z)$$ on the sphere, we can define the local coordinate maps $$\chi_{\alpha}$$ and $$\chi_{\beta}$$ as follows:
 
 $$
-\chi_{\alpha}(p) = (\theta, \phi) = (\arctan(y/x), \arccos(z)) \\
+\chi_{\alpha}(p) = (\theta, \phi) = (\arctan(y/x), \arccos(z)) \\ 
 \chi_{\beta}(p) = (\theta', \phi') = (\arctan(y/x), \pi - \arccos(z))
 $$
 
@@ -144,7 +144,8 @@ print(torch.allclose(phi, phi_prime, atol=1e-6))
 ```
 
 ```bash
-True
+>[Out]: True
+>[Out]: True
 ```
 
 ## Review of the Verification of the Manifold Property of $$S^2$$
@@ -229,11 +230,11 @@ Let's break down the definition:
 
 3. **Compatibility of Structures:** The group operations (multiplication and inversion) are required to be smooth functions when considered as maps between manifolds. More formally, if we denote the multiplication operation by $$\mu: G \times G \rightarrow G$$ (so that $$\mu(g, h) = g \cdot h$$) and the inversion operation by $$i: G \rightarrow G$$ (so that $$i(g) = g^{-1}$$), then $$\mu$$ and $$i$$ are required to be smooth.
 
-An example of a Lie group is the general linear group $$GL(n, \mathbb{R})$$, which consists of all $$n \times n$$ invertible matrices with real entries. The group operation is matrix multiplication, and the manifold structure comes from identifying each matrix with a point in $$\mathbb{R}^{n^2}$$. The group operations are smooth functions, so $$GL(n, \mathbb{R})$$ is a Lie group.
+An example of a Lie group is the general linear group $$GL\(n, \mathbb{R}\)$$, which consists of all $$n \times n$$ invertible matrices with real entries. The group operation is matrix multiplication, and the manifold structure comes from identifying each matrix with a point in $$\mathbb{R}^{n^2}$$. The group operations are smooth functions, so $$GL\(n, \mathbb{R}\)$$ is a Lie group.
 
 Another example is the circle $$S^1$$ with the operation of complex multiplication. Each point on the circle can be identified with a complex number of absolute value 1, and multiplication of such numbers is a smooth operation.
 
-Let's consider the general linear group $$GL(2, \mathbb{R})$$ for simplicity. This group consists of all $$2 \times 2$$ invertible matrices with real entries. A general element of $$GL(2, \mathbb{R})$$ can be written as:
+Let's consider the general linear group $$GL\(2, \mathbb{R}\)$$ for simplicity. This group consists of all $$2 \times 2$$ invertible matrices with real entries. A general element of $$GL(2, \mathbb{R})$$ can be written as:
 
 $$
 A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}

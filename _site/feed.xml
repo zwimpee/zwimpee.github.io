@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-27T14:20:47-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mathematics for Machine Learning Deep Dive</title><subtitle></subtitle><entry><title type="html">Applications of Lie Groups to Neural Networks - Part 2</title><link href="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/" rel="alternate" type="text/html" title="Applications of Lie Groups to Neural Networks - Part 2" /><published>2023-06-27T08:00:00-05:00</published><updated>2023-06-27T08:00:00-05:00</updated><id>http://localhost:4000/2023/06/27/lie-groups-manifolds-part2</id><content type="html" xml:base="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/">&lt;h1 id=&quot;applications-of-lie-groups-to-neural-networks---part-2&quot;&gt;Applications of Lie Groups to Neural Networks - Part 2&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-27T15:06:05-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mathematics for Machine Learning Deep Dive</title><subtitle></subtitle><entry><title type="html">Applications of Lie Groups to Neural Networks - Part 2</title><link href="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/" rel="alternate" type="text/html" title="Applications of Lie Groups to Neural Networks - Part 2" /><published>2023-06-27T08:00:00-05:00</published><updated>2023-06-27T08:00:00-05:00</updated><id>http://localhost:4000/2023/06/27/lie-groups-manifolds-part2</id><content type="html" xml:base="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/">&lt;h1 id=&quot;applications-of-lie-groups-to-neural-networks---part-2&quot;&gt;Applications of Lie Groups to Neural Networks - Part 2&lt;/h1&gt;
 &lt;p&gt;#&lt;/p&gt;
 &lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;Picking back up from where we left off in part 1 of our discussion, we will now explore the concept of a manifold in more detail. We will also explore the concept of a Lie group, which is a group that is also a manifold. We will then explore the concept of a Lie algebra, which is a vector space that is also a Lie group. Finally, we will explore the concept of a Lie algebra homomorphism, which is a linear map between two Lie algebras that preserves the Lie bracket.&lt;/p&gt;
@@ -74,7 +74,7 @@ z = \cos(\phi)\]
 
 &lt;p&gt;The local coordinate maps for the sphere \(S^2\) can be defined using spherical coordinates. For a point \(p = (x, y, z)\) on the sphere, we can define the local coordinate maps \(\chi_{\alpha}\) and \(\chi_{\beta}\) as follows:&lt;/p&gt;
 
-\[\chi_{\alpha}(p) = (\theta, \phi) = (\arctan(y/x), \arccos(z)) \\
+\[\chi_{\alpha}(p) = (\theta, \phi) = (\arctan(y/x), \arccos(z)) \\ 
 \chi_{\beta}(p) = (\theta&apos;, \phi&apos;) = (\arctan(y/x), \pi - \arccos(z))\]
 
 &lt;p&gt;where \(\theta, \theta&apos; \in [0, 2\pi]\) and \(\phi, \phi&apos; \in [0, \pi]\). The local coordinate maps \(\chi_{\alpha}\) and \(\chi_{\beta}\) map points in \(U_{\alpha}\) and \(U_{\beta}\) respectively to points in \(V_{\alpha} = [0, 2\pi) \times [0, \pi)\) and \(V_{\beta} = [0, 2\pi) \times (0, \pi]\).&lt;/p&gt;
@@ -121,7 +121,8 @@ z = \cos(\phi)\]
 &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;allclose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;phi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;phi_prime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;atol&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1e-6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;True
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;[&lt;/span&gt;Out]: True
+&lt;span class=&quot;o&quot;&gt;&amp;gt;[&lt;/span&gt;Out]: True
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;review-of-the-verification-of-the-manifold-property-of-s2&quot;&gt;Review of the Verification of the Manifold Property of \(S^2\)&lt;/h2&gt;
@@ -213,11 +214,11 @@ z &amp;amp;= r\sin\theta
   &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;An example of a Lie group is the general linear group \(GL(n, \mathbb{R})\), which consists of all \(n \times n\) invertible matrices with real entries. The group operation is matrix multiplication, and the manifold structure comes from identifying each matrix with a point in \(\mathbb{R}^{n^2}\). The group operations are smooth functions, so \(GL(n, \mathbb{R})\) is a Lie group.&lt;/p&gt;
+&lt;p&gt;An example of a Lie group is the general linear group \(GL\(n, \mathbb{R}\)\), which consists of all \(n \times n\) invertible matrices with real entries. The group operation is matrix multiplication, and the manifold structure comes from identifying each matrix with a point in \(\mathbb{R}^{n^2}\). The group operations are smooth functions, so \(GL\(n, \mathbb{R}\)\) is a Lie group.&lt;/p&gt;
 
 &lt;p&gt;Another example is the circle \(S^1\) with the operation of complex multiplication. Each point on the circle can be identified with a complex number of absolute value 1, and multiplication of such numbers is a smooth operation.&lt;/p&gt;
 
-&lt;p&gt;Let’s consider the general linear group \(GL(2, \mathbb{R})\) for simplicity. This group consists of all \(2 \times 2\) invertible matrices with real entries. A general element of \(GL(2, \mathbb{R})\) can be written as:&lt;/p&gt;
+&lt;p&gt;Let’s consider the general linear group \(GL\(2, \mathbb{R}\)\) for simplicity. This group consists of all \(2 \times 2\) invertible matrices with real entries. A general element of \(GL(2, \mathbb{R})\) can be written as:&lt;/p&gt;
 
 \[A = \begin{bmatrix} a &amp;amp; b \\ c &amp;amp; d \end{bmatrix}\]
 
