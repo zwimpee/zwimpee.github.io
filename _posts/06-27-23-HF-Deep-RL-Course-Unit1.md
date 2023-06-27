@@ -32,7 +32,7 @@ More formally, we can say that an agent first receives an observation $$ s_0$$  
 We can further formalize this even further with the following definitions:
 
 ## Definitions
-#
+
 ### Environment
 An environment $$ E$$  is a function that maps states to rewards:
 
