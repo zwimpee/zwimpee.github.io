@@ -171,4 +171,4 @@ We can solve this problem using either value-based methods or policy-based metho
 In the next unit, we will explore value-based methods in more detail through the use of Q-Learning, a popular value-based method for solving RL problems.
 
 #### References
-- [HuggingFace Deep RL Course](https://huggingface.co/course/chapter1)
+- [1][HuggingFace Deep RL Course](https://huggingface.co/course/chapter1)
