@@ -114,6 +114,7 @@ The cheese positioned closer to the mouse will need to be weighted higher than t
 
 ## RL-Problem: Finding the Optimal Policy
 We can now describe the RL problem as finding the optimal policy$$ \pi^*$$ that maximizes the return$$ R_t$$ :
+
 $$ 
 \pi^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t
 $$ 
@@ -128,6 +129,7 @@ There are two main approaches to solving this problem:
 
 ### Value-Based Methods
 Value-based methods attempt to find the optimal policy$$ \pi^*$$ by finding the optimal value function$$ V^*$$ :
+
 $$ 
 V^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t
 $$ 
@@ -136,6 +138,7 @@ We will explore value-based methods in more detail in the next chapter.
 
 ### Policy-Based Methods
 Policy-based methods attempt to find the optimal policy$$ \pi^*$$ directly:
+
 $$ 
 \pi^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t
 $$ 
