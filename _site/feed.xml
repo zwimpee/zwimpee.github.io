@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-27T14:08:27-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mathematics for Machine Learning Deep Dive</title><subtitle></subtitle><entry><title type="html">Applications of Lie Groups to Neural Networks - Part 2</title><link href="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/" rel="alternate" type="text/html" title="Applications of Lie Groups to Neural Networks - Part 2" /><published>2023-06-27T08:00:00-05:00</published><updated>2023-06-27T08:00:00-05:00</updated><id>http://localhost:4000/2023/06/27/lie-groups-manifolds-part2</id><content type="html" xml:base="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/">&lt;h1 id=&quot;applications-of-lie-groups-to-neural-networks---part-2&quot;&gt;Applications of Lie Groups to Neural Networks - Part 2&lt;/h1&gt;
-
-&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-27T14:11:07-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mathematics for Machine Learning Deep Dive</title><subtitle></subtitle><entry><title type="html">Applications of Lie Groups to Neural Networks - Part 2</title><link href="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/" rel="alternate" type="text/html" title="Applications of Lie Groups to Neural Networks - Part 2" /><published>2023-06-27T08:00:00-05:00</published><updated>2023-06-27T08:00:00-05:00</updated><id>http://localhost:4000/2023/06/27/lie-groups-manifolds-part2</id><content type="html" xml:base="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/">&lt;h1 id=&quot;applications-of-lie-groups-to-neural-networks---part-2&quot;&gt;Applications of Lie Groups to Neural Networks - Part 2&lt;/h1&gt;
+&lt;p&gt;#&lt;/p&gt;
+&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;Picking back up from where we left off in part 1 of our discussion, we will now explore the concept of a manifold in more detail. We will also explore the concept of a Lie group, which is a group that is also a manifold. We will then explore the concept of a Lie algebra, which is a vector space that is also a Lie group. Finally, we will explore the concept of a Lie algebra homomorphism, which is a linear map between two Lie algebras that preserves the Lie bracket.&lt;/p&gt;
 
 &lt;h2 id=&quot;some-additional-manifold-examples&quot;&gt;Some additional manifold examples&lt;/h2&gt;
@@ -415,7 +415,7 @@ demonstrating the closure property of the group.&lt;/p&gt;
 &lt;p&gt;We can further formalize this even further with the following definitions:&lt;/p&gt;
 
 &lt;h2 id=&quot;definitions&quot;&gt;Definitions&lt;/h2&gt;
-
+&lt;p&gt;#&lt;/p&gt;
 &lt;h3 id=&quot;environment&quot;&gt;Environment&lt;/h3&gt;
 &lt;p&gt;An environment \(E\) is a function that maps states to rewards:&lt;/p&gt;
 

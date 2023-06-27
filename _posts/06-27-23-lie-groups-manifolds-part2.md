@@ -10,8 +10,8 @@ thumbnail: /assets/lie-groups/lie-groups.jpg
 ---
 
 # Applications of Lie Groups to Neural Networks - Part 2
-
-# Introduction
+#
+## Introduction
 Picking back up from where we left off in part 1 of our discussion, we will now explore the concept of a manifold in more detail. We will also explore the concept of a Lie group, which is a group that is also a manifold. We will then explore the concept of a Lie algebra, which is a vector space that is also a Lie group. Finally, we will explore the concept of a Lie algebra homomorphism, which is a linear map between two Lie algebras that preserves the Lie bracket.
 
 ## Some additional manifold examples
