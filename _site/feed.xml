@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-27T13:31:37-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mathematics for Machine Learning Deep Dive</title><subtitle></subtitle><entry><title type="html">Applications of Lie Groups to Neural Networks - Part 2</title><link href="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/" rel="alternate" type="text/html" title="Applications of Lie Groups to Neural Networks - Part 2" /><published>2023-06-27T08:00:00-05:00</published><updated>2023-06-27T08:00:00-05:00</updated><id>http://localhost:4000/2023/06/27/lie-groups-manifolds-part2</id><content type="html" xml:base="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/">&lt;h1 id=&quot;applications-of-lie-groups-to-neural-networks---part-2&quot;&gt;Applications of Lie Groups to Neural Networks - Part 2&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-27T13:34:05-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mathematics for Machine Learning Deep Dive</title><subtitle></subtitle><entry><title type="html">Applications of Lie Groups to Neural Networks - Part 2</title><link href="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/" rel="alternate" type="text/html" title="Applications of Lie Groups to Neural Networks - Part 2" /><published>2023-06-27T08:00:00-05:00</published><updated>2023-06-27T08:00:00-05:00</updated><id>http://localhost:4000/2023/06/27/lie-groups-manifolds-part2</id><content type="html" xml:base="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/">&lt;h1 id=&quot;applications-of-lie-groups-to-neural-networks---part-2&quot;&gt;Applications of Lie Groups to Neural Networks - Part 2&lt;/h1&gt;
 
 &lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;/h1&gt;
 &lt;p&gt;Picking back up from where we left off in part 1 of our discussion, we will now explore the concept of a manifold in more detail. We will also explore the concept of a Lie group, which is a group that is also a manifold. We will then explore the concept of a Lie algebra, which is a vector space that is also a Lie group. Finally, we will explore the concept of a Lie algebra homomorphism, which is a linear map between two Lie algebras that preserves the Lie bracket.&lt;/p&gt;
@@ -66,306 +66,288 @@ z = \cos(\phi)\]
 
 &lt;div class=&quot;imgcap_noborder&quot;&gt;
 &lt;img src=&quot;/assets/s2_u2.png&quot; width=&quot;80%&quot; /&gt;
+&lt;/div&gt;
 
-The local coordinate maps for the sphere $S^2$ can be defined using spherical coordinates. For a point $p = (x, y, z)$ on the sphere, we can define the local coordinate maps $\chi_{\alpha}$ and $\chi_{\beta}$ as follows:
+&lt;p&gt;We can visually see that the subsets \(U_1\) and \(U_2\) cover the sphere \(S^2\).&lt;/p&gt;
 
-$$
-\chi_{\alpha}(p) = (\theta, \phi) = (\arctan(y/x), \arccos(z))
-\chi_{\beta}(p) = (\theta&apos;, \phi&apos;) = (\arctan(y/x), \pi - \arccos(z))
-$$
+&lt;p&gt;Now let’s go a little bit deeper, and explicitly define the coordinate charts for \(U_1\) and \(U_2\), denoted \(\chi_{\alpha}\), where \(\alpha \in \{1, 2\}\).&lt;/p&gt;
 
-where $\theta, \theta&apos; \in [0, 2\pi]$ and $\phi, \phi&apos; \in [0, \pi]$. The local coordinate maps $\chi_{\alpha}$ and $\chi_{\beta}$ map points in $U_{\alpha}$ and $U_{\beta}$ respectively to points in $V_{\alpha} = [0, 2\pi) \times [0, \pi)$ and $V_{\beta} = [0, 2\pi) \times (0, \pi]$.
+&lt;p&gt;The local coordinate maps for the sphere \(S^2\) can be defined using spherical coordinates. For a point \(p = (x, y, z)\) on the sphere, we can define the local coordinate maps \(\chi_{\alpha}\) and \(\chi_{\beta}\) as follows:&lt;/p&gt;
 
-We can now check the smoothness of the composite map $\chi_{\beta} \circ \chi_{\alpha}^{-1}$ on the overlap $U_{\alpha} \cap U_{\beta}$. Since $\chi_{\alpha}$ and $\chi_{\beta}$ are both smooth functions, their inverse functions $\chi_{\alpha}^{-1}$ and $\chi_{\beta}^{-1}$ are also smooth. Therefore, the composite map $\chi_{\beta} \circ \chi_{\alpha}^{-1}$ is a smooth function.
+\[\chi_{\alpha}(p) = (\theta, \phi) = (\arctan(y/x), \arccos(z))
+\chi_{\beta}(p) = (\theta&apos;, \phi&apos;) = (\arctan(y/x), \pi - \arccos(z))\]
 
-Finally, we need to check the third condition of the definition of a manifold. For any two distinct points $x \in U_{\alpha}$ and $\tilde{x} \in U_{\beta}$, we need to find open subsets $W \subset V_{\alpha}$ and $\tilde{W} \subset V_{\beta}$ such that $\chi_{\alpha}(x) \in W$, $\chi_{\beta}(\tilde{x}) \in \tilde{W}$, and $\chi_{\alpha}^{-1}(W) \cap \chi_{\beta}^{-1}(\tilde{W}) = \emptyset$. This condition is satisfied because for any two distinct points on the sphere, we can always find small enough neighborhoods around these points that do not intersect.
+&lt;p&gt;where \(\theta, \theta&apos; \in [0, 2\pi]\) and \(\phi, \phi&apos; \in [0, \pi]\). The local coordinate maps \(\chi_{\alpha}\) and \(\chi_{\beta}\) map points in \(U_{\alpha}\) and \(U_{\beta}\) respectively to points in \(V_{\alpha} = [0, 2\pi) \times [0, \pi)\) and \(V_{\beta} = [0, 2\pi) \times (0, \pi]\).&lt;/p&gt;
 
-Therefore, $S^2$ is a 2-dimensional manifold.
+&lt;p&gt;We can now check the smoothness of the composite map \(\chi_{\beta} \circ \chi_{\alpha}^{-1}\) on the overlap \(U_{\alpha} \cap U_{\beta}\). Since \(\chi_{\alpha}\) and \(\chi_{\beta}\) are both smooth functions, their inverse functions \(\chi_{\alpha}^{-1}\) and \(\chi_{\beta}^{-1}\) are also smooth. Therefore, the composite map \(\chi_{\beta} \circ \chi_{\alpha}^{-1}\) is a smooth function.&lt;/p&gt;
 
-In code,
+&lt;p&gt;Finally, we need to check the third condition of the definition of a manifold. For any two distinct points \(x \in U_{\alpha}\) and \(\tilde{x} \in U_{\beta}\), we need to find open subsets \(W \subset V_{\alpha}\) and \(\tilde{W} \subset V_{\beta}\) such that \(\chi_{\alpha}(x) \in W\), \(\chi_{\beta}(\tilde{x}) \in \tilde{W}\), and \(\chi_{\alpha}^{-1}(W) \cap \chi_{\beta}^{-1}(\tilde{W}) = \emptyset\). This condition is satisfied because for any two distinct points on the sphere, we can always find small enough neighborhoods around these points that do not intersect.&lt;/p&gt;
 
-```python
-# Define the number of points to generate
-num_points = 1000
+&lt;p&gt;Therefore, \(S^2\) is a 2-dimensional manifold.&lt;/p&gt;
 
-# Generate random spherical coordinates
-theta = 2 * torch.pi * torch.rand(num_points)
-phi = torch.acos(2 * torch.rand(num_points) - 1)
+&lt;p&gt;In code,&lt;/p&gt;
 
-# Convert spherical coordinates to Cartesian coordinates
-x = torch.sin(phi) * torch.cos(theta)
-y = torch.sin(phi) * torch.sin(theta)
-z = torch.cos(phi)
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Define the number of points to generate
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num_points&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1000&lt;/span&gt;
 
-# Convert Cartesian coordinates to parameters of the stereographic projection
-u = x / (1 - z)
-v = y / (1 - z)
+&lt;span class=&quot;c1&quot;&gt;# Generate random spherical coordinates
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num_points&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;phi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;acos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num_points&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-# Convert parameters of the stereographic projection to Cartesian coordinates
-denominator = 1 + u**2 + v**2
-x_prime = 2 * u / denominator
-y_prime = 2 * v / denominator
-z_prime = (-1 + u**2 + v**2) / denominator
+&lt;span class=&quot;c1&quot;&gt;# Convert spherical coordinates to Cartesian coordinates
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;phi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;phi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;phi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-# Convert Cartesian coordinates to spherical coordinates
-theta_prime = torch.atan2(y_prime, x_prime)
-phi_prime = torch.acos(z_prime)
+&lt;span class=&quot;c1&quot;&gt;# Convert Cartesian coordinates to parameters of the stereographic projection
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;u&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-# Adjust the range of theta_prime to [0, 2*pi]
-theta_prime = (theta_prime + 2 * torch.pi) % (2 * torch.pi)
+&lt;span class=&quot;c1&quot;&gt;# Convert parameters of the stereographic projection to Cartesian coordinates
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;denominator&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;x_prime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;u&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;denominator&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;y_prime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;denominator&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;z_prime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;denominator&lt;/span&gt;
 
-# Check that the original and final spherical coordinates are the same
-print(torch.allclose(theta, theta_prime, atol=1e-6))
-print(torch.allclose(phi, phi_prime, atol=1e-6))
-```
+&lt;span class=&quot;c1&quot;&gt;# Convert Cartesian coordinates to spherical coordinates
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theta_prime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;atan2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;y_prime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x_prime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;phi_prime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;acos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;z_prime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-```bash
-True
-```
+&lt;span class=&quot;c1&quot;&gt;# Adjust the range of theta_prime to [0, 2*pi]
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theta_prime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theta_prime&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-## Review of the Verification of the Manifold Property of $S^2$
+&lt;span class=&quot;c1&quot;&gt;# Check that the original and final spherical coordinates are the same
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;allclose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;theta_prime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;atol&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1e-6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;allclose&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;phi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;phi_prime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;atol&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1e-6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-In this notebook, we have computationally verified that the 2-dimensional sphere $S^2$ is indeed a 2-dimensional manifold. We have done this by demonstrating that two different parameterizations of $S^2$ (spherical coordinates and stereographic projection) are equivalent and cover the same set $S^2$.
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;True
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-Specifically, we have:
+&lt;h2 id=&quot;review-of-the-verification-of-the-manifold-property-of-s2&quot;&gt;Review of the Verification of the Manifold Property of \(S^2\)&lt;/h2&gt;
 
-1. Generated random points on $S^2$ using spherical coordinates.
-2. Transformed these points to the parameters of the stereographic projection.
-3. Transformed these parameters back to spherical coordinates.
+&lt;p&gt;In this notebook, we have computationally verified that the 2-dimensional sphere \(S^2\) is indeed a 2-dimensional manifold. We have done this by demonstrating that two different parameterizations of \(S^2\) (spherical coordinates and stereographic projection) are equivalent and cover the same set \(S^2\).&lt;/p&gt;
 
-The fact that the original and final spherical coordinates are the same (to within a specified tolerance) confirms that the two parameterizations are equivalent and cover the same set $S^2$.
+&lt;p&gt;Specifically, we have:&lt;/p&gt;
 
-This result is significant because it demonstrates that different choices of local coordinate charts can satisfy the definition of a manifold. This is a key property of manifolds and is fundamental to their study in differential geometry and related fields.
+&lt;ol&gt;
+  &lt;li&gt;Generated random points on \(S^2\) using spherical coordinates.&lt;/li&gt;
+  &lt;li&gt;Transformed these points to the parameters of the stereographic projection.&lt;/li&gt;
+  &lt;li&gt;Transformed these parameters back to spherical coordinates.&lt;/li&gt;
+&lt;/ol&gt;
 
-## Next Steps: Exploring the Torus
+&lt;p&gt;The fact that the original and final spherical coordinates are the same (to within a specified tolerance) confirms that the two parameterizations are equivalent and cover the same set \(S^2\).&lt;/p&gt;
 
-Having explored the manifold properties of the sphere $S^2$, we will next turn our attention to another important 2-dimensional manifold: the torus. The torus can be thought of as the Cartesian product of the circle $S^1$ with itself. In the following sections, we will explore the properties of the torus and demonstrate its manifold structure.
+&lt;p&gt;This result is significant because it demonstrates that different choices of local coordinate charts can satisfy the definition of a manifold. This is a key property of manifolds and is fundamental to their study in differential geometry and related fields.&lt;/p&gt;
 
-## The Torus as a 2-Dimensional Manifold
+&lt;h2 id=&quot;next-steps-exploring-the-torus&quot;&gt;Next Steps: Exploring the Torus&lt;/h2&gt;
 
-The torus, often visualized as the shape of a doughnut or an inner tube, is another example of a 2-dimensional manifold. It can be thought of as the Cartesian product of the circle $S^1$ with itself, denoted as $S^1 \times S^1$.
+&lt;p&gt;Having explored the manifold properties of the sphere \(S^2\), we will next turn our attention to another important 2-dimensional manifold: the torus. The torus can be thought of as the Cartesian product of the circle \(S^1\) with itself. In the following sections, we will explore the properties of the torus and demonstrate its manifold structure.&lt;/p&gt;
 
-We can parameterize the torus using two angles, $\theta$ and $\phi$, which correspond to rotations around the two circular directions of the torus. Given a major radius $R$ and a minor radius $r$, the parameterization in Cartesian coordinates is given by:
+&lt;h2 id=&quot;the-torus-as-a-2-dimensional-manifold&quot;&gt;The Torus as a 2-Dimensional Manifold&lt;/h2&gt;
 
-$$
-\begin{align*}
+&lt;p&gt;The torus, often visualized as the shape of a doughnut or an inner tube, is another example of a 2-dimensional manifold. It can be thought of as the Cartesian product of the circle \(S^1\) with itself, denoted as \(S^1 \times S^1\).&lt;/p&gt;
+
+&lt;p&gt;We can parameterize the torus using two angles, \(\theta\) and \(\phi\), which correspond to rotations around the two circular directions of the torus. Given a major radius \(R\) and a minor radius \(r\), the parameterization in Cartesian coordinates is given by:&lt;/p&gt;
+
+\[\begin{align*}
 x &amp;amp;= (R + r\cos\theta)\cos\phi \\
 y &amp;amp;= (R + r\cos\theta)\sin\phi \\
 z &amp;amp;= r\sin\theta
-\end{align*}
-$$
+\end{align*}\]
 
-where $\theta, \phi \in [0, 2\pi)$. This parameterization covers the entire torus except for a single point, which can be covered by a second parameterization.
+&lt;p&gt;where \(\theta, \phi \in [0, 2\pi)\). This parameterization covers the entire torus except for a single point, which can be covered by a second parameterization.&lt;/p&gt;
 
-Let&apos;s generate and plot points on the torus using this parameterization:
+&lt;p&gt;Let’s generate and plot points on the torus using this parameterization:&lt;/p&gt;
 
-```python
-# Define the major and minor radii
-R = 30
-r = 13
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Define the major and minor radii
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;30&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;13&lt;/span&gt;
 
-# Define the number of points to generate
-num_points = 100000  # Increase the number of points
+&lt;span class=&quot;c1&quot;&gt;# Define the number of points to generate
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num_points&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100000&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# Increase the number of points
+&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;# Generate random angles theta and phi
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num_points&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;phi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pi&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rand&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num_points&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-# Generate random angles theta and phi
-theta = 2 * torch.pi * torch.rand(num_points)
-phi = 2 * torch.pi * torch.rand(num_points)
+&lt;span class=&quot;c1&quot;&gt;# Calculate the Cartesian coordinates
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;phi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cos&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;phi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;z&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-# Calculate the Cartesian coordinates
-x = (R + r * torch.cos(theta)) * torch.cos(phi)
-y = (R + r * torch.cos(theta)) * torch.sin(phi)
-z = r * torch.sin(theta)
+&lt;span class=&quot;c1&quot;&gt;# Plot the points on the torus
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;figure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;figsize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# Increase the size of the figure
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fig&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_subplot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;111&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;projection&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;3d&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;scatter&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numpy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numpy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;z&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numpy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;edgecolors&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;w&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;ax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_box_aspect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;# Make the aspect ratio equal
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-# Plot the points on the torus
-fig = plt.figure(figsize=(10, 10))  # Increase the size of the figure
-ax = fig.add_subplot(111, projection=&apos;3d&apos;)
-ax.scatter(x.numpy(), y.numpy(), z.numpy(), alpha=0.6, edgecolors=&apos;w&apos;, s=20)
-ax.set_box_aspect([1,1,1])  # Make the aspect ratio equal
-plt.show()
-```
+&lt;h1 id=&quot;lie-groups&quot;&gt;Lie Groups&lt;/h1&gt;
 
-# Lie Groups
+&lt;p&gt;A Lie group is a group that is also a differentiable manifold, such that the group operations (multiplication and inversion) are smooth. This means that a Lie group is a set that is equipped with a group structure, a manifold structure, and these structures are compatible in the sense that group operations are smooth functions.&lt;/p&gt;
 
-A Lie group is a group that is also a differentiable manifold, such that the group operations (multiplication and inversion) are smooth. This means that a Lie group is a set that is equipped with a group structure, a manifold structure, and these structures are compatible in the sense that group operations are smooth functions.
+&lt;p&gt;Let’s break down the definition:&lt;/p&gt;
 
-Let&apos;s break down the definition:
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Group Structure:&lt;/strong&gt; A group is a set \(G\) equipped with an operation \(\cdot: G \times G \rightarrow G\) (often written multiplicatively) and an inversion operation \(^{-1}: G \rightarrow G\) such that the following axioms are satisfied:&lt;/p&gt;
 
-1. **Group Structure:** A group is a set $G$ equipped with an operation $\cdot: G \times G \rightarrow G$ (often written multiplicatively) and an inversion operation $^{-1}: G \rightarrow G$ such that the following axioms are satisfied:
+    &lt;ul&gt;
+      &lt;li&gt;&lt;strong&gt;Closure:&lt;/strong&gt; For all \(a, b \in G\), the result of the operation \(a \cdot b\) is also in \(G\).&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Associativity:&lt;/strong&gt; For all \(a, b, c \in G\), the equation \((a \cdot b) \cdot c = a \cdot (b \cdot c)\) holds.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Identity element:&lt;/strong&gt; There is an element \(e \in G\) such that for every element \(a \in G\), the equations \(e \cdot a = a\) and \(a \cdot e = a\) hold.&lt;/li&gt;
+      &lt;li&gt;&lt;strong&gt;Inverse element:&lt;/strong&gt; For each element \(a \in G\), there exists an element \(b \in G\) such that \(a \cdot b = e\) and \(b \cdot a = e\).&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Manifold Structure:&lt;/strong&gt; As we discussed earlier, a manifold is a topological space that locally resembles Euclidean space. In the case of a Lie group, we require the manifold to be differentiable, meaning that we can do calculus on it.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Compatibility of Structures:&lt;/strong&gt; The group operations (multiplication and inversion) are required to be smooth functions when considered as maps between manifolds. More formally, if we denote the multiplication operation by \(\mu: G \times G \rightarrow G\) (so that \(\mu(g, h) = g \cdot h\)) and the inversion operation by \(i: G \rightarrow G\) (so that \(i(g) = g^{-1}\)), then \(\mu\) and \(i\) are required to be smooth.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
 
-   - **Closure:** For all $a, b \in G$, the result of the operation $a \cdot b$ is also in $G$.
-   - **Associativity:** For all $a, b, c \in G$, the equation $(a \cdot b) \cdot c = a \cdot (b \cdot c)$ holds.
-   - **Identity element:** There is an element $e \in G$ such that for every element $a \in G$, the equations $e \cdot a = a$ and $a \cdot e = a$ hold.
-   - **Inverse element:** For each element $a \in G$, there exists an element $b \in G$ such that $a \cdot b = e$ and $b \cdot a = e$.
+&lt;p&gt;An example of a Lie group is the general linear group \(GL(n, \R)\), which consists of all \(n \times n\) invertible matrices with real entries. The group operation is matrix multiplication, and the manifold structure comes from identifying each matrix with a point in \(\R^{n^2}\). The group operations are smooth functions, so \(GL(n, \R)\) is a Lie group.&lt;/p&gt;
 
-2. **Manifold Structure:** As we discussed earlier, a manifold is a topological space that locally resembles Euclidean space. In the case of a Lie group, we require the manifold to be differentiable, meaning that we can do calculus on it. 
+&lt;p&gt;Another example is the circle \(S^1\) with the operation of complex multiplication. Each point on the circle can be identified with a complex number of absolute value 1, and multiplication of such numbers is a smooth operation.&lt;/p&gt;
 
-3. **Compatibility of Structures:** The group operations (multiplication and inversion) are required to be smooth functions when considered as maps between manifolds. More formally, if we denote the multiplication operation by $\mu: G \times G \rightarrow G$ (so that $\mu(g, h) = g \cdot h$) and the inversion operation by $i: G \rightarrow G$ (so that $i(g) = g^{-1}$), then $\mu$ and $i$ are required to be smooth.
+&lt;p&gt;Let’s consider the general linear group \(GL(2, \R)\) for simplicity. This group consists of all \(2 \times 2\) invertible matrices with real entries. A general element of \(GL(2, \R)\) can be written as:&lt;/p&gt;
 
-An example of a Lie group is the general linear group $GL(n, \R)$, which consists of all $n \times n$ invertible matrices with real entries. The group operation is matrix multiplication, and the manifold structure comes from identifying each matrix with a point in $\R^{n^2}$. The group operations are smooth functions, so $GL(n, \R)$ is a Lie group.
+\[A = \begin{bmatrix} a &amp;amp; b \\ c &amp;amp; d \end{bmatrix}\]
 
-Another example is the circle $S^1$ with the operation of complex multiplication. Each point on the circle can be identified with a complex number of absolute value 1, and multiplication of such numbers is a smooth operation.
+&lt;p&gt;where \(a\), \(b\), \(c\), and \(d\) are real numbers and \(ad - bc \neq 0\) (the condition for the matrix to be invertible).&lt;/p&gt;
 
-Let&apos;s consider the general linear group $GL(2, \R)$ for simplicity. This group consists of all $2 \times 2$ invertible matrices with real entries. A general element of $GL(2, \R)$ can be written as:
+&lt;p&gt;The group operation is matrix multiplication, and the inverse of a matrix is given by:&lt;/p&gt;
 
-$$
-A = \begin{bmatrix} a &amp;amp; b \\ c &amp;amp; d \end{bmatrix}
-$$
+\[A^{-1} = \frac{1}{ad - bc} \begin{bmatrix} d &amp;amp; -b \\ -c &amp;amp; a \end{bmatrix}\]
 
-where $a$, $b$, $c$, and $d$ are real numbers and $ad - bc \neq 0$ (the condition for the matrix to be invertible).
+&lt;p&gt;Now, let’s consider some subgroups of \(GL(2, \R)\):&lt;/p&gt;
 
-The group operation is matrix multiplication, and the inverse of a matrix is given by:
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Orthogonal Group \(O(2)\):&lt;/strong&gt; This is the group of \(2 \times 2\) matrices that preserve the Euclidean norm, i.e., \(AA^T = A^TA = I\). The determinant of such matrices is either 1 or -1. A general element of \(O(2)\) can be written as:&lt;/p&gt;
 
-$$
-A^{-1} = \frac{1}{ad - bc} \begin{bmatrix} d &amp;amp; -b \\ -c &amp;amp; a \end{bmatrix}
-$$
+\[O = \begin{bmatrix} \cos \theta &amp;amp; -\sin \theta \\ \sin \theta &amp;amp; \cos \theta \end{bmatrix} \quad \text{or} \quad \begin{bmatrix} \cos \theta &amp;amp; \sin \theta \\ \sin \theta &amp;amp; -\cos \theta \end{bmatrix}\]
 
-Now, let&apos;s consider some subgroups of $GL(2, \R)$:
+    &lt;p&gt;where \(\theta\) is a real number.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Special Orthogonal Group \(SO(2)\):&lt;/strong&gt; This is the subgroup of \(O(2)\) consisting of matrices with determinant 1. These are rotations in the plane. A general element of \(SO(2)\) can be written as:&lt;/p&gt;
 
-1. **Orthogonal Group $O(2)$:** This is the group of $2 \times 2$ matrices that preserve the Euclidean norm, i.e., $AA^T = A^TA = I$. The determinant of such matrices is either 1 or -1. A general element of $O(2)$ can be written as:
+\[SO = \begin{bmatrix} \cos \theta &amp;amp; -\sin \theta \\ \sin \theta &amp;amp; \cos \theta \end{bmatrix}\]
 
-    $$
-    O = \begin{bmatrix} \cos \theta &amp;amp; -\sin \theta \\ \sin \theta &amp;amp; \cos \theta \end{bmatrix} \quad \text{or} \quad \begin{bmatrix} \cos \theta &amp;amp; \sin \theta \\ \sin \theta &amp;amp; -\cos \theta \end{bmatrix}
-    $$
+    &lt;p&gt;where \(\theta\) is a real number.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
 
-    where $\theta$ is a real number.
+&lt;p&gt;These subgroups are also Lie groups, as they are groups and differentiable manifolds, and the group operations are smooth. They are also examples of compact Lie groups, as they are closed and bounded subsets of \(\R^{2 \times 2}\).&lt;/p&gt;
 
-2. **Special Orthogonal Group $SO(2)$:** This is the subgroup of $O(2)$ consisting of matrices with determinant 1. These are rotations in the plane. A general element of $SO(2)$ can be written as:
+&lt;p&gt;Sure, let’s go through the matrix multiplication step by step.&lt;/p&gt;
 
-    $$
-    SO = \begin{bmatrix} \cos \theta &amp;amp; -\sin \theta \\ \sin \theta &amp;amp; \cos \theta \end{bmatrix}
-    $$
+&lt;p&gt;Matrix multiplication is a binary operation that takes a pair of matrices, and produces another matrix. For \(2 \times 2\) matrices, the multiplication is defined as follows:&lt;/p&gt;
 
-    where $\theta$ is a real number.
+&lt;p&gt;If we have two matrices \(A\) and \(B\) in \(GL(2, \R)\), where&lt;/p&gt;
 
-These subgroups are also Lie groups, as they are groups and differentiable manifolds, and the group operations are smooth. They are also examples of compact Lie groups, as they are closed and bounded subsets of $\R^{2 \times 2}$.
+\[A = \begin{bmatrix} a &amp;amp; b \\ c &amp;amp; d \end{bmatrix} \quad \text{and} \quad B = \begin{bmatrix} e &amp;amp; f \\ g &amp;amp; h \end{bmatrix}\]
 
-Sure, let&apos;s go through the matrix multiplication step by step. 
+&lt;p&gt;their product \(AB\) is given by&lt;/p&gt;
 
-Matrix multiplication is a binary operation that takes a pair of matrices, and produces another matrix. For $2 \times 2$ matrices, the multiplication is defined as follows:
+\[AB = \begin{bmatrix} a &amp;amp; b \\ c &amp;amp; d \end{bmatrix} \begin{bmatrix} e &amp;amp; f \\ g &amp;amp; h \end{bmatrix} = \begin{bmatrix} ae + bg &amp;amp; af + bh \\ ce + dg &amp;amp; cf + dh \end{bmatrix}\]
 
-If we have two matrices $A$ and $B$ in $GL(2, \R)$, where
+&lt;p&gt;This operation is associative, meaning that for any three matrices \(A\\), \(B\), and \(C\) in \(GL(2, \R)\), we have \((AB)C = A(BC)\).&lt;/p&gt;
 
-$$
-A = \begin{bmatrix} a &amp;amp; b \\ c &amp;amp; d \end{bmatrix} \quad \text{and} \quad B = \begin{bmatrix} e &amp;amp; f \\ g &amp;amp; h \end{bmatrix}
-$$
+&lt;p&gt;&lt;strong&gt;Example:&lt;/strong&gt;&lt;/p&gt;
 
-their product $AB$ is given by
+&lt;p&gt;Let’s consider two specific matrices in \(GL(2, \R)\):&lt;/p&gt;
 
-$$
-AB = \begin{bmatrix} a &amp;amp; b \\ c &amp;amp; d \end{bmatrix} \begin{bmatrix} e &amp;amp; f \\ g &amp;amp; h \end{bmatrix} = \begin{bmatrix} ae + bg &amp;amp; af + bh \\ ce + dg &amp;amp; cf + dh \end{bmatrix}
-$$
+\[A = \begin{bmatrix} 1 &amp;amp; 2 \\ 3 &amp;amp; 4 \end{bmatrix} \quad \text{and} \quad B = \begin{bmatrix} 5 &amp;amp; 6 \\ 7 &amp;amp; 8 \end{bmatrix}\]
 
-This operation is associative, meaning that for any three matrices $A\$, $B$, and $C$ in $GL(2, \R)$, we have $(AB)C = A(BC)$.
+&lt;p&gt;Their product is given by&lt;/p&gt;
 
-**Example:**
+\[AB = \begin{bmatrix} 1 &amp;amp; 2 \\ 3 &amp;amp; 4 \end{bmatrix} \begin{bmatrix} 5 &amp;amp; 6 \\ 7 &amp;amp; 8 \end{bmatrix} = \begin{bmatrix} 1*5 + 2*7 &amp;amp; 1*6 + 2*8 \\ 3*5 + 4*7 &amp;amp; 3*6 + 4*8 \end{bmatrix} = \begin{bmatrix} 19 &amp;amp; 22 \\ 43 &amp;amp; 50 \end{bmatrix}\]
 
-Let&apos;s consider two specific matrices in $GL(2, \R)$:
+&lt;p&gt;So, the product of \(A\) and \(B\) is,
+\(\begin{bmatrix} 19 &amp;amp; 22 \\ 43 &amp;amp; 50 \end{bmatrix}\)
+demonstrating the closure property of the group.&lt;/p&gt;
 
-$$
-A = \begin{bmatrix} 1 &amp;amp; 2 \\ 3 &amp;amp; 4 \end{bmatrix} \quad \text{and} \quad B = \begin{bmatrix} 5 &amp;amp; 6 \\ 7 &amp;amp; 8 \end{bmatrix}
-$$
+&lt;p&gt;Below, we show that the exponentiated value of simple 2x2 generator matrices is equal to the group of rotation matrices, a simple result with extremely significant implications.&lt;/p&gt;
 
-Their product is given by
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Define a function to generate a skew-symmetric matrix
+&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;skew_symmetric&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;theta&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; 
+         &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 
-$$
-AB = \begin{bmatrix} 1 &amp;amp; 2 \\ 3 &amp;amp; 4 \end{bmatrix} \begin{bmatrix} 5 &amp;amp; 6 \\ 7 &amp;amp; 8 \end{bmatrix} = \begin{bmatrix} 1*5 + 2*7 &amp;amp; 1*6 + 2*8 \\ 3*5 + 4*7 &amp;amp; 3*6 + 4*8 \end{bmatrix} = \begin{bmatrix} 19 &amp;amp; 22 \\ 43 &amp;amp; 50 \end{bmatrix}
-$$
+&lt;span class=&quot;c1&quot;&gt;# Define a vector
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tensor&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
 
-So, the product of $A$ and $B$ is,
-$$
-\begin{bmatrix} 19 &amp;amp; 22 \\ 43 &amp;amp; 50 \end{bmatrix}
-$$
-demonstrating the closure property of the group.
+&lt;span class=&quot;c1&quot;&gt;# Generate a sequence of skew-symmetric matrices and compute their matrix exponentials
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;thetas&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;linspace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;skew_symmetric_matrices&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;skew_symmetric&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;theta&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;theta&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;thetas&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;rotation_matrices&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;torch&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;linalg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;matrix_exp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;skew_symmetric_matrices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
 
+&lt;span class=&quot;c1&quot;&gt;# Apply the rotation matrices to the vector
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v_rotated&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;@&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;R&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;rotation_matrices&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
 
-Below, we show that the exponentiated value of simple 2x2 generator matrices is equal to the group of rotation matrices, a simple result with extremely significant implications. 
+&lt;span class=&quot;c1&quot;&gt;# Plot the original and rotated vectors
+&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;figure&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;figsize&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;quiver&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;angles&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;xy&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scale_units&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;xy&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scale&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;r&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v_r&lt;/span&gt; &lt;span class=&quot;ow&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;v_rotated&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;quiver&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;v_r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;angles&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;xy&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scale_units&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;xy&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;scale&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;color&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&apos;b&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;alpha&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;xlim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ylim&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;1.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;grid&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;plt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;show&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-```python
-# Define a function to generate a skew-symmetric matrix
-def skew_symmetric(theta):
-    return theta * torch.tensor(
-        [[0, -1], 
-         [1, 0]]
-        )
+&lt;p&gt;In this way, we can see that the symmetry groups of transformations of objects in 2D space can be represented by the group of rotation matrices, which can be generated by 2x2 real matrices.&lt;/p&gt;
 
-# Define a vector
-v = torch.tensor([1.0, 0.0])
+&lt;p&gt;Consider the simplest case of a 2x2 generator matrix, also known as a skew-symmetric matrix:&lt;/p&gt;
 
-# Generate a sequence of skew-symmetric matrices and compute their matrix exponentials
-thetas = torch.linspace(0, 0.1, 10)
-skew_symmetric_matrices = [skew_symmetric(theta) for theta in thetas]
-rotation_matrices = [torch.linalg.matrix_exp(X) for X in skew_symmetric_matrices]
+\[G = \begin{bmatrix} 0 &amp;amp; -\theta \\ \theta &amp;amp; 0 \end{bmatrix}\]
 
-# Apply the rotation matrices to the vector
-v_rotated = [R @ v for R in rotation_matrices]
+&lt;p&gt;where \(\theta\) is a scalar. You can observe that this matrix is skew-symmetric, i.e., \(G^T = -G\).&lt;/p&gt;
 
-# Plot the original and rotated vectors
-plt.figure(figsize=(6,6))
-plt.quiver(*v, angles=&apos;xy&apos;, scale_units=&apos;xy&apos;, scale=1, color=&apos;r&apos;)
-for v_r in v_rotated:
-    plt.quiver(*v_r, angles=&apos;xy&apos;, scale_units=&apos;xy&apos;, scale=1, color=&apos;b&apos;, alpha=0.2)
-plt.xlim(-1.5, 1.5)
-plt.ylim(-1.5, 1.5)
-plt.grid()
-plt.show()
-```
+&lt;p&gt;Now, let’s exponentiate this matrix \(G\) using the matrix exponential function \(\exp\). The matrix exponential is a power series defined as:&lt;/p&gt;
 
-In this way, we can see that the symmetry groups of transformations of objects in 2D space can be represented by the group of rotation matrices, which can be generated by 2x2 real matrices.
+\[\exp(G) = I + G + \frac{1}{2!} G^2 + \frac{1}{3!} G^3 + \dots = \sum_{k=0}^{\infty} \frac{1}{k!} G^k\]
 
-Consider the simplest case of a 2x2 generator matrix, also known as a skew-symmetric matrix:
+&lt;p&gt;We can compute the first few powers of \(G\):&lt;/p&gt;
 
-$$
-G = \begin{bmatrix} 0 &amp;amp; -\theta \\ \theta &amp;amp; 0 \end{bmatrix}
-$$
+\[G^0 = I, \quad G^1 = G, \quad G^2 = \begin{bmatrix} -\theta^2 &amp;amp; 0 \\ 0 &amp;amp; -\theta^2 \end{bmatrix}, \quad G^3 = -\theta G, \quad G^4 = \theta^2 I, \quad \dots\]
 
-where $\theta$ is a scalar. You can observe that this matrix is skew-symmetric, i.e., $G^T = -G$.
+&lt;p&gt;Now, we plug these matrix powers into the power series and separate the even and odd terms:&lt;/p&gt;
 
-Now, let&apos;s exponentiate this matrix $G$ using the matrix exponential function $\exp$. The matrix exponential is a power series defined as:
+\[\exp(G) = (I + \frac{1}{2!} G^2 + \frac{1}{4!} G^4 + \dots) + (G + \frac{1}{3!} G^3 + \dots) = \begin{bmatrix} \cos(\theta) &amp;amp; -\sin(\theta) \\ \sin(\theta) &amp;amp; \cos(\theta) \end{bmatrix}\]
 
-$$
-\exp(G) = I + G + \frac{1}{2!} G^2 + \frac{1}{3!} G^3 + \dots = \sum_{k=0}^{\infty} \frac{1}{k!} G^k
-$$
+&lt;p&gt;As a result, the matrix exponential of the 2x2 skew-symmetric matrix generates the special orthogonal group \(SO(2)\), which is the group of rotation matrices.&lt;/p&gt;
 
-We can compute the first few powers of $G$:
+&lt;p&gt;These results have significant implications for understanding how to apply Lie groups and matrix exponential to deep learning models, such as Transformer-based architectures. By leveraging the properties of exponentiated generator matrices and understanding the underlying structure, researchers can design models that are more robust and efficient when handling different types of data. Moreover, the idea of matrix exponentiation facilitates a natural way to interpolate between different network parameters when considering weight sharing, encouraging smooth behavior.&lt;/p&gt;
 
-$$
-G^0 = I, \quad G^1 = G, \quad G^2 = \begin{bmatrix} -\theta^2 &amp;amp; 0 \\ 0 &amp;amp; -\theta^2 \end{bmatrix}, \quad G^3 = -\theta G, \quad G^4 = \theta^2 I, \quad \dots
-$$
+&lt;h3 id=&quot;how-does-this-relate-to-neural-networks&quot;&gt;How does this relate to neural networks?&lt;/h3&gt;
 
-Now, we plug these matrix powers into the power series and separate the even and odd terms:
+&lt;p&gt;Consider a sequence of input data \(x_1, x_2, \dots, x_n\). These data points can be visualized in a high-dimensional space. One of the main components of the Transformer architecture is the self-attention mechanism, which computes an attention score for each element within a sequence. The attention mechanism represents relations between elements in the sequence geometrically, using dot products between those elements in the high-dimensional space.&lt;/p&gt;
 
-$$
-\exp(G) = (I + \frac{1}{2!} G^2 + \frac{1}{4!} G^4 + \dots) + (G + \frac{1}{3!} G^3 + \dots) = \begin{bmatrix} \cos(\theta) &amp;amp; -\sin(\theta) \\ \sin(\theta) &amp;amp; \cos(\theta) \end{bmatrix}
-$$
+&lt;p&gt;By applying continuous transformations to this high-dimensional space, one could potentially extract additional information about the structures embedded in the input data. Lie groups play an important role in this regard. A continuous transformation in a high-dimensional space can be represented as an action of a Lie group on the manifold of data points. In practice, elements of a Lie group are given by the exponentiation of Lie algebra elements, which are closely related to matrix exponentials.&lt;/p&gt;
 
-As a result, the matrix exponential of the 2x2 skew-symmetric matrix generates the special orthogonal group $SO(2)$, which is the group of rotation matrices.
+&lt;p&gt;Suppose we have a Lie group in the form of a matrix exponential, as shown before:&lt;/p&gt;
 
-These results have significant implications for understanding how to apply Lie groups and matrix exponential to deep learning models, such as Transformer-based architectures. By leveraging the properties of exponentiated generator matrices and understanding the underlying structure, researchers can design models that are more robust and efficient when handling different types of data. Moreover, the idea of matrix exponentiation facilitates a natural way to interpolate between different network parameters when considering weight sharing, encouraging smooth behavior.
+\[\exp(G) = \begin{bmatrix} \cos(\theta) &amp;amp; -\sin(\theta) \\ \sin(\theta) &amp;amp; \cos(\theta) \end{bmatrix}\]
 
-### How does this relate to neural networks?
+&lt;p&gt;Applying this transformation to the input data in the high-dimensional space would result in a new representation of the data points. The transformed data points can be further used as input to a Transformer layer. This transformed representation might allow the attention mechanism to focus on different aspects of the input data and can potentially capture more complex relational structures present.&lt;/p&gt;
 
-Consider a sequence of input data $x_1, x_2, \dots, x_n$. These data points can be visualized in a high-dimensional space. One of the main components of the Transformer architecture is the self-attention mechanism, which computes an attention score for each element within a sequence. The attention mechanism represents relations between elements in the sequence geometrically, using dot products between those elements in the high-dimensional space. 
+&lt;p&gt;However, this approach has not yet been fully explored in the Transformer architectures, and most research has focused on finding more efficient ways to apply the attention mechanism, rather than incorporating geometric transformations explicitly. One potential direction for future research could be to consider the effect of applying transformations from special types of Lie groups on attention scores and relevance of input data points, and observe the impact this might have on model performance.&lt;/p&gt;
 
-By applying continuous transformations to this high-dimensional space, one could potentially extract additional information about the structures embedded in the input data. Lie groups play an important role in this regard. A continuous transformation in a high-dimensional space can be represented as an action of a Lie group on the manifold of data points. In practice, elements of a Lie group are given by the exponentiation of Lie algebra elements, which are closely related to matrix exponentials.
+&lt;p&gt;That being said, directly applying Lie group transformations as shown might not be the most natural or efficient way to incorporate the power of Lie groups and their symmetries into Transformer-based architectures. A more elegant approach would be to explore how Lie groups could be integrated into the design of Transformer networks inherently.&lt;/p&gt;
 
-Suppose we have a Lie group in the form of a matrix exponential, as shown before:
+&lt;p&gt;One possibility is to incorporate equivariance to Lie group actions into the self-attention mechanism. The principle of equivariance implies that the output of a function should transform in the same way as the input under a given transformation. In this context, it means that the attention mechanism should be designed such that it remains unchanged under the action of a Lie group transformation applied to input data.&lt;/p&gt;
 
-$$
-\exp(G) = \begin{bmatrix} \cos(\theta) &amp;amp; -\sin(\theta) \\ \sin(\theta) &amp;amp; \cos(\theta) \end{bmatrix}
-$$
+&lt;p&gt;To incorporate this idea into the self-attention mechanism, we need to rethink the computation of attention scores. Currently, attention scores are computed using a dot product between the query, key, and value vectors. Instead, we could design an attention mechanism that computes the scores after some consideration of the Lie group transformations.&lt;/p&gt;
 
-Applying this transformation to the input data in the high-dimensional space would result in a new representation of the data points. The transformed data points can be further used as input to a Transformer layer. This transformed representation might allow the attention mechanism to focus on different aspects of the input data and can potentially capture more complex relational structures present.
-
-However, this approach has not yet been fully explored in the Transformer architectures, and most research has focused on finding more efficient ways to apply the attention mechanism, rather than incorporating geometric transformations explicitly. One potential direction for future research could be to consider the effect of applying transformations from special types of Lie groups on attention scores and relevance of input data points, and observe the impact this might have on model performance.
-
-That being said, directly applying Lie group transformations as shown might not be the most natural or efficient way to incorporate the power of Lie groups and their symmetries into Transformer-based architectures. A more elegant approach would be to explore how Lie groups could be integrated into the design of Transformer networks inherently.
-
-One possibility is to incorporate equivariance to Lie group actions into the self-attention mechanism. The principle of equivariance implies that the output of a function should transform in the same way as the input under a given transformation. In this context, it means that the attention mechanism should be designed such that it remains unchanged under the action of a Lie group transformation applied to input data.
-
-To incorporate this idea into the self-attention mechanism, we need to rethink the computation of attention scores. Currently, attention scores are computed using a dot product between the query, key, and value vectors. Instead, we could design an attention mechanism that computes the scores after some consideration of the Lie group transformations.
-
-For example, considering a Lie group of rotations, the design could compute attention scores in a rotation-invariant manner. This would involve redefining the computation of attention scores as the similarity between input element embeddings up to rotations (Lie group actions), rather than solely relying on dot products, which are not rotation-invariant
-&lt;/div&gt;</content><author><name>Zach Wimpee</name></author><summary type="html">&gt; “...different choices of local coordinate charts can satisfy the definition of a manifold. This is a key property of manifolds and is fundamental to their study in differential geometry and related fields.</summary></entry><entry><title type="html">HuggingFace Deep RL Course Notes - Unit 1</title><link href="http://localhost:4000/2023/06/27/HF-Deep-RL-Course-Unit1/" rel="alternate" type="text/html" title="HuggingFace Deep RL Course Notes - Unit 1" /><published>2023-06-27T05:00:00-05:00</published><updated>2023-06-27T05:00:00-05:00</updated><id>http://localhost:4000/2023/06/27/HF-Deep-RL-Course-Unit1</id><content type="html" xml:base="http://localhost:4000/2023/06/27/HF-Deep-RL-Course-Unit1/">&lt;h1 id=&quot;huggingface-deep-rl-course-notes&quot;&gt;HuggingFace Deep RL Course Notes&lt;/h1&gt;
+&lt;p&gt;For example, considering a Lie group of rotations, the design could compute attention scores in a rotation-invariant manner. This would involve redefining the computation of attention scores as the similarity between input element embeddings up to rotations (Lie group actions), rather than solely relying on dot products, which are not rotation-invariant&lt;/p&gt;</content><author><name>Zach Wimpee</name></author><summary type="html">&gt; “...different choices of local coordinate charts can satisfy the definition of a manifold. This is a key property of manifolds and is fundamental to their study in differential geometry and related fields.</summary></entry><entry><title type="html">HuggingFace Deep RL Course Notes - Unit 1</title><link href="http://localhost:4000/2023/06/27/HF-Deep-RL-Course-Unit1/" rel="alternate" type="text/html" title="HuggingFace Deep RL Course Notes - Unit 1" /><published>2023-06-27T05:00:00-05:00</published><updated>2023-06-27T05:00:00-05:00</updated><id>http://localhost:4000/2023/06/27/HF-Deep-RL-Course-Unit1</id><content type="html" xml:base="http://localhost:4000/2023/06/27/HF-Deep-RL-Course-Unit1/">&lt;h1 id=&quot;huggingface-deep-rl-course-notes&quot;&gt;HuggingFace Deep RL Course Notes&lt;/h1&gt;
 &lt;p&gt;This post is going to be slightly different, as I am going to be using it as a sort of living document to record my notes from the &lt;a href=&quot;https://huggingface.co/course/chapter1&quot;&gt;HuggingFace Deep RL Course&lt;/a&gt;. I will be updating this post as I work through the course, so check back often for updates!&lt;/p&gt;
 
 &lt;h1 id=&quot;unit-1-introduction-to-deep-reinforcement-learning&quot;&gt;Unit 1: Introduction to Deep Reinforcement Learning&lt;/h1&gt;

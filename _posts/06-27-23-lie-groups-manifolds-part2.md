@@ -84,21 +84,27 @@ plt.show();
 
 <div class="imgcap_noborder">
 <img src="/assets/s2_u2.png" width="80%">
+</div>
 
-The local coordinate maps for the sphere $S^2$ can be defined using spherical coordinates. For a point $p = (x, y, z)$ on the sphere, we can define the local coordinate maps $\chi_{\alpha}$ and $\chi_{\beta}$ as follows:
+We can visually see that the subsets $$ U_1 $$ and $$ U_2 $$ cover the sphere $$ S^2 $$.
+
+Now let's go a little bit deeper, and explicitly define the coordinate charts for $$ U_1 $$ and $$ U_2 $$, denoted $$ \chi_{\alpha} $$, where $$ \alpha \in \{1, 2\} $$.
+
+
+The local coordinate maps for the sphere $$S^2$$ can be defined using spherical coordinates. For a point $$p = (x, y, z)$$ on the sphere, we can define the local coordinate maps $$\chi_{\alpha}$$ and $$\chi_{\beta}$$ as follows:
 
 $$
 \chi_{\alpha}(p) = (\theta, \phi) = (\arctan(y/x), \arccos(z))
 \chi_{\beta}(p) = (\theta', \phi') = (\arctan(y/x), \pi - \arccos(z))
 $$
 
-where $\theta, \theta' \in [0, 2\pi]$ and $\phi, \phi' \in [0, \pi]$. The local coordinate maps $\chi_{\alpha}$ and $\chi_{\beta}$ map points in $U_{\alpha}$ and $U_{\beta}$ respectively to points in $V_{\alpha} = [0, 2\pi) \times [0, \pi)$ and $V_{\beta} = [0, 2\pi) \times (0, \pi]$.
+where $$\theta, \theta' \in [0, 2\pi]$$ and $$\phi, \phi' \in [0, \pi]$$. The local coordinate maps $$\chi_{\alpha}$$ and $$\chi_{\beta}$$ map points in $$U_{\alpha}$$ and $$U_{\beta}$$ respectively to points in $$V_{\alpha} = [0, 2\pi) \times [0, \pi)$$ and $$V_{\beta} = [0, 2\pi) \times (0, \pi]$$.
 
-We can now check the smoothness of the composite map $\chi_{\beta} \circ \chi_{\alpha}^{-1}$ on the overlap $U_{\alpha} \cap U_{\beta}$. Since $\chi_{\alpha}$ and $\chi_{\beta}$ are both smooth functions, their inverse functions $\chi_{\alpha}^{-1}$ and $\chi_{\beta}^{-1}$ are also smooth. Therefore, the composite map $\chi_{\beta} \circ \chi_{\alpha}^{-1}$ is a smooth function.
+We can now check the smoothness of the composite map $$\chi_{\beta} \circ \chi_{\alpha}^{-1}$$ on the overlap $$U_{\alpha} \cap U_{\beta}$$. Since $$\chi_{\alpha}$$ and $$\chi_{\beta}$$ are both smooth functions, their inverse functions $$\chi_{\alpha}^{-1}$$ and $$\chi_{\beta}^{-1}$$ are also smooth. Therefore, the composite map $$\chi_{\beta} \circ \chi_{\alpha}^{-1}$$ is a smooth function.
 
-Finally, we need to check the third condition of the definition of a manifold. For any two distinct points $x \in U_{\alpha}$ and $\tilde{x} \in U_{\beta}$, we need to find open subsets $W \subset V_{\alpha}$ and $\tilde{W} \subset V_{\beta}$ such that $\chi_{\alpha}(x) \in W$, $\chi_{\beta}(\tilde{x}) \in \tilde{W}$, and $\chi_{\alpha}^{-1}(W) \cap \chi_{\beta}^{-1}(\tilde{W}) = \emptyset$. This condition is satisfied because for any two distinct points on the sphere, we can always find small enough neighborhoods around these points that do not intersect.
+Finally, we need to check the third condition of the definition of a manifold. For any two distinct points $$x \in U_{\alpha}$$ and $$\tilde{x} \in U_{\beta}$$, we need to find open subsets $$W \subset V_{\alpha}$$ and $$\tilde{W} \subset V_{\beta}$$ such that $$\chi_{\alpha}(x) \in W$$, $$\chi_{\beta}(\tilde{x}) \in \tilde{W}$$, and $$\chi_{\alpha}^{-1}(W) \cap \chi_{\beta}^{-1}(\tilde{W}) = \emptyset$$. This condition is satisfied because for any two distinct points on the sphere, we can always find small enough neighborhoods around these points that do not intersect.
 
-Therefore, $S^2$ is a 2-dimensional manifold.
+Therefore, $$S^2$$ is a 2-dimensional manifold.
 
 In code,
 
@@ -141,29 +147,29 @@ print(torch.allclose(phi, phi_prime, atol=1e-6))
 True
 ```
 
-## Review of the Verification of the Manifold Property of $S^2$
+## Review of the Verification of the Manifold Property of $$S^2$$
 
-In this notebook, we have computationally verified that the 2-dimensional sphere $S^2$ is indeed a 2-dimensional manifold. We have done this by demonstrating that two different parameterizations of $S^2$ (spherical coordinates and stereographic projection) are equivalent and cover the same set $S^2$.
+In this notebook, we have computationally verified that the 2-dimensional sphere $$S^2$$ is indeed a 2-dimensional manifold. We have done this by demonstrating that two different parameterizations of $$S^2$$ (spherical coordinates and stereographic projection) are equivalent and cover the same set $$S^2$$.
 
 Specifically, we have:
 
-1. Generated random points on $S^2$ using spherical coordinates.
+1. Generated random points on $$S^2$$ using spherical coordinates.
 2. Transformed these points to the parameters of the stereographic projection.
 3. Transformed these parameters back to spherical coordinates.
 
-The fact that the original and final spherical coordinates are the same (to within a specified tolerance) confirms that the two parameterizations are equivalent and cover the same set $S^2$.
+The fact that the original and final spherical coordinates are the same (to within a specified tolerance) confirms that the two parameterizations are equivalent and cover the same set $$S^2$$.
 
 This result is significant because it demonstrates that different choices of local coordinate charts can satisfy the definition of a manifold. This is a key property of manifolds and is fundamental to their study in differential geometry and related fields.
 
 ## Next Steps: Exploring the Torus
 
-Having explored the manifold properties of the sphere $S^2$, we will next turn our attention to another important 2-dimensional manifold: the torus. The torus can be thought of as the Cartesian product of the circle $S^1$ with itself. In the following sections, we will explore the properties of the torus and demonstrate its manifold structure.
+Having explored the manifold properties of the sphere $$S^2$$, we will next turn our attention to another important 2-dimensional manifold: the torus. The torus can be thought of as the Cartesian product of the circle $$S^1$$ with itself. In the following sections, we will explore the properties of the torus and demonstrate its manifold structure.
 
 ## The Torus as a 2-Dimensional Manifold
 
-The torus, often visualized as the shape of a doughnut or an inner tube, is another example of a 2-dimensional manifold. It can be thought of as the Cartesian product of the circle $S^1$ with itself, denoted as $S^1 \times S^1$.
+The torus, often visualized as the shape of a doughnut or an inner tube, is another example of a 2-dimensional manifold. It can be thought of as the Cartesian product of the circle $$S^1$$ with itself, denoted as $$S^1 \times S^1$$.
 
-We can parameterize the torus using two angles, $\theta$ and $\phi$, which correspond to rotations around the two circular directions of the torus. Given a major radius $R$ and a minor radius $r$, the parameterization in Cartesian coordinates is given by:
+We can parameterize the torus using two angles, $$\theta$$ and $$\phi$$, which correspond to rotations around the two circular directions of the torus. Given a major radius $$R$$ and a minor radius $$r$$, the parameterization in Cartesian coordinates is given by:
 
 $$
 \begin{align*}
@@ -173,7 +179,7 @@ z &= r\sin\theta
 \end{align*}
 $$
 
-where $\theta, \phi \in [0, 2\pi)$. This parameterization covers the entire torus except for a single point, which can be covered by a second parameterization.
+where $$\theta, \phi \in [0, 2\pi)$$. This parameterization covers the entire torus except for a single point, which can be covered by a second parameterization.
 
 Let's generate and plot points on the torus using this parameterization:
 
@@ -208,28 +214,28 @@ A Lie group is a group that is also a differentiable manifold, such that the gro
 
 Let's break down the definition:
 
-1. **Group Structure:** A group is a set $G$ equipped with an operation $\cdot: G \times G \rightarrow G$ (often written multiplicatively) and an inversion operation $^{-1}: G \rightarrow G$ such that the following axioms are satisfied:
+1. **Group Structure:** A group is a set $$G$$ equipped with an operation $$\cdot: G \times G \rightarrow G$$ (often written multiplicatively) and an inversion operation $$^{-1}: G \rightarrow G$$ such that the following axioms are satisfied:
 
-   - **Closure:** For all $a, b \in G$, the result of the operation $a \cdot b$ is also in $G$.
-   - **Associativity:** For all $a, b, c \in G$, the equation $(a \cdot b) \cdot c = a \cdot (b \cdot c)$ holds.
-   - **Identity element:** There is an element $e \in G$ such that for every element $a \in G$, the equations $e \cdot a = a$ and $a \cdot e = a$ hold.
-   - **Inverse element:** For each element $a \in G$, there exists an element $b \in G$ such that $a \cdot b = e$ and $b \cdot a = e$.
+   - **Closure:** For all $$a, b \in G$$, the result of the operation $$a \cdot b$$ is also in $$G$$.
+   - **Associativity:** For all $$a, b, c \in G$$, the equation $$(a \cdot b) \cdot c = a \cdot (b \cdot c)$$ holds.
+   - **Identity element:** There is an element $$e \in G$$ such that for every element $$a \in G$$, the equations $$e \cdot a = a$$ and $$a \cdot e = a$$ hold.
+   - **Inverse element:** For each element $$a \in G$$, there exists an element $$b \in G$$ such that $$a \cdot b = e$$ and $$b \cdot a = e$$.
 
 2. **Manifold Structure:** As we discussed earlier, a manifold is a topological space that locally resembles Euclidean space. In the case of a Lie group, we require the manifold to be differentiable, meaning that we can do calculus on it. 
 
-3. **Compatibility of Structures:** The group operations (multiplication and inversion) are required to be smooth functions when considered as maps between manifolds. More formally, if we denote the multiplication operation by $\mu: G \times G \rightarrow G$ (so that $\mu(g, h) = g \cdot h$) and the inversion operation by $i: G \rightarrow G$ (so that $i(g) = g^{-1}$), then $\mu$ and $i$ are required to be smooth.
+3. **Compatibility of Structures:** The group operations (multiplication and inversion) are required to be smooth functions when considered as maps between manifolds. More formally, if we denote the multiplication operation by $$\mu: G \times G \rightarrow G$$ (so that $$\mu(g, h) = g \cdot h$$) and the inversion operation by $$i: G \rightarrow G$$ (so that $$i(g) = g^{-1}$$), then $$\mu$$ and $$i$$ are required to be smooth.
 
-An example of a Lie group is the general linear group $GL(n, \R)$, which consists of all $n \times n$ invertible matrices with real entries. The group operation is matrix multiplication, and the manifold structure comes from identifying each matrix with a point in $\R^{n^2}$. The group operations are smooth functions, so $GL(n, \R)$ is a Lie group.
+An example of a Lie group is the general linear group $$GL(n, \R)$$, which consists of all $$n \times n$$ invertible matrices with real entries. The group operation is matrix multiplication, and the manifold structure comes from identifying each matrix with a point in $$\R^{n^2}$$. The group operations are smooth functions, so $$GL(n, \R)$$ is a Lie group.
 
-Another example is the circle $S^1$ with the operation of complex multiplication. Each point on the circle can be identified with a complex number of absolute value 1, and multiplication of such numbers is a smooth operation.
+Another example is the circle $$S^1$$ with the operation of complex multiplication. Each point on the circle can be identified with a complex number of absolute value 1, and multiplication of such numbers is a smooth operation.
 
-Let's consider the general linear group $GL(2, \R)$ for simplicity. This group consists of all $2 \times 2$ invertible matrices with real entries. A general element of $GL(2, \R)$ can be written as:
+Let's consider the general linear group $$GL(2, \R)$$ for simplicity. This group consists of all $$2 \times 2$$ invertible matrices with real entries. A general element of $$GL(2, \R)$$ can be written as:
 
 $$
 A = \begin{bmatrix} a & b \\ c & d \end{bmatrix}
 $$
 
-where $a$, $b$, $c$, and $d$ are real numbers and $ad - bc \neq 0$ (the condition for the matrix to be invertible).
+where $$a$$, $$b$$, $$c$$, and $$d$$ are real numbers and $$ad - bc \neq 0$$ (the condition for the matrix to be invertible).
 
 The group operation is matrix multiplication, and the inverse of a matrix is given by:
 
@@ -237,47 +243,47 @@ $$
 A^{-1} = \frac{1}{ad - bc} \begin{bmatrix} d & -b \\ -c & a \end{bmatrix}
 $$
 
-Now, let's consider some subgroups of $GL(2, \R)$:
+Now, let's consider some subgroups of $$GL(2, \R)$$:
 
-1. **Orthogonal Group $O(2)$:** This is the group of $2 \times 2$ matrices that preserve the Euclidean norm, i.e., $AA^T = A^TA = I$. The determinant of such matrices is either 1 or -1. A general element of $O(2)$ can be written as:
+1. **Orthogonal Group $$O(2)$$:** This is the group of $$2 \times 2$$ matrices that preserve the Euclidean norm, i.e., $$AA^T = A^TA = I$$. The determinant of such matrices is either 1 or -1. A general element of $$O(2)$$ can be written as:
 
     $$
     O = \begin{bmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{bmatrix} \quad \text{or} \quad \begin{bmatrix} \cos \theta & \sin \theta \\ \sin \theta & -\cos \theta \end{bmatrix}
     $$
 
-    where $\theta$ is a real number.
+    where $$\theta$$ is a real number.
 
-2. **Special Orthogonal Group $SO(2)$:** This is the subgroup of $O(2)$ consisting of matrices with determinant 1. These are rotations in the plane. A general element of $SO(2)$ can be written as:
+2. **Special Orthogonal Group $$SO(2)$$:** This is the subgroup of $$O(2)$$ consisting of matrices with determinant 1. These are rotations in the plane. A general element of $$SO(2)$$ can be written as:
 
     $$
     SO = \begin{bmatrix} \cos \theta & -\sin \theta \\ \sin \theta & \cos \theta \end{bmatrix}
     $$
 
-    where $\theta$ is a real number.
+    where $$\theta$$ is a real number.
 
-These subgroups are also Lie groups, as they are groups and differentiable manifolds, and the group operations are smooth. They are also examples of compact Lie groups, as they are closed and bounded subsets of $\R^{2 \times 2}$.
+These subgroups are also Lie groups, as they are groups and differentiable manifolds, and the group operations are smooth. They are also examples of compact Lie groups, as they are closed and bounded subsets of $$\R^{2 \times 2}$$.
 
 Sure, let's go through the matrix multiplication step by step. 
 
-Matrix multiplication is a binary operation that takes a pair of matrices, and produces another matrix. For $2 \times 2$ matrices, the multiplication is defined as follows:
+Matrix multiplication is a binary operation that takes a pair of matrices, and produces another matrix. For $$2 \times 2$$ matrices, the multiplication is defined as follows:
 
-If we have two matrices $A$ and $B$ in $GL(2, \R)$, where
+If we have two matrices $$A$$ and $$B$$ in $$GL(2, \R)$$, where
 
 $$
 A = \begin{bmatrix} a & b \\ c & d \end{bmatrix} \quad \text{and} \quad B = \begin{bmatrix} e & f \\ g & h \end{bmatrix}
 $$
 
-their product $AB$ is given by
+their product $$AB$$ is given by
 
 $$
 AB = \begin{bmatrix} a & b \\ c & d \end{bmatrix} \begin{bmatrix} e & f \\ g & h \end{bmatrix} = \begin{bmatrix} ae + bg & af + bh \\ ce + dg & cf + dh \end{bmatrix}
 $$
 
-This operation is associative, meaning that for any three matrices $A\$, $B$, and $C$ in $GL(2, \R)$, we have $(AB)C = A(BC)$.
+This operation is associative, meaning that for any three matrices $$A\$$, $$B$$, and $$C$$ in $$GL(2, \R)$$, we have $$(AB)C = A(BC)$$.
 
 **Example:**
 
-Let's consider two specific matrices in $GL(2, \R)$:
+Let's consider two specific matrices in $$GL(2, \R)$$:
 
 $$
 A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} \quad \text{and} \quad B = \begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix}
@@ -289,7 +295,7 @@ $$
 AB = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} \begin{bmatrix} 5 & 6 \\ 7 & 8 \end{bmatrix} = \begin{bmatrix} 1*5 + 2*7 & 1*6 + 2*8 \\ 3*5 + 4*7 & 3*6 + 4*8 \end{bmatrix} = \begin{bmatrix} 19 & 22 \\ 43 & 50 \end{bmatrix}
 $$
 
-So, the product of $A$ and $B$ is,
+So, the product of $$A$$ and $$B$$ is,
 $$
 \begin{bmatrix} 19 & 22 \\ 43 & 50 \end{bmatrix}
 $$
@@ -336,15 +342,15 @@ $$
 G = \begin{bmatrix} 0 & -\theta \\ \theta & 0 \end{bmatrix}
 $$
 
-where $\theta$ is a scalar. You can observe that this matrix is skew-symmetric, i.e., $G^T = -G$.
+where $$\theta$$ is a scalar. You can observe that this matrix is skew-symmetric, i.e., $$G^T = -G$$.
 
-Now, let's exponentiate this matrix $G$ using the matrix exponential function $\exp$. The matrix exponential is a power series defined as:
+Now, let's exponentiate this matrix $$G$$ using the matrix exponential function $$\exp$$. The matrix exponential is a power series defined as:
 
 $$
 \exp(G) = I + G + \frac{1}{2!} G^2 + \frac{1}{3!} G^3 + \dots = \sum_{k=0}^{\infty} \frac{1}{k!} G^k
 $$
 
-We can compute the first few powers of $G$:
+We can compute the first few powers of $$G$$:
 
 $$
 G^0 = I, \quad G^1 = G, \quad G^2 = \begin{bmatrix} -\theta^2 & 0 \\ 0 & -\theta^2 \end{bmatrix}, \quad G^3 = -\theta G, \quad G^4 = \theta^2 I, \quad \dots
@@ -356,13 +362,13 @@ $$
 \exp(G) = (I + \frac{1}{2!} G^2 + \frac{1}{4!} G^4 + \dots) + (G + \frac{1}{3!} G^3 + \dots) = \begin{bmatrix} \cos(\theta) & -\sin(\theta) \\ \sin(\theta) & \cos(\theta) \end{bmatrix}
 $$
 
-As a result, the matrix exponential of the 2x2 skew-symmetric matrix generates the special orthogonal group $SO(2)$, which is the group of rotation matrices.
+As a result, the matrix exponential of the 2x2 skew-symmetric matrix generates the special orthogonal group $$SO(2)$$, which is the group of rotation matrices.
 
 These results have significant implications for understanding how to apply Lie groups and matrix exponential to deep learning models, such as Transformer-based architectures. By leveraging the properties of exponentiated generator matrices and understanding the underlying structure, researchers can design models that are more robust and efficient when handling different types of data. Moreover, the idea of matrix exponentiation facilitates a natural way to interpolate between different network parameters when considering weight sharing, encouraging smooth behavior.
 
 ### How does this relate to neural networks?
 
-Consider a sequence of input data $x_1, x_2, \dots, x_n$. These data points can be visualized in a high-dimensional space. One of the main components of the Transformer architecture is the self-attention mechanism, which computes an attention score for each element within a sequence. The attention mechanism represents relations between elements in the sequence geometrically, using dot products between those elements in the high-dimensional space. 
+Consider a sequence of input data $$x_1, x_2, \dots, x_n$$. These data points can be visualized in a high-dimensional space. One of the main components of the Transformer architecture is the self-attention mechanism, which computes an attention score for each element within a sequence. The attention mechanism represents relations between elements in the sequence geometrically, using dot products between those elements in the high-dimensional space. 
 
 By applying continuous transformations to this high-dimensional space, one could potentially extract additional information about the structures embedded in the input data. Lie groups play an important role in this regard. A continuous transformation in a high-dimensional space can be represented as an action of a Lie group on the manifold of data points. In practice, elements of a Lie group are given by the exponentiation of Lie algebra elements, which are closely related to matrix exponentials.
 
