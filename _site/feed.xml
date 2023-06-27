@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-27T14:11:07-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mathematics for Machine Learning Deep Dive</title><subtitle></subtitle><entry><title type="html">Applications of Lie Groups to Neural Networks - Part 2</title><link href="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/" rel="alternate" type="text/html" title="Applications of Lie Groups to Neural Networks - Part 2" /><published>2023-06-27T08:00:00-05:00</published><updated>2023-06-27T08:00:00-05:00</updated><id>http://localhost:4000/2023/06/27/lie-groups-manifolds-part2</id><content type="html" xml:base="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/">&lt;h1 id=&quot;applications-of-lie-groups-to-neural-networks---part-2&quot;&gt;Applications of Lie Groups to Neural Networks - Part 2&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2023-06-27T14:11:39-05:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mathematics for Machine Learning Deep Dive</title><subtitle></subtitle><entry><title type="html">Applications of Lie Groups to Neural Networks - Part 2</title><link href="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/" rel="alternate" type="text/html" title="Applications of Lie Groups to Neural Networks - Part 2" /><published>2023-06-27T08:00:00-05:00</published><updated>2023-06-27T08:00:00-05:00</updated><id>http://localhost:4000/2023/06/27/lie-groups-manifolds-part2</id><content type="html" xml:base="http://localhost:4000/2023/06/27/lie-groups-manifolds-part2/">&lt;h1 id=&quot;applications-of-lie-groups-to-neural-networks---part-2&quot;&gt;Applications of Lie Groups to Neural Networks - Part 2&lt;/h1&gt;
 &lt;p&gt;#&lt;/p&gt;
 &lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 &lt;p&gt;Picking back up from where we left off in part 1 of our discussion, we will now explore the concept of a manifold in more detail. We will also explore the concept of a Lie group, which is a group that is also a manifold. We will then explore the concept of a Lie algebra, which is a vector space that is also a Lie group. Finally, we will explore the concept of a Lie algebra homomorphism, which is a linear map between two Lie algebras that preserves the Lie bracket.&lt;/p&gt;
@@ -407,7 +407,7 @@ demonstrating the closure property of the group.&lt;/p&gt;
 &lt;/ul&gt;
 
 &lt;div class=&quot;imgcap_noborder&quot;&gt;
-&lt;img src=&quot;/assets/rl-process.jpg&quot; width=&quot;500&quot; /&gt;
+&lt;img src=&quot;/assets/rl-process.jpg&quot; width=&quot;80%&quot; /&gt;
 &lt;/div&gt;
 
 &lt;p&gt;More formally, we can say that an agent first receives an observation \(s_0\) from the environment. The agent then takes an action \(a_0\) based on the observation \(s_0\). The environment then transitions to a new state \(s_1\)and returns a reward \(r_1\)to the agent. This process repeats until the agent reaches a terminal state.&lt;/p&gt;
@@ -470,7 +470,7 @@ demonstrating the closure property of the group.&lt;/p&gt;
 &lt;p&gt;This idea is a little bit tricky, so we can take a look at the following figure to get a better intuition for why this needs to be done:&lt;/p&gt;
 
 &lt;div class=&quot;imgcap_noborder&quot;&gt;
-&lt;img src=&quot;/assets/rewards_3.jpg&quot; width=&quot;500&quot; /&gt;
+&lt;img src=&quot;/assets/rewards_3.jpg&quot; width=&quot;80%&quot; /&gt;
 &lt;/div&gt;
 
 &lt;p&gt;In this figure, we see that our agent (the mouse) has an advesary (the cat). The cat is intially positioned in the top left corner of the grid, and the mouse is positioned in the bottom middle tile. The mouse’s goal is to maximize the amount of cheese it can eat over a given interval before one of the following two events occur:&lt;/p&gt;

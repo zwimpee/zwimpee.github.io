@@ -23,7 +23,7 @@ We can describe reinforcement learning at a high level via the following process
 - The agent's goal is to maximize the total reward it receives.
 
 <div class="imgcap_noborder">
-<img src="/assets/rl-process.jpg" width="500">
+<img src="/assets/rl-process.jpg" width="80%">
 </div>
 
 
@@ -102,7 +102,7 @@ That is, given some action$$a_t$$, the agent$$L$$will receive a reward$$r_t$$fro
 This idea is a little bit tricky, so we can take a look at the following figure to get a better intuition for why this needs to be done:
 
 <div class="imgcap_noborder">
-<img src="/assets/rewards_3.jpg" width="500">
+<img src="/assets/rewards_3.jpg" width="80%">
 </div>
 
 In this figure, we see that our agent (the mouse) has an advesary (the cat). The cat is intially positioned in the top left corner of the grid, and the mouse is positioned in the bottom middle tile. The mouse's goal is to maximize the amount of cheese it can eat over a given interval before one of the following two events occur:
