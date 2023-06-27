@@ -385,31 +385,7 @@ $$
 
 where $$A$$ and $$B$$ are elements of the Lie algebra. The commutator operation is also known as the **Lie bracket**. The Lie bracket is a bilinear operation, which means that it is linear in both arguments. The Lie bracket is also antisymmetric, which means that $$[A, B] = -[B, A]$$.
 
-The Lie algebra is also closed under the scalar multiplication operation, which is defined as:
-
-$$
-\alpha A = A \alpha
-$$
-
-where $$\alpha$$ is a scalar and $$A$$ is an element of the Lie algebra.
-
-The Lie algebra is also closed under the Jacobi identity, which is defined as:
-
-$$
-[A, [B, C]] + [B, [C, A]] + [C, [A, B]] = 0
-$$
-
-where $$A$$, $$B$$, and $$C$$ are elements of the Lie algebra.
-
-The Lie algebra is also closed under the adjoint operation, which is defined as:
-
-$$
-\text{ad}(A) B = [A, B]
-$$
-
-There are additional properties of the Lie algebra, but these are the most important ones for our purposes of introducing the concepts. But for those curious, I would encourage you to look up Clifford algebras...
-
-=========
+There are many more additional properties of Lie algebras, but for the sake of not introducing too much at once (which I arguably already have), I will stop here. If you are interested in learning more about Lie algebras, I recommend reading [this article](https://en.wikipedia.org/wiki/Lie_algebra) on Wikipedia, which is in fact an excellent resource for this sort of topic.
 
 ## How does this relate to neural networks?
 
