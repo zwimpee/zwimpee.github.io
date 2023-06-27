@@ -23,7 +23,7 @@ We can describe reinforcement learning at a high level via the following process
 - The agent's goal is to maximize the total reward it receives.
 
 <div class="imgcap_noborder">
-<img src="/assets/rl-process.jpg" width="500">
+<img src="/assets/rl-process.jpg" width="80%">
 <div>
 
 
@@ -36,11 +36,13 @@ We can further formalize this even further with the following definitions:
 ## Definitions
 ### Environment
 An environment $E$ is a function that maps states to rewards:
+
 $$
 E: S \rightarrow R
 $$
 
 and is described by a state $s_t$ at time $t$:
+
 $$
 s_t \in S
 $$
@@ -51,6 +53,7 @@ That is, given some state $s_t$, the environment $E$ will return a reward $r_t$.
 An agent $L$ is an entity that exists within and interacts with the environment $E$. Roughly speaking, the agent $L$ is the entity that is trying to solve the RL problem. The agent $L$ is described by a policy $\pi$ and takes actions $a_t$ in the environment $E$. 
 
 More formally, the agent is described by a policy $\pi$ that maps states to actions:
+
 $$
 L: S \rightarrow A
 $$
@@ -60,6 +63,7 @@ That is, given some observation about the current state $s_t$, the agent $L$ wil
 
 ### Policy
 A policy $\pi$ is a function that maps states to actions:
+
 $$
 \pi: S \rightarrow A
 $$
@@ -72,6 +76,7 @@ That is, given some observation about the current state $s_t$, the policy $\pi$ 
 
 ### Reward
 A reward $r_t$ is a scalar value that the agent receives after taking an action $a_t$:
+
 $$
 r_t \in R
 $$
