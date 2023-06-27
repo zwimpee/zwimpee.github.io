@@ -21,7 +21,7 @@ To begin, we are working towards understanding smooth manifolds as a means to mo
 To do this, let's start with a definition.
 
 ### **Definition 1.1** - $$M$$-Dimensional Manifold**
-An $$m$$-dimensional manifold** is a set $$M$$, together with a countable collection of subsets $$U_{\alpha} \subset M$$, called ***coordinate charts***, and one-to-one functions $$\chi_\alpha \colon U_\alpha \mapsto V_\alpha$$ onto connected open subsets $$V_{\alpha}\subset \mathbb{R}^m$$, called ***local coordinate maps***, which satisfy the following properties:
+An $$m$$-dimensional manifold** is a set $$M$$, together with a countable collection of subsets $$U_{\alpha} \subset M$$, called ***coordinate charts***, and one-to-one functions $$\chi_\alpha \colon U_\alpha \mapsto V_\alpha$$ onto connected open subsets $$V_{\alpha}\subset \mathbb{R}^m$$, called ***local coordinate maps***, which satisfy the following properties[1]:
 
 *a)* The ***coordinate charts*** *cover* $$M$$:
 
@@ -139,3 +139,8 @@ This code and the associated visualization serve as a practical implementation o
 
 This will conclude part 1 of this discussion on the application of Lie Groups to deep learning. In part 2, we'll explore the concept of a Lie Group, and how it relates to the concept of a manifold. We'll also explore the concept of a Lie Algebra, and how it relates to the concept of a tangent space. Finally, we'll explore the concept of a Lie Group action, and how it relates to the concept of a group action.
 
+
+## References
+## References
+- [1] [Wikipedia: Lie Group](https://en.wikipedia.org/wiki/Lie_group)
+- [2][Olver, Peter J. *Applications of Lie groups to differential equations*. Springer Science & Business Media, 1986.](https://link.springer.com/book/10.1007/978-1-4684-0274-2)

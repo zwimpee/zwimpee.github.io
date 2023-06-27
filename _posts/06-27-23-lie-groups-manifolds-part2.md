@@ -15,7 +15,7 @@ Picking back up from where we left off in part 1 of our discussion, we will now 
 ## Some additional manifold examples
 
 ### Manifolds and the Sphere $$S^{2}$$
-Now that we've explored the circle as a 1-dimensional manifold, let's move on to a 2-dimensional manifold: the sphere $$ S^{2} $$. We can think of the sphere as a 2-dimensional manifold because we can parameterize it using two parameters, say $$ \theta $$ and $$ \phi $$, as follows:
+Now that we've explored the circle as a 1-dimensional manifold, let's move on to a 2-dimensional manifold: the sphere $$ S^{2} $$. We can think of the sphere as a 2-dimensional manifold because we can parameterize it using two parameters, say $$ \theta $$ and $$ \phi $$, as follows[2]:
 
 $$ 
 x = \cos(\theta)\sin(\phi) \\
@@ -377,15 +377,13 @@ These results have significant implications for understanding how to apply Lie g
 
 ### Lie Algebra
 
-The set of generators of a Lie group is called a **Lie algebra**. The Lie algebra is a vector space, and the generators are its basis vectors. The Lie algebra is closed under the commutator operation, which is defined as:
+The set of generators of for a Lie Group form what is called a **Lie algebra**. This is a vector space equipped with a binary operation called the **Lie bracket**. The Lie bracket satisfies the following axioms[1]:
+- Bilinearity: $$[aX + bY, Z] = a[X, Z] + b[Y, Z]$$ and $$[Z, aX + bY] = a[Z, X] + b[Z, Y]$$
+- Anticommutativity: $$[X, Y] = -[Y, X]$$
+- Jacobi identity: $$[X, [Y, Z]] + [Y, [Z, X]] + [Z, [X, Y]] = 0$$
+- Alternativity: $$[X, X] = 0$$
 
-$$
-[A, B] = AB - BA
-$$
-
-where $$A$$ and $$B$$ are elements of the Lie algebra. The commutator operation is also known as the **Lie bracket**. The Lie bracket is a bilinear operation, which means that it is linear in both arguments. The Lie bracket is also antisymmetric, which means that $$[A, B] = -[B, A]$$.
-
-There are many more additional properties of Lie algebras, but for the sake of not introducing too much at once (which I arguably already have), I will stop here. If you are interested in learning more about Lie algebras, I recommend reading [this article](https://en.wikipedia.org/wiki/Lie_algebra) on Wikipedia, which is in fact an excellent resource for this sort of topic.
+I plan on covering much more in depth on Lie algebras later on, but for the sake of not introducing too much at once (which I arguably already have), I will stop here. If you are interested in learning more about Lie algebras, I recommend reading [this article](https://en.wikipedia.org/wiki/Lie_algebra) on Wikipedia, which is in fact an excellent resource for this sort of topic.
 
 ## How does this relate to neural networks?
 
@@ -412,3 +410,7 @@ To incorporate this idea into the self-attention mechanism, we need to rethink t
 For example, considering a Lie group of rotations, the design could compute attention scores in a rotation-invariant manner. This would involve redefining the computation of attention scores as the similarity between input element embeddings up to rotations (Lie group actions), rather than solely relying on dot products, which are not rotation-invariant.
 
 We will explore this idea further in part 3...
+
+## References
+- [1] [Wikipedia: Lie Group](https://en.wikipedia.org/wiki/Lie_group)
+- [2][Olver, Peter J. *Applications of Lie groups to differential equations*. Springer Science & Business Media, 1986.](https://link.springer.com/book/10.1007/978-1-4684-0274-2)
