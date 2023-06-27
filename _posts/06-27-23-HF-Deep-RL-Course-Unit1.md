@@ -14,7 +14,7 @@ This post is going to be slightly different, as I am going to be using it as a s
 
 # Unit 1: Introduction to Deep Reinforcement Learning
 
-> **Note:** The *Deep* in Deep Reinforcement Learning refers to the use of deep neural networks to approximate the agent's policy $$\pi $$, value function $$ V $$, or action-value function $$ Q $$. We will explore these concepts in more detail in later units.
+> **Note:** The *Deep* in Deep Reinforcement Learning refers to the use of deep neural networks to approximate the agent's policy $$ \pi $$, value function $$ V $$, or action-value function $$ Q $$. We will explore these concepts in more detail in later units.
 
 We can describe reinforcement learning at a high level via the following process:
 - We have an environment $$ E $$ that is described by a state $$ S $$.
