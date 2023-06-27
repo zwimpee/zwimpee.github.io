@@ -433,4 +433,6 @@ One possibility is to incorporate equivariance to Lie group actions into the sel
 
 To incorporate this idea into the self-attention mechanism, we need to rethink the computation of attention scores. Currently, attention scores are computed using a dot product between the query, key, and value vectors. Instead, we could design an attention mechanism that computes the scores after some consideration of the Lie group transformations.
 
-For example, considering a Lie group of rotations, the design could compute attention scores in a rotation-invariant manner. This would involve redefining the computation of attention scores as the similarity between input element embeddings up to rotations (Lie group actions), rather than solely relying on dot products, which are not rotation-invariant
+For example, considering a Lie group of rotations, the design could compute attention scores in a rotation-invariant manner. This would involve redefining the computation of attention scores as the similarity between input element embeddings up to rotations (Lie group actions), rather than solely relying on dot products, which are not rotation-invariant.
+
+We will explore this idea further in part 3...
