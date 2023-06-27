@@ -280,7 +280,7 @@ $$
 AB = \begin{bmatrix} a & b \\ c & d \end{bmatrix} \begin{bmatrix} e & f \\ g & h \end{bmatrix} = \begin{bmatrix} ae + bg & af + bh \\ ce + dg & cf + dh \end{bmatrix}
 $$
 
-This operation is associative, meaning that for any three matrices $$A$$, $$B$$, and $$C$$ in $$GL(2, \mathbb{R})$$, we have $$\(AB\)C = A\(BC\)$$.
+This operation is associative, meaning that for any three matrices $$A$$, $$B$$, and $$C$$ in $$GL(2, \mathbb{R})$$, we have $$(AB)C = A(BC)$$.
 
 **Example:**
 
