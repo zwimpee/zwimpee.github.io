@@ -54,48 +54,15 @@ After this, I will dive into building these base models from scratch, and walk t
 
 To summarize some of the high level topics I will be covering in this series, I will be writing about:
 
-1. **The mathematics behind deep learning**:\
-    a. Linear Algebra\
-    b. Calculus\
-    c. Probability and Statistics\
-    d. Information Theory\
-    e. Optimization\
-    f. Algorithms\
-    g. Data Structures\
-    h. Graph Theory\
-    i. Many more
-
-2. **The latest research and development in the field**:\
-    a. Transformers\
-    b. Reinforcement Learning\
-    c. Diffusion Models\
-    d. Assistants/Copilots
-
-3. Building neural networks from scratch\
-    a. Convolutional Neural Networks\
-    b. Recurrent Neural Networks\
-    c. Transformers
-
-4. **Building applications from pretrained base models**:\
-    a. Image Classification\
-    b. Object Detection\
-    c. Text Classification\
-    d. Text Generation\
-    e. Text Summarization\
-    f. Question Answering\
-    g. Speech Recognition\
-    h. Speech Synthesis\
-    i. Machine Translation\
-    j. Image Captioning\
-    k. Style Transfer\
-    l. Anomaly Detection\
-    m. Recommender Systems\
-    n. Reinforcement Learning\
-    o. Generative Adversarial Networks\
-    p. Autoencoders
+- The mathematics behind deep learning
+- The latest research and development in the field
+- Building models from scratch
+- Building applications from pretrained base models
+- Applying these models to some real world problems in a novel way
+- And more!
 
 Note that this list is not exhaustive, and I will be adding to it as I go along. I will also be adding links to each of these sections as I write about them, so that you can easily navigate to the topics that interest you the most.
 
-With that, I will leave you with one of my favorite quotes of all time:
+With that, I will leave you with one of my favorite quotes of all time, which I like to think can be applied to any situation in life, including this one:
 > “All we have to decide is what to do with the time that is given us.” ― J.R.R. Tolkien, The Fellowship of the Ring 
 
