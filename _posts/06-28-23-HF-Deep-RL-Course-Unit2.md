@@ -30,50 +30,52 @@ Pulling directly from the course material:
 
 For reference, I am including a glosarry of terms and concepts that are either introduced in this unit, or are important to restate here due to their application to the material we will be covering.
 
-## Unit 2 - Glossary
-
-### Two Types of Value Functions
-
-#### State-Value Functions
-
-$$
-V^{\pi}(s) = \mathbb{E}_{\pi}[R_t | s_t = s]
-$$
-
-#### Action-Value Functions
-
-$$
-Q^{\pi}(s, a) = \mathbb{E}_{\pi}[R_t | s_t = s, a_t = a]
-$$
-
-### Optimal Policy
-
-$$
-\pi^*(s) = \text{argmax}_{a} Q^*(s, a) \quad \text{for all}\ s
-$$
-
-### Bellman Equation
-
-$$
-V^{\pi}(s) = \mathbb{E}_{\pi}[R_t | s_t = s] = \mathbb{E}_{\pi}[r_{t+1} + \gamma V^{\pi}(s_{t+1}) | s_t = s]
-$$
-
-### Q-Learning - Update Rule
-
-$$
-Q(s, a) \leftarrow Q(s, a) + \alpha[r + \gamma \text{max}_{a'} Q(s', a') - Q(s, a)]
-$$
-
-### Epsilon Greedy Policy 
-
-$$
-\pi(a|s) = 
-\begin{cases} 
-1 - \epsilon + \frac{\epsilon}{|A|}, & \text{if}\ a = \text{argmax}_{a'} Q^{\pi}(s, a') \\
-\frac{\epsilon}{|A|}, & \text{otherwise}
-\end{cases}
-
-$$
+> ## Unit 2 - Glossary
+>
+> ### Two Types of Value Functions
+>
+> #### State-Value Functions
+>
+> $$
+> V^{\pi}(s) = \mathbb{E}_{\pi}[R_t | s_t = s]
+> $$
+>
+> #### Action-Value Functions
+>
+> $$
+> Q^{\pi}(s, a) = \mathbb{E}_{\pi}[R_t | s_t = s, a_t = a]
+> $$
+>
+> ### Optimal Policy
+>
+> $$
+> \pi^*(s) = \text{argmax}_{a} Q^*(s, a) \quad \text{for all}\ s
+> $$
+>
+> ### Bellman Equation
+>
+> $$
+> V^{\pi}(s) = \mathbb{E}_{\pi}[R_t | s_t = s] = \mathbb{E}_{\pi}[r_{t+1} + \gamma V^{\pi}(s_{t+1}) | s_t = s]
+> $$
+>
+>
+> ### Q-Learning - Update Rule
+>
+> $$
+> Q(s, a) \leftarrow Q(s, a) + \alpha[r + \gamma \text{max}_{a'} Q(s', a') - Q(s, a)]
+> $$
+>
+> ### Epsilon Greedy Policy 
+>
+> $$
+> \pi(a|s) = 
+> \begin{cases} 
+> 1 - \epsilon + \frac{\epsilon}{|A|}, & \text{if}\ a = \text{argmax}_{a'} Q^{\pi}(s, a') \\
+> \frac{\epsilon}{|A|}, & \text{otherwise}
+> \end{cases}
+>
+> $$
+>
 
 ## Unit 2 - Content
 ### Value-Based Methods
@@ -193,12 +195,13 @@ Going back to a state-value function $$V^{\pi}(S_t)$$, we will borrow some nice 
 >  <div class="imgcap_noborder">
 >  <img src="/assets/MC-3.jpg">
 >  </div>
-> ...
+> - The agent will then start a new episode and repeat the process.
+> - The process can be summarized by the following illustration:
 >  <div class="imgcap_noborder">
 >  <img src="/assets/MC-3p.jpg">
 >  </div>
 
-  
+Now, we will move onto a more scalable solution, Temporal Difference Learning.
 
 #### Temporal Difference Learning
 
