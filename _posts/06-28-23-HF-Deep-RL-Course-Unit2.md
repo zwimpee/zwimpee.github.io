@@ -9,8 +9,13 @@ author: Zach Wimpee
 thumbnail: /assets/hf.png
 ---
 
-# HuggingFace Deep RL Course Notes
+## Introduction
 These post are going to be slightly different, as I am going to be using them as a sort of living document to record my notes from the [HuggingFace Deep RL Course](https://huggingface.co/learn/deep-rl-course). I will be updating this post as I work through the course, so check back often for updates!
+
+You can the notes for Unit 1 [here](https://zwimpee.github.io/2023/06/27/HF-Deep-RL-Course-Unit1/)
+
+### Thoughts for Potential Projects and Further Areas of Interest
+1.  Are these value functions differentiable? I am assuming so, but since we are dealing with discrete timesteps I am not sure what formulation is needed to take the derivative of these functions. I may be overthinking this, but as we more explicitly define the value functions throughout this unit I am going to keep this question in mind.
 
 ## Unit 2: Introduction to Q-Learning
 In this unit, we will explore Q-Learning, a popular value-based method for solving RL problems.
@@ -34,38 +39,38 @@ For reference, I am including a glosarry of terms and concepts that are either i
 >
 > ### Two Types of Value Functions
 >
-> #### State-Value Functions
+> #### 2.1 State-Value Functions
 >
 > $$
 > V^{\pi}(s) = \mathbb{E}_{\pi}[R_t | s_t = s]
 > $$
 >
-> #### Action-Value Functions
+> #### 2.2 Action-Value Functions
 >
 > $$
 > Q^{\pi}(s, a) = \mathbb{E}_{\pi}[R_t | s_t = s, a_t = a]
 > $$
 >
-> ### Optimal Policy
+> ### 2.3 Optimal Policy
 >
 > $$
 > \pi^*(s) = \text{argmax}_{a} Q^*(s, a) \quad \text{for all}\ s
 > $$
 >
-> ### Bellman Equation
+> ### 2.4 Bellman Equation
 >
 > $$
 > V^{\pi}(s) = \mathbb{E}_{\pi}[R_t | s_t = s] = \mathbb{E}_{\pi}[r_{t+1} + \gamma V^{\pi}(s_{t+1}) | s_t = s]
 > $$
 >
 >
-> ### Q-Learning - Update Rule
+> ### 2.5 Q-Learning - Update Rule
 >
 > $$
 > Q(s, a) \leftarrow Q(s, a) + \alpha[r + \gamma \text{max}_{a'} Q(s', a') - Q(s, a)]
 > $$
 >
-> ### Epsilon Greedy Policy 
+> ### 2.6 Epsilon Greedy Policy 
 >
 > $$
 > \pi(a|s) = 
@@ -206,6 +211,9 @@ Now, we will move onto a more scalable solution, Temporal Difference Learning.
 #### Temporal Difference Learning
 
 # Temporal Difference Learning
+
+
+
 
 
 #### References
