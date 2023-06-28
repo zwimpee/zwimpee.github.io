@@ -178,11 +178,8 @@ Where here the parameters of this equation follow naturally from the parameters 
 
 Going back to a state-value function $$V^{\pi}(S_t)$$, we will borrow some nice summarization and illustration from the Hugging Face course:
 
-################################
-# Example of Monte-Carlo Learning
-################################
 
-
+> # Example of Monte-Carlo Learning
 >  <div class="imgcap_noborder">
 >  <img src="/assets/MC-2.jpg">
 >  </div>
