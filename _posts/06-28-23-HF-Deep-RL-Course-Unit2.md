@@ -63,22 +63,6 @@ For reference, I am including a glosarry of terms and concepts that are either i
 > V_{\pi}(s) = \mathbb{E}_{\pi}[R_t | s_t = s] = \mathbb{E}_{\pi}[r_{t+1} + \gamma V_{\pi}(s_{t+1}) | s_t = s]
 > $$
 >
->
-> ### 2.5 Q-Learning - Update Rule
->
-> $$
-> Q(s, a) \leftarrow Q(s, a) + \alpha[r + \gamma \text{max}_{a'} Q(s', a') - Q(s, a)]
-> $$
->
-> ### 2.6 Epsilon Greedy Policy 
->
-> $$
-> \pi(a|s) = 
-> \begin{cases} 
-> 1 - \epsilon + \frac{\epsilon}{|A|}, & \text{if}\ a = \text{argmax}_{a'} Q_{\pi}(s, a') \\
-> \frac{\epsilon}{|A|}, & \text{otherwise}
-> \end{cases}
->
 > $$
 >
 > ### 2.7/2.8 - Monte-Carlo Learning
@@ -119,7 +103,6 @@ From the course material:
 
 > "In fact, most of the time, in value-based methods, you’ll use an Epsilon-Greedy Policy that handles the exploration/exploitation trade-off; we’ll talk about this when we talk about Q-Learning in the second part of this unit."
 
-What this "Epsilon-Greedy Policy" does, without going into too much detail here, is that it allows us to explore the environment, while still exploiting our immediate surroundings in order to maximize the expected return.
 
 ### Two types of value-based methods
 
