@@ -48,7 +48,7 @@ For reference, I am including a glosarry of terms and concepts that are either i
 > #### 2.2 Action-Value Functions
 >
 > $$
-> Q^{\pi}(s, a) = \mathbb{E}_{\pi}[R_t | s_t = s, a_t = a]
+> Q_{\pi}(s, a) = \mathbb{E}_{\pi}[R_t | s_t = s, a_t = a]
 > $$
 >
 > ### 2.3 Optimal Policy
@@ -75,7 +75,7 @@ For reference, I am including a glosarry of terms and concepts that are either i
 > $$
 > \pi(a|s) = 
 > \begin{cases} 
-> 1 - \epsilon + \frac{\epsilon}{|A|}, & \text{if}\ a = \text{argmax}_{a'} Q^{\pi}(s, a') \\
+> 1 - \epsilon + \frac{\epsilon}{|A|}, & \text{if}\ a = \text{argmax}_{a'} Q_{\pi}(s, a') \\
 > \frac{\epsilon}{|A|}, & \text{otherwise}
 > \end{cases}
 >
@@ -191,10 +191,10 @@ Then intuitively we can interpret this equation as follows:
 
 We can see then why we have to wait an entire episode before adjusting the value function for each state $$G_t$$. We need to know the total return for the entire episode before we can adjust the value function for each state. The amount by which each state is adjusted by the amount it *didn't* contribute to $$G_t$$, scaled by a coefficient $$\alpha$$. So that highest values for each of the states will be adjusted less than the ones that contributed the least to $$G_t$$. The factor $$\alpha$$ is the learning rate, and adds an additional parametrizable constraint we can adjust in order to achieve our ultimate goal of finding the optimal policy $$\pi^*$$.
 
-Extending this to the state-action-value function $$Q^{\pi}(s, a)$$, we can express the Monte-Carlo learning equation as follows:
+Extending this to the state-action-value function $$Q_{\pi}(s, a)$$, we can express the Monte-Carlo learning equation as follows:
 
 $$
-Q^{\pi}(s, a) \leftarrow Q^{\pi}(s, a) + \alpha[G_t - Q^{\pi}(s, a)]
+Q_{\pi}(s, a) \leftarrow Q_{\pi}(s, a) + \alpha[G_t - Q_{\pi}(s, a)]
 $$
 
 Where here the parameters of this equation follow naturally from the parameters we defined for the state-value function $$V_{\pi}(s)$$.
