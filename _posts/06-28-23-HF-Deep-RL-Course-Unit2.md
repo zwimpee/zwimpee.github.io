@@ -77,7 +77,10 @@ $$
 
 ## Unit 2 - Content
 ### Value-Based Methods
-![Alt text](../assets/vbm-1.jpg)
+
+<div class="imgcap_noborder>
+<img src="/assets/vbm-1.jpg" width="80%">
+</div>
 
 In value-based methods, we learn a value function that maps a state to the expected value of being at that state. This value function is typically denoted as $V(s)$.
 
@@ -95,6 +98,7 @@ From the course material:
 What this "Epsilon-Greedy Policy" does is that it returns 
 
 ### Two types of value-based methods
+
 <div class="imgcap_noborder>
 <img src="/assets/two-types.jpg" width="80%">
 </div>
@@ -111,14 +115,18 @@ In value-based methods for finding the optimal policy, we have two types of valu
 <img src="/assets/state-value-function-2.png" width="80%">
 </div>
 
-  - **Action-Value Functions** 
-    - For the action-value functions, we assign a value to each tuple $$(S_t, A_t)$$, where $$A_t$$ is the action taken between possible states.
-    <div class="imgcap_noborder>
-    <img src="/assets/action-state-value-function-1.png" width="80%">
-    </div>
-    <div class="imgcap_noborder>
-    <img src="/assets/action-state-value-function-2.png" width="80%">
-    </div>
+
+#### **Action-Value Functions** 
+For the action-value functions, we assign a value to each tuple $$(S_t, A_t)$$, where $$A_t$$ is the action taken between possible states.
+
+
+<div class="imgcap_noborder>
+<img src="/assets/action-state-value-function-1.png" width="80%">
+</div>
+
+<div class="imgcap_noborder>
+<img src="/assets/action-state-value-function-2.png" width="80%">
+</div>
     
 
 The state-value functions contain less information than the action-value functions, but finding the action-value function explicitly would be much more computationally intensive. Therefore, we are going to introduce our first named equation in the course, the ***Bellman Equation***.
