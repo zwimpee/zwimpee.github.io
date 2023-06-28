@@ -81,6 +81,23 @@ For reference, I am including a glosarry of terms and concepts that are either i
 >
 > $$
 >
+> ### 2.7/2.8 - Monte-Carlo Learning
+> $$
+> V(S_t) \leftarrow V(S_t) + \alpha[G_t - V(S_t)]
+> $$
+> $$
+> Q(S_t, A_t) \leftarrow Q(S_t, A_t) + \alpha[G_t - Q(S_t, A_t)]
+> $$
+>
+> ### 2.9/2.10 Temporal Difference Learning
+> $$
+> V(S_t) \leftarrow V(S_t) + \alpha[R_{t+1} + \gamma V(S_{t+1}) - V(S_t)]
+> $$
+> $$
+> Q(S_t, A_t) \leftarrow Q(S_t, A_t) + \alpha[R_{t+1} + \gamma Q(S_{t+1}, A_{t+1}) - Q(S_t, A_t)]
+> $$
+>
+
 
 ## Unit 2 - Content
 ### Value-Based Methods
