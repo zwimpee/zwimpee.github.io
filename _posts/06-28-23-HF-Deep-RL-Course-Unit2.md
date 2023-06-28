@@ -52,6 +52,12 @@ $$
 \pi^*(s) = \text{argmax}_{a} Q^*(s, a) \quad \text{for all}\ s
 $$
 
+### Bellman Equation
+
+$$
+V^{\pi}(s) = \mathbb{E}_{\pi}[R_t | s_t = s] = \mathbb{E}_{\pi}[r_{t+1} + \gamma V^{\pi}(s_{t+1}) | s_t = s]
+$$
+
 ### Q-Learning - Update Rule
 
 $$
@@ -96,12 +102,15 @@ What this "Epsilon-Greedy Policy" does is that it returns
 In value-based methods for finding the optimal policy, we have two types of value functions:
   - **State-Value Functions**
     - For the state-value function, we calculate the value of each state $$S_t$$,
-    <div class="imgcap_noborder>
-    <img src="/assets/state-value-function-1.png" width="80%">
-    </div>
-    <div class="imgcap_noborder>
-    <img src="/assets/state-value-function-2.png" width="80%">
-    </div>
+
+<div class="imgcap_noborder>
+<img src="/assets/state-value-function-1.png" width="80%">
+</div>
+
+<div class="imgcap_noborder>
+<img src="/assets/state-value-function-2.png" width="80%">
+</div>
+
   - **Action-Value Functions** 
     - For the action-value functions, we assign a value to each tuple $$(S_t, A_t)$$, where $$A_t$$ is the action taken between possible states.
     <div class="imgcap_noborder>
@@ -116,8 +125,26 @@ The state-value functions contain less information than the action-value functio
 
 
 ### Bellman Equation
+We will go ahead and just state the equation, and then we can begin breaking it down and dissecting how exactly it works.
+For now, just know that it is a recursive function that approximates the computationally expensive state-action-value functions:
+
+$$
+V^{\pi}(s) = \mathbb{E}_{\pi}[R_t | s_t = s] = \mathbb{E}_{\pi}[r_{t+1} + \gamma V^{\pi}(s_{t+1}) | s_t = s]
+$$
+
+<div class="imgcap_noborder">
+<img src="/assets/bellman4.jpg" width="80%">
+</div>
+
+### Two Learning Strategies
+
+#### Monte-Carlo Learning
+
+#### Temporal Difference Learning
 
 
 
 #### References
-- [HuggingFace Deep RL Course](https://huggingface.co/learn/deep-rl-course)
+- [1][HuggingFace Deep RL Course](https://huggingface.co/learn/deep-rl-course)
+- [2][Wikipedia: Bellman Equation](https://en.wikipedia.org/wiki/Bellman_equation)
+- [3][Towards Data Science Post: Monte-Carlo Learning](https://towardsdatascience.com/monte-carlo-learning-b83f75233f92)

@@ -138,7 +138,7 @@ $$
 \pi^* = \underset{\pi}{\text{argmax}} \sum_{t=0}^{\infty} R_t
 $$ 
 
-We will explore policy-based methods in more detail in later chapters, but for now we can say that policy-based methods are typically more sample efficient than value-based methods, and have become increasingly popular in recent years given the advancements in deep learning algorithms and capabilities empowered by powerful GPUs.
+We will explore policy-based methods in more detail in later chapters, but for now we can say that policy-based methods  have become increasingly popular in recent years given the advancements in deep learning algorithms and capabilities empowered by powerful GPUs, but for this course we are going to start with the foundations via value-based methods and work towards policy-based methods once we have a better grasp on the fundamentals.
 
 
 ## Summary
