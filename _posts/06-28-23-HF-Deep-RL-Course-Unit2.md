@@ -212,7 +212,7 @@ Now, we will move onto a more scalable solution, Temporal Difference Learning.
 
 # Temporal Difference Learning
 
-
+*will be getting the rest of this post written shortly, stay tuned...*
 
 
 
