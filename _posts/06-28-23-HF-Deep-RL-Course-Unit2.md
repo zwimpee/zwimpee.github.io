@@ -80,7 +80,7 @@ For reference, I am including a glosarry of terms and concepts that are either i
 ## Unit 2 - Content
 ### Value-Based Methods
 
-<div class="imgcap_noborder>
+<div class="imgcap_noborder">
 <img src="/assets/vbm-1.jpg" width="80%">
 </div>
 
@@ -110,11 +110,11 @@ In value-based methods for finding the optimal policy, we have two types of valu
     - For the state-value function, we calculate the value of each state $$S_t$$,
 
 <div class="imgcap_noborder">
-<img src="/assets/state-value-function-1.png" width="80%">
+<img src="/assets/state-value-function-1.jpg" width="80%">
 </div>
 
 <div class="imgcap_noborder">
-<img src="/assets/state-value-function-2.png" width="80%">
+<img src="/assets/state-value-function-2.jpg" width="80%">
 </div>
 
 
@@ -123,11 +123,11 @@ For the action-value functions, we assign a value to each tuple $$(S_t, A_t)$$, 
 
 
 <div class="imgcap_noborder">
-<img src="/assets/action-state-value-function-1.png" width="80%">
+<img src="/assets/action-state-value-function-1.jpg" width="80%">
 </div>
 
 <div class="imgcap_noborder">
-<img src="/assets/action-state-value-function-2.png" width="80%">
+<img src="/assets/action-state-value-function-2.jpg" width="80%">
 </div>
     
 
