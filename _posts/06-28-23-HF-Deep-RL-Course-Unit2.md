@@ -227,10 +227,31 @@ Now, we will move onto a more scalable solution, Temporal Difference Learning.
 #### Temporal Difference Learning
 
 # Temporal Difference Learning
+In contrast with Monte-Carlo Learning, where we must wait an entire episode before adjusting the value function, in Temporal Difference Learning we only need a single timestep $$t$$ before we adjust our value function:
 
-*will be getting the rest of this post written shortly, stay tuned...*
+<div class="imgcap_noborder">
+<img src="/assets/TD-1.jpg">
+</div>
 
+<div class="imgcap_noborder">
+<img src="/assets/TD-1p.jpg">
+</div>
 
+<div class="imgcap_noborder">
+<img src="/assets/TD-2.jpg">
+</div>
+
+<div class="imgcap_noborder">
+<img src="/assets/TD-2p.jpg">
+</div>
+
+<div class="imgcap_noborder">
+<img src="/assets/TD-3.jpg">
+</div>
+
+<div class="imgcap_noborder">
+<img src="/assets/TD-3p.jpg">
+</div>
 
 #### References
 - [1][HuggingFace Deep RL Course](https://huggingface.co/learn/deep-rl-course)
