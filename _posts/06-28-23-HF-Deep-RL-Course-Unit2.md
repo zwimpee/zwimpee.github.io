@@ -42,7 +42,7 @@ For reference, I am including a glosarry of terms and concepts that are either i
 > #### 2.1 State-Value Functions
 >
 > $$
-> V^{\pi}(s) = \mathbb{E}_{\pi}[R_t | s_t = s]
+> V_{\pi}(s) = \mathbb{E}_{\pi}[R_t | s_t = s]
 > $$
 >
 > #### 2.2 Action-Value Functions
@@ -60,7 +60,7 @@ For reference, I am including a glosarry of terms and concepts that are either i
 > ### 2.4 Bellman Equation
 >
 > $$
-> V^{\pi}(s) = \mathbb{E}_{\pi}[R_t | s_t = s] = \mathbb{E}_{\pi}[r_{t+1} + \gamma V^{\pi}(s_{t+1}) | s_t = s]
+> V_{\pi}(s) = \mathbb{E}_{\pi}[R_t | s_t = s] = \mathbb{E}_{\pi}[r_{t+1} + \gamma V_{\pi}(s_{t+1}) | s_t = s]
 > $$
 >
 >
@@ -161,7 +161,7 @@ We will go ahead and just state the equation, and then we can begin breaking it 
 For now, just know that it is a recursive function that approximates the computationally expensive state-action-value functions:
 
 $$
-V^{\pi}(s) = \mathbb{E}_{\pi}[R_t | s_t = s] = \mathbb{E}_{\pi}[r_{t+1} + \gamma V^{\pi}(s_{t+1}) | s_t = s]
+V_{\pi}(s) = \mathbb{E}_{\pi}[R_t | s_t = s] = \mathbb{E}_{\pi}[r_{t+1} + \gamma V_{\pi}(s_{t+1}) | s_t = s]
 $$
 
 <div class="imgcap_noborder">
@@ -177,18 +177,18 @@ This type of learning involves looking back after an episode and adjusting the v
 For a state-value function, we can express this in the following equations:
 
 $$
-V^{\pi}(s) \leftarrow V^{\pi}(s) + \alpha[G_t - V^{\pi}(s)]
+V_{\pi}(s) \leftarrow V_{\pi}(s) + \alpha[G_t - V_{\pi}(s)]
 $$
 
 Where here,
 
 - $$G_t$$ is the discounted return at time step $$t$$
-- $$V^{\pi}(s)$$ is the value function, which maps a given state to a certain value.
+- $$V_{\pi}(s)$$ is the value function, which maps a given state to a certain value.
 
 Then intuitively we can interpret this equation as follows:
 
 - We first play out 1 full episode, and compute the discounted cumulative return, $$G_t$$.
-- At each timestep $$t$$, we adjust the value function by some coefficients $$\alpha$$ and the difference between the total return $$G_t$$ over the entire episode minus the value function at that state $$V^{\pi}(s)$$.
+- At each timestep $$t$$, we adjust the value function by some coefficients $$\alpha$$ and the difference between the total return $$G_t$$ over the entire episode minus the value function at that state $$V_{\pi}(s)$$.
 
 We can see then why we have to wait an entire episode before adjusting the value function for each state $$G_t$$. We need to know the total return for the entire episode before we can adjust the value function for each state. The amount by which each state is adjusted by the amount it *didn't* contribute to $$G_t$$, scaled by a coefficient $$\alpha$$. So that highest values for each of the states will be adjusted less than the ones that contributed the least to $$G_t$$. The factor $$\alpha$$ is the learning rate, and adds an additional parametrizable constraint we can adjust in order to achieve our ultimate goal of finding the optimal policy $$\pi^*$$.
 
@@ -198,9 +198,9 @@ $$
 Q^{\pi}(s, a) \leftarrow Q^{\pi}(s, a) + \alpha[G_t - Q^{\pi}(s, a)]
 $$
 
-Where here the parameters of this equation follow naturally from the parameters we defined for the state-value function $$V^{\pi}(s)$$.
+Where here the parameters of this equation follow naturally from the parameters we defined for the state-value function $$V_{\pi}(s)$$.
 
-Going back to a state-value function $$V^{\pi}(S_t)$$, we will borrow some nice summarization and illustration from the Hugging Face course:
+Going back to a state-value function $$V_{\pi}(S_t)$$, we will borrow some nice summarization and illustration from the Hugging Face course:
 
 
 > # Example of Monte-Carlo Learning
