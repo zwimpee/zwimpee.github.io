@@ -84,24 +84,24 @@ For reference, I am including a glosarry of terms and concepts that are either i
 <img src="/assets/vbm-1.jpg" width="80%">
 </div>
 
-In value-based methods, we learn a value function that maps a state to the expected value of being at that state. This value function is typically denoted as $V(s)$.
+In value-based methods, we learn a value function that maps a state to the expected value of being at that state. This value function is typically denoted as $$V(s)$$.
 
 Borrowing directly from HuggingFace:
->*The value of a state is the expected discounted return the agent can get if it starts at that state and then acts according to our policy.*
+> *The value of a state is the expected discounted return the agent can get if it starts at that state and then acts according to our policy.*
 
-That is, given some state $s_t$, the value function $V(s)$ will return the expected value of being at that state.
+That is, given some state $$S_t$$, the value function $$V(s)$$ will return the expected value of being at that state.
 
-Our goal remains the same; we want to find the optimal policy $\pi^*$ that maximizes the expected return $G_t$. However, we are not doing so directly, but are instead training a model on a value function for a given state, and define the policy in terms of the value function.
+Our goal remains the same; we want to find the optimal policy $$\pi^*$$ that maximizes the expected return $$G_t$$. However, we are not doing so directly, but are instead training a model on a value function for a given state, and define the policy in terms of the value function.
 
 From the course material:
 
 > "In fact, most of the time, in value-based methods, you’ll use an Epsilon-Greedy Policy that handles the exploration/exploitation trade-off; we’ll talk about this when we talk about Q-Learning in the second part of this unit."
 
-What this "Epsilon-Greedy Policy" does is that it returns 
+What this "Epsilon-Greedy Policy" does, without going into too much detail here, is that it allows us to explore the environment, while still exploiting our immediate surroundings in order to maximize the expected return.
 
 ### Two types of value-based methods
 
-<div class="imgcap_noborder>
+<div class="imgcap_noborder">
 <img src="/assets/two-types.jpg" width="80%">
 </div>
 
@@ -109,11 +109,11 @@ In value-based methods for finding the optimal policy, we have two types of valu
   - **State-Value Functions**
     - For the state-value function, we calculate the value of each state $$S_t$$,
 
-<div class="imgcap_noborder>
+<div class="imgcap_noborder">
 <img src="/assets/state-value-function-1.png" width="80%">
 </div>
 
-<div class="imgcap_noborder>
+<div class="imgcap_noborder">
 <img src="/assets/state-value-function-2.png" width="80%">
 </div>
 
@@ -122,11 +122,11 @@ In value-based methods for finding the optimal policy, we have two types of valu
 For the action-value functions, we assign a value to each tuple $$(S_t, A_t)$$, where $$A_t$$ is the action taken between possible states.
 
 
-<div class="imgcap_noborder>
+<div class="imgcap_noborder">
 <img src="/assets/action-state-value-function-1.png" width="80%">
 </div>
 
-<div class="imgcap_noborder>
+<div class="imgcap_noborder">
 <img src="/assets/action-state-value-function-2.png" width="80%">
 </div>
     
