@@ -140,9 +140,8 @@ In value-based methods for finding the optimal policy, we have two types of valu
 </div>
 
 
-#### **Action-Value Functions** 
-For the action-value functions, we assign a value to each tuple $$(S_t, A_t)$$, where $$A_t$$ is the action taken between possible states.
-
+  - **Action-Value Functions**
+    - For the action-value functions, we assign a value to each tuple $$(S_t, A_t)$$, where $$A_t$$ is the action taken between possible states.
 
 <div class="imgcap_noborder">
 <img src="/assets/action-state-value-function-1.jpg" width="80%">

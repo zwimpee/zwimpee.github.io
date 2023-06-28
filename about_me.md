@@ -29,6 +29,17 @@ If you want to hear me speak on this latest experience in particular, you can ch
 
 I will spare you the details from each of my experiences, but I want to share enough information for you to be able to decide for yourself if I am someone who is even worth listening to, so as to not waste your time, which I think is the worst sin one can commit against themselves. 
 
+### Experience
+I graduated from Angelo State University with 2 degrees; Mathematics and Physics. During my undergraduate education, I participated in 2 pivotal internships that significantly influenced the trajectory of my life:
+
+- In 2015, I participated in the University of Michigan's Semester Abroad pilot program, during which I got the opportunity to live in Swizterland for 3 months working as a student research intern at CERN.
+- From 2017~2019 I participated in a student research group based out of the University of Maryland and Brown University, led by Sylvester James Gates. During this time, I contributed to the following publication in the field of high energy theoretical particle physics: [On the Ubiquity Of Electromagnetic-Duality Rotations in 4D, N = 1 Holoraumy Tensors for On-Shell 4D Supermultiplets](https://arxiv.org/abs/1906.02971)
+
+With respect to my professional experience, I have worked full time since summer 2021 at Pieces Technology, an AI startup in Dallas Texas. During this time, I have been involved with the design, development, and implementation of MLOps solution to complex healthcare problems. During this time I have learned a variety of tools and skills, including Tensorflow, PyTorch, Docker, Kuburnetes, Airflow, and others. The most important skill I learned, however, is by far the ability to teach myself anything I could possibly want to learn, from scratch, and have a track record that supports this claim.
+
+### What I am Doing Now
+I am currently seeking a role involved with deep learning applications and research. In particular, I am seeking roles giving me the opportunity to apply all of the skills I have developed over my education and career, including my experience working in collaborative research in an extremely technical space, and my more recent experience serving AI solutions at scale in a production environment.
+
 ### Why I am Writing This
 Spending the last 2 years away from the modeling and applied science side of things, and more on the software engineering side of things, has left me feeling a bit empty. I have been wanting to get back into the world of deep learning hands for quite some time now, but could never really find the right time to begin toying around with models again, since there was so much to learn and so much work to be done on the other side of things. 
 
