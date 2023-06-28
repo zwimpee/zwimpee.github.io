@@ -183,7 +183,9 @@ Going back to a state-value function $$V^{\pi}(S_t)$$, we will borrow some nice 
 ################################
 
 
-
+>  <div class="imgcap_noborder">
+>  <img src="/assets/MC-2.jpg">
+>  </div>
 > - We will always start each episode at the same starting point
 > - The agent takes actions using the policy. For instance, using an Epsilon Greedy Strategy, a policy that alternates between exploration (random actions) and exploitation.
 > - We get the reward and the next state.
