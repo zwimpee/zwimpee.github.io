@@ -259,11 +259,12 @@ In contrast with Monte-Carlo Learning, where we must wait an entire episode befo
 > - Value-based method: finds the optimal policy indirectly by training a value or action-value function that will tell us the value of each state or each state-action pair.
 > - TD approach: updates its action-value function at each step instead of at the end of the episode.
 > - Q-Learning is the algorithm we use to train our Q-function, an action-value function that determines the value of being at a particular state and taking a specific action at that state.
->
->
+> <div class="imgcap_noborder">
+> <img src="/assets/Q-function.jpg">
+> </div>
 >
 
-
+### Q-table
 *to be continued...*
 
 #### References
