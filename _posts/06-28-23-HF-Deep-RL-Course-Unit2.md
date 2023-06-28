@@ -26,9 +26,9 @@ This will involve us implementing an RL-agent from scratch, in 2 environments:
 
 Pulling directly from the course material:
 > Concretely, we will:
-    > - Learn about value-based methods.
-    > - Learn about the differences between Monte Carlo and Temporal Difference Learning.
-    > - Study and implement our first RL algorithm: Q-Learning.
+> - Learn about value-based methods.
+> - Learn about the differences between Monte Carlo and Temporal Difference Learning.
+> - Study and implement our first RL algorithm: Q-Learning.
 > This unit is fundamental if you want to be able to work on Deep Q-Learning: the first Deep RL algorithm that played Atari games and beat the human level on some of them (breakout, space invaders, etc).
 >
 > So let’s get started! 🚀
