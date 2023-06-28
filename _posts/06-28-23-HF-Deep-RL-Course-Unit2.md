@@ -1,7 +1,7 @@
 ---
 layout: post
 comments: true
-title:  "HuggingFace Deep RL Course Notes - Unit 2"
+title:  "HuggingFace Deep RL Course Notes - Unit 2 (Work in Progress)"
 excerpt: ""
 date:   2023-06-28 10:00:00
 mathjax: true
@@ -148,8 +148,58 @@ $$
 
 #### Monte-Carlo Learning
 
+This type of learning involves looking back after an episode and adjusting the value function based on the actual return. 
+
+For a state-value function, we can express this in the following equations:
+
+$$
+V^{\pi}(s) \leftarrow V^{\pi}(s) + \alpha[G_t - V^{\pi}(s)]
+$$
+
+Where here,
+
+- $$G_t$$ is the discounted return at time step $$t$$
+- $$V^{\pi}(s)$$ is the value function, which maps a given state to a certain value.
+
+Then intuitively we can interpret this equation as follows:
+
+- We first play out 1 full episode, and compute the discounted cumulative return, $$G_t$$.
+- At each timestep $$t$$, we adjust the value function by some coefficients $$\alpha$$ and the difference between the total return $$G_t$$ over the entire episode minus the value function at that state $$V^{\pi}(s)$$.
+
+We can see then why we have to wait an entire episode before adjusting the value function for each state $$G_t$$. We need to know the total return for the entire episode before we can adjust the value function for each state. The amount by which each state is adjusted by the amount it *didn't* contribute to $$G_t$$, scaled by a coefficient $$\alpha$$. So that highest values for each of the states will be adjusted less than the ones that contributed the least to $$G_t$$. The factor $$\alpha$$ is the learning rate, and adds an additional parametrizable constraint we can adjust in order to achieve our ultimate goal of finding the optimal policy $$\pi^*$$.
+
+Extending this to the state-action-value function $$Q^{\pi}(s, a)$$, we can express the Monte-Carlo learning equation as follows:
+
+$$
+Q^{\pi}(s, a) \leftarrow Q^{\pi}(s, a) + \alpha[G_t - Q^{\pi}(s, a)]
+$$
+
+Where here the parameters of this equation follow naturally from the parameters we defined for the state-value function $$V^{\pi}(s)$$.
+
+Going back to a state-value function $$V^{\pi}(S_t)$$, we will borrow some nice summarization and illustration from the Hugging Face course:
+
+################################
+# Example of Monte-Carlo Learning
+################################
+
+
+
+> - We will always start each episode at the same starting point
+> - The agent takes actions using the policy. For instance, using an Epsilon Greedy Strategy, a policy that alternates between exploration (random actions) and exploitation.
+> - We get the reward and the next state.
+> - We terminate the episode if the cat eats the mouse or if the mouse moves > 10 steps.
+> - At the end of the episode, we have a list of State, Actions, Rewards, and Next States tuples For instance [[State tile 3 bottom, Go Left, +1, State tile 2 bottom], [State tile 2 bottom, Go Left, +0, State tile 1 bottom]…]
+> - The agent will sum the total rewards $$G_t$$ (to see how well it did).
+> - It will then update $$V(S_t)$$ based on the formula
+>  <div class="imgcap_noborder">
+>  <img src="/assets/MC-3.jpg">
+>  </div>
+
+  
+
 #### Temporal Difference Learning
 
+# Temporal Difference Learning
 
 
 #### References
