@@ -34,7 +34,7 @@ We can further formalize this even further with the following definitions:
 ## Definitions
 
 ### Environment
-An environment $$ E$$  is .
+An environment $$ E$$  is the system or framework within which we are attempting to solve the RL problem.
 
 It can be described by a by a state $$ s_t$$ at time $$ t$$ :
 
