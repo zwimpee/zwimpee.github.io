@@ -196,6 +196,10 @@ Going back to a state-value function $$V^{\pi}(S_t)$$, we will borrow some nice 
 >  <div class="imgcap_noborder">
 >  <img src="/assets/MC-3.jpg">
 >  </div>
+> ...
+>  <div class="imgcap_noborder">
+>  <img src="/assets/MC-3p.jpg">
+>  </div>
 
   
 
